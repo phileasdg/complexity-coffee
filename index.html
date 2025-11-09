@@ -949,14 +949,14 @@
                     day: 'numeric'
                 });
 
-                // Format: "10:00 AM MST"
+                // Format: "10:00 AM EST" (Local time with timezone)
                 const timeDisplay = eventDate.toLocaleTimeString('en-US', {
                     hour: 'numeric',
                     minute: '2-digit',
-                    timeZoneName: 'short'
+                    timeZoneName: 'short' // Re-added to show the timezone
                 });
 
-                // Format: "October 20, 2025 at 10:00 AM MST"
+                // Format: "October 20, 2025 at 10:00 AM EST"
                 const dateTimeFull = `${dateDisplay} at ${timeDisplay}`;
                 
                 // Location is now read directly from the JSON.
@@ -1170,7 +1170,8 @@
                 // Populate the modal
                 modalTitle.textContent = title;
                 modalTag.textContent = tag;
-                modalTag.className = `text-xs font-bold uppercase tracking-wider ${tagColor}`;
+                // --- FIX: Hardcode a visible color for the tag on the white modal ---
+                modalTag.className = 'text-xs font-bold uppercase tracking-wider text-sfi-sea';
                 modalDateTime.textContent = dateTimeFull; // UPDATED
                 modalLocation.textContent = location;     // UPDATED
                 modalDescription.innerHTML = description;
@@ -1393,7 +1394,13 @@
 
                 // --- 4.3: Process events, adding formatted date info ---
                 allEvents.forEach(event => {
-                    const timestamp = event.event_time; // Always an integer
+                    let timestamp = event.event_time; // Always an integer
+                    
+                    // --- FIX: Check if timestamp is in seconds (10 digits) or milliseconds (13 digits) ---
+                    // If the timestamp is 10 digits or less, it's in seconds. Multiply by 1000.
+                    if (String(timestamp).length <= 10) {
+                        timestamp = timestamp * 1000;
+                    }
                     
                     // Attach the formatted date/time object to each event
                     event.formattedDate = formatEventDateTime(timestamp, event.location, nowMs);
