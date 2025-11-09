@@ -331,18 +331,18 @@
                 <!-- Logo / Site Title -->
                 <div class="flex-shrink-0 flex items-center">
                     <!-- White text on mobile, dark on desktop -->
-                    <a href="javascript:void(0)" onclick="showPage('home')" class="text-2xl md:text-3xl font-bold font-serif-display text-white md:text-gray-900 transition-colors duration-300">
+                    <a href="#page=home" class="text-2xl md:text-3xl font-bold font-serif-display text-white md:text-gray-900 transition-colors duration-300">
                         Complexity Coffee
                     </a>
                 </div>
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex md:items-center md:space-x-8">
-                    <a href="javascript:void(0)" onclick="showPage('home', '#about')" class="text-gray-700 hover:text-sfi-sea font-medium">About</a>
-                    <a href="javascript:void(0)" onclick="showPage('home', '#upcoming')" class="text-gray-700 hover:text-sfi-sea font-medium">Upcoming</a>
-                    <a href="javascript:void(0)" onclick="showPage('home', '#events')" class="text-gray-700 hover:text-sfi-sea font-medium">Event Types</a>
-                    <a href="javascript:void(0)" onclick="showPage('archive')" class="text-gray-700 hover:text-sfi-sea font-medium">All Events</a>
-                    <a href="javascript:void(0)" onclick="showPage('team')" class="text-gray-700 hover:text-sfi-sea font-medium">Team</a>
+                    <a href="#page=home&section=about" class="text-gray-700 hover:text-sfi-sea font-medium">About</a>
+                    <a href="#page=home&section=upcoming" class="text-gray-700 hover:text-sfi-sea font-medium">Upcoming</a>
+                    <a href="#page=home&section=events" class="text-gray-700 hover:text-sfi-sea font-medium">Event Types</a>
+                    <a href="#page=archive" class="text-gray-700 hover:text-sfi-sea font-medium">All Events</a>
+                    <a href="#page=team" class="text-gray-700 hover:text-sfi-sea font-medium">Team</a>
                 </div>
                 
                 <!-- Mobile Menu Button (SFI Style) -->
@@ -360,11 +360,11 @@
     <div id="mobile-menu" class="mobile-menu-panel sfi-gradient-eggplant" aria-hidden="true">
         <div class="px-6 pt-24 pb-4 space-y-2">
             <!-- Mobile links are larger and white, per SFI style -->
-            <a href="javascript:void(0)" onclick="showPage('home', '#about')" class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">About</a>
-            <a href="javascript:void(0)" onclick="showPage('home', '#upcoming')" class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">Upcoming</a>
-            <a href="javascript:void(0)" onclick="showPage('home', '#events')" class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">Event Types</a>
-            <a href="javascript:void(0)" onclick="showPage('archive')" class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">All Events</a>
-            <a href="javascript:void(0)" onclick="showPage('team')" class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">Team</a>
+            <a href="#page=home&section=about" class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">About</a>
+            <a href="#page=home&section=upcoming" class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">Upcoming</a>
+            <a href="#page=home&section=events" class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">Event Types</a>
+            <a href="#page=archive" class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">All Events</a>
+            <a href="#page=team" class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">Team</a>
             <a href="https://santafe.edu" target="_blank" rel="noopener" class="block px-3 py-2 rounded-md text-xl font-medium text-gray-300 hover:bg-white/10 mt-8">
                 santafe.edu
             </a>
@@ -401,7 +401,7 @@
                             A new series of webinars, talks, and workshops from the Santa Fe Institute, exploring the frontiers of complexity science.
                         </p>
                         <div class="mt-10">
-                            <a href="#upcoming" class="sfi-cta cta-white text-base md:text-lg">
+                            <a href="#page=home&section=upcoming" class="sfi-cta cta-white text-base md:text-lg">
                                 View Upcoming Events
                                 <svg class="arrow-circle-icon" width="24" height="14" viewBox="-395 256 24 14"><path fill="none" d="M-377 263h-17.6m15.4-2.2l2.2 2.2-2.2 2.2"/><circle fill="none" cx="-378.1" cy="263" r="6.8"/></svg>
                             </a>
@@ -436,7 +436,7 @@
                         <h2 class="text-3xl sm:text-4xl md:text-5xl font-black font-serif-display">
                             Upcoming Events
                         </h2>
-                        <a href="javascript:void(0)" onclick="showPage('archive')" class="sfi-cta cta-black hidden md:inline-flex">
+                        <a href="#page=archive" class="sfi-cta cta-black hidden md:inline-flex">
                             View All Events
                             <svg class="arrow-circle-icon" width="24" height="14" viewBox="-395 256 24 14"><path fill="none" d="M-377 263h-17.6m15.4-2.2l2.2 2.2-2.2 2.2"/><circle fill="none" cx="-378.1" cy="263" r="6.8"/></svg>
                         </a>
@@ -445,14 +445,14 @@
                     <!-- 
                         DYNAMIC EVENT GRID
                         Events will be injected here by JavaScript.
-                    -->
+                     -->
                     <div id="home-upcoming-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <!-- Loading or error message will be shown here -->
                         <p class="text-gray-600 md:col-span-3">Loading upcoming events...</p>
                     </div>
 
                     <div class="text-center mt-12 md:hidden">
-                        <a href="javascript:void(0)" onclick="showPage('archive')" class="sfi-cta cta-black">
+                        <a href="#page=archive" class="sfi-cta cta-black">
                             View All Events
                             <svg class="arrow-circle-icon" width="24" height="14" viewBox="-395 256 24 14"><path fill="none" d="M-377 263h-17.6m15.4-2.2l2.2 2.2-2.2 2.2"/><circle fill="none" cx="-378.1" cy="263" r="6.8"/></svg>
                         </a>
@@ -541,7 +541,7 @@
                     <!-- 
                         DYNAMIC UPCOMING GRID (ARCHIVE)
                         Events will be injected here by JavaScript.
-                    -->
+                     -->
                     <div id="archive-upcoming-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <p class="text-gray-600 md:col-span-3">Loading upcoming events...</p>
                     </div>
@@ -553,7 +553,7 @@
                     <!-- 
                         DYNAMIC SERIES GRID (ARCHIVE)
                         Event series "playlists" will be injected here by JavaScript.
-                    -->
+                     -->
                     <div id="archive-series-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <p class="text-gray-600 md:col-span-3">Loading event series...</p>
                     </div>
@@ -565,7 +565,7 @@
                     <!-- 
                         DYNAMIC PAST GRID (ARCHIVE)
                         Events will be injected here by JavaScript.
-                    -->
+                     -->
                     <div id="archive-past-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <p class="text-gray-600 md:col-span-3">Loading past events...</p>
                     </div>
@@ -592,7 +592,7 @@
                     <!-- 
                         DYNAMIC TEAM GRID
                         Team members will be injected here by JavaScript.
-                    -->
+                     -->
                     <!-- Added max-w-6xl and mx-auto to center the grid -->
                     <div id="team-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                         <p class="text-gray-600 md:col-span-3">Loading team...</p>
@@ -620,11 +620,11 @@
                 <div>
                     <h5 class="text-lg font-bold text-white mb-4">Complexity Coffee</h5>
                     <ul class="space-y-3">
-                        <li><a href="javascript:void(0)" onclick="showPage('home', '#about')" class="text-gray-400 hover:text-white text-sm">About The Series</a></li>
-                        <li><a href="javascript:void(0)" onclick="showPage('home', '#events')" class="text-gray-400 hover:text-white text-sm">Event Formats</a></li>
-                        <li><a href="javascript:void(0)" onclick="showPage('home', '#upcoming')" class="text-gray-400 hover:text-white text-sm">Upcoming Events</a></li>
-                        <li><a href="javascript:void(0)" onclick="showPage('archive')" class="text-gray-400 hover:text-white text-sm">All Events</a></li>
-                        <li><a href="javascript:void(0)" onclick="showPage('team')" class="text-gray-400 hover:text-white text-sm">Team</a></li>
+                        <li><a href="#page=home&section=about" class="text-gray-400 hover:text-white text-sm">About The Series</a></li>
+                        <li><a href="#page=home&section=events" class="text-gray-400 hover:text-white text-sm">Event Formats</a></li>
+                        <li><a href="#page=home&section=upcoming" class="text-gray-400 hover:text-white text-sm">Upcoming Events</a></li>
+                        <li><a href="#page=archive" class="text-gray-400 hover:text-white text-sm">All Events</a></li>
+                        <li><a href="#page=team" class="text-gray-400 hover:text-white text-sm">Team</a></li>
                     </ul>
                 </div>
                 <!-- Footer Column 2: SFI -->
@@ -688,10 +688,11 @@
                     <div class="mt-4 text-gray-700 space-y-1">
                         <!-- This will now show the full date/time string, e.g., "October 20, 2025 at 10:00 AM MST" -->
                         <p id="modal-date-time" class="font-medium text-lg"></p>
-                        <!-- This will show "Past Event" or "Virtual / Zoom" -->
+                        <!-- This will show "Virtual / Zoom" -->
                         <p id="modal-location" class="text-gray-600"></p>
                     </div>
 
+                    <!-- CTA Button: Can be "Register", "Watch Recording", or "Registration Coming Soon" -->
                     <a id="modal-cta-button" href="#" target="_blank" rel="noopener" class="block w-full text-center bg-sfi-sea text-white font-bold py-3 px-5 rounded-lg mt-6 hover:bg-sfi-ming transition text-base"></a>
                     
                     <div id="modal-description" class="mt-6 text-gray-600 font-sans-body space-y-4"></div>
@@ -793,11 +794,55 @@
 
     <!-- JS for Mobile Menu & Page/Modal Toggle -->
     <script>
-        // We wrap everything in a DOMContentLoaded listener
-        document.addEventListener('DOMContentLoaded', () => {
+        // Global data stores
+        let ALL_EVENTS_DATA = [];
+        let ALL_TEAM_DATA = [];
 
+        // Defines the static "playlist" cards for the Event Series
+        const eventSeries = [
+            {
+                title: "Guest Talks",
+                description: "In-depth lectures from leading researchers and guest lecturers on foundational and cutting-edge topics in complexity science.",
+                tag_matcher: "Guest Talk",
+                image_path: "img/general/tiling1.jpeg",
+                gradient_class: "sfi-gradient-turmeric",
+                tag_color_class: "text-white"
+            },
+            {
+                title: "Nascent Research",
+                description: "A rapid-fire series. Presenters share emerging research in 10-minute talks, followed by 10 minutes of Q&A.",
+                tag_matcher: "Nascent Research",
+                image_path: "img/general/feltpen1.jpeg",
+                gradient_class: "sfi-gradient-sea",
+                tag_color_class: "text-white"
+            },
+            {
+                title: "Workshops",
+                description: "Hands-on sessions to learn new methods, tools, and skills related to complexity science.",
+                tag_matcher: "Workshop",
+                image_path: "img/general/paint1.jpeg",
+                gradient_class: "sfi-gradient-eggplant",
+                tag_color_class: "text-white"
+            }
+        ];
+        // Cache for storing the filtered/sorted event lists for each series
+        const seriesEventCache = new Map();
+
+
+        /**
+         * Main app initialization
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            initApp();
+        });
+
+        /**
+         * Wraps all application logic
+         */
+        function initApp() {
+            
             // =======================================================
-            // === 1. NON-DATA-DEPENDENT UI (Menu, Page Switching)
+            // === 1. DOM & STATE VARIABLES
             // =======================================================
 
             // --- Global Elements ---
@@ -807,54 +852,6 @@
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const overlay = document.getElementById('mobile-menu-overlay');
-
-            // --- Mobile Menu Logic ---
-            function openMenu() {
-                menuButton.classList.add('is-active');
-                menuButton.setAttribute('aria-expanded', 'true');
-                mobileMenu.classList.add('is-open');
-                mobileMenu.setAttribute('aria-hidden', 'false');
-                overlay.classList.remove('hidden');
-                body.style.overflow = 'hidden';
-            }
-
-            function closeMenu() {
-                menuButton.classList.remove('is-active');
-                menuButton.setAttribute('aria-expanded', 'false');
-                mobileMenu.classList.remove('is-open');
-                mobileMenu.setAttribute('aria-hidden', 'true');
-                overlay.classList.add('hidden');
-                body.style.overflow = '';
-            }
-
-            menuButton.addEventListener('click', () => {
-                mobileMenu.classList.contains('is-open') ? closeMenu() : openMenu();
-            });
-
-            overlay.addEventListener('click', closeMenu);
-            document.querySelectorAll('.mobile-nav-link').forEach(link => {
-                link.addEventListener('click', closeMenu);
-            });
-
-            // --- Page Switching Logic ---
-            window.showPage = (pageId, anchor) => {
-                document.querySelectorAll('[data-page]').forEach(page => page.classList.remove('is-active'));
-                const targetPage = document.querySelector(`[data-page="${pageId}"]`);
-                if (targetPage) targetPage.classList.add('is-active');
-                
-                if (anchor) {
-                    setTimeout(() => {
-                        const element = document.querySelector(anchor);
-                        if (element) element.scrollIntoView({ behavior: 'smooth' });
-                    }, 50);
-                } else {
-                    window.scrollTo(0, 0);
-                }
-            }
-            
-            // =======================================================
-            // === 2. MODAL & DYNAMIC CONTENT LOGIC
-            // =======================================================
 
             // --- Main Event Modal Elements ---
             const modalBackdrop = document.getElementById('event-modal-backdrop');
@@ -896,298 +893,133 @@
 
             let currentSpeakers = []; // To hold speakers for the "see more" modal
 
-            // --- Data Definitions ---
-            // Defines the static "playlist" cards for the Event Series
-            const eventSeries = [
-                {
-                    title: "Guest Talks",
-                    description: "In-depth lectures from leading researchers and guest lecturers on foundational and cutting-edge topics in complexity science.",
-                    tag_matcher: "Guest Talk",
-                    image_path: "img/general/tiling4.jpeg",
-                    gradient_class: "sfi-gradient-turmeric",
-                    tag_color_class: "text-white"
-                },
-                {
-                    title: "Nascent Research",
-                    description: "A rapid-fire series. Presenters share emerging research in 10-minute talks, followed by 10 minutes of Q&A.",
-                    tag_matcher: "Nascent Research",
-                    image_path: "img/general/feltpen1.jpeg",
-                    gradient_class: "sfi-gradient-sea",
-                    tag_color_class: "text-white"
-                },
-                {
-                    title: "Workshops",
-                    description: "Hands-on sessions to learn new methods, tools, and skills related to complexity science.",
-                    tag_matcher: "Workshop",
-                    image_path: "img/general/paint1.jpeg",
-                    gradient_class: "sfi-gradient-eggplant",
-                    tag_color_class: "text-white"
-                }
-            ];
-            // Cache for storing the filtered/sorted event lists for each series
-            const seriesEventCache = new Map();
-
             // =======================================================
-            // === 3. HELPER FUNCTIONS (STYLING, HTML, DATE)
+            // === 2. CORE UI FUNCTIONS (MENU, ROUTING, MODALS)
             // =======================================================
 
-            /**
-             * NEW: Formats an event timestamp for display.
-             * @param {number} timestamp - The event timestamp in milliseconds.
-             * @param {string} location - The event's listed location.
-             * @param {number} nowTimestamp - The current time in milliseconds.
-             * @returns {object} - { dateDisplay, timeDisplay, dateTimeFull, locationDisplay, isPast }
-             */
-            function formatEventDateTime(timestamp, location, nowTimestamp) {
-                const eventDate = new Date(timestamp);
-                const isPast = timestamp < nowTimestamp;
-
-                // Format: "October 20, 2025"
-                const dateDisplay = eventDate.toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-
-                // Format: "10:00 AM EST" (Local time with timezone)
-                const timeDisplay = eventDate.toLocaleTimeString('en-US', {
-                    hour: 'numeric',
-                    minute: '2-digit',
-                    timeZoneName: 'short' // Re-added to show the timezone
-                });
-
-                // Format: "October 20, 2025 at 10:00 AM EST"
-                const dateTimeFull = `${dateDisplay} at ${timeDisplay}`;
-                
-                // Location is now read directly from the JSON.
-                const locationDisplay = location;
-
-                return { dateDisplay, timeDisplay, dateTimeFull, locationDisplay, isPast };
+            // --- Mobile Menu Logic ---
+            function openMenu() {
+                menuButton.classList.add('is-active');
+                menuButton.setAttribute('aria-expanded', 'true');
+                mobileMenu.classList.add('is-open');
+                mobileMenu.setAttribute('aria-hidden', 'false');
+                overlay.classList.remove('hidden');
+                body.style.overflow = 'hidden';
             }
 
-            /**
-             * Helper function to get the correct styling for an event card.
-             * @param {object} event - The event object
-             * @returns {object} - { gradient_class, tag_color_class }
-             */
-            function getEventStyling(event) {
-                // 1. Check if styling is provided in the event JSON (backward compatibility)
-                if (event.gradient_class && event.tag_color_class) {
-                    return {
-                        gradient_class: event.gradient_class,
-                        tag_color_class: event.tag_color_class
-                    };
-                }
-                
-                // 2. Try to match the event tag to a defined series
-                const matchedSeries = eventSeries.find(s => s.tag_matcher.toLowerCase() === event.tag.toLowerCase());
-                if (matchedSeries) {
-                    return {
-                        gradient_class: matchedSeries.gradient_class,
-                        tag_color_class: matchedSeries.tag_color_class
-                    };
-                }
+            function closeMenu() {
+                menuButton.classList.remove('is-active');
+                menuButton.setAttribute('aria-expanded', 'false');
+                mobileMenu.classList.remove('is-open');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                overlay.classList.add('hidden');
+                body.style.overflow = '';
+            }
 
-                // 3. Fallback to a default
+            // --- URL Hash Routing Logic ---
+            function getHashParams() {
+                const hash = window.location.hash.substring(1);
+                const params = new URLSearchParams(hash);
                 return {
-                    gradient_class: 'sfi-gradient-sea',
-                    tag_color_class: 'text-white'
+                    page: params.get('page') || 'home',
+                    section: params.get('section'),
+                    eventId: params.get('event'),
+                    teamId: params.get('team')
                 };
             }
 
-            /**
-             * Helper function to create the HTML for a single event card.
-             * @param {object} event - The *processed* event object (with .formattedDate)
-             * @returns {string} - The HTML string for the event card
-             */
-            function createEventCardHTML(event) {
-                // Stringify the speaker data for the data- attribute
-                const speakersJson = JSON.stringify(event.speakers.map(s => ({
-                    name: s.name,
-                    tagline: s.tagline,
-                    image: s.image_path, // Pass the relative path
-                    website: s.website_url
-                })));
+            function updateHash(params, replace = false) {
+                const searchParams = new URLSearchParams();
+                if (params.page) searchParams.set('page', params.page);
+                if (params.section) searchParams.set('section', params.section);
+                if (params.eventId) searchParams.set('event', params.eventId);
+                if (params.teamId) searchParams.set('team', params.teamId);
 
-                // Determine the speaker text for the card face
-                let speakerDisplay;
-                if (!event.speakers || event.speakers.length === 0 || event.speakers[0].name.toLowerCase() === 'to be announced') {
-                    speakerDisplay = "(Coming Soon)";
-                } else if (event.speakers.length === 1) {
-                    speakerDisplay = event.speakers[0].name;
+                const newHash = searchParams.toString();
+                if (replace) {
+                    window.history.replaceState(null, '', '#' + newHash);
                 } else {
-                    speakerDisplay = "Various Speakers";
+                    window.location.hash = newHash;
                 }
+            }
+
+            function handleRouting(isInitialLoad = false) {
+                const params = getHashParams();
                 
-                // Get link URLs, defaulting to empty strings
-                const registerUrl = (event.links && event.links.register) ? event.links.register : "";
-                const recordingUrl = (event.links && event.links.recording) ? event.links.recording : "";
+                // Switch active page
+                document.querySelectorAll('[data-page]').forEach(page => {
+                    page.classList.toggle('is-active', page.dataset.page === params.page);
+                });
 
-                // Get dynamic styling
-                const { gradient_class, tag_color_class } = getEventStyling(event);
-
-                // Provide a fallback for the main image
-                const imagePath = event.image_path || 'https://placehold.co/600x400/3c1053/fff?text=Event+Image';
-                // Clean title for alt text (remove quotes)
-                const altText = event.title.replace(/"/g, "'"); 
-
-                // *** UPDATED ***
-                // Get formatted date/time from the event object
-                const { dateDisplay, dateTimeFull, locationDisplay } = event.formattedDate;
-
-                return `
-                    <article>
-                        <button type="button" class="sfi-card-container ${gradient_class} group text-left"
-                            data-title="${event.title.replace(/"/g, "'")}"
-                            data-datetime-full="${dateTimeFull}"
-                            data-location="${locationDisplay}"
-                            data-image="${imagePath}"
-                            data-tag="${event.tag}"
-                            data-tag-color="${tag_color_class}"
-                            data-description='${event.description_html}'
-                            data-speakers='${speakersJson}'
-                            data-register-url="${registerUrl}"
-                            data-recording-url="${recordingUrl}">
-                            
-                            <img src="${imagePath}" alt="${altText}" 
-                                 onerror="this.onerror=null; this.src='https://placehold.co/600x400/333/fff?text=Image+Missing';">
-                            
-                            <div class="sfi-card-content">
-                                <span class="text-xs font-bold uppercase tracking-wider ${tag_color_class}">${event.tag}</span>
-                            </div>
-                            <div class="sfi-card-content">
-                                <h3 class="mt-2 text-2xl font-bold font-serif-display">
-                                    ${event.title}
-                                </h3>
-                                <!-- UPDATED to use just the formatted date -->
-                                <p class="mt-2 text-sm text-gray-200">${dateDisplay} | ${speakerDisplay}</p>
-                            </div>
-                        </button>
-                    </article>
-                `;
-            }
-
-            /**
-             * Helper to create HTML for a single speaker in the modal.
-             */
-            function createSpeakerHTML(speaker) {
-                const websiteLink = speaker.website 
-                    ? `<a href="${speaker.website}" target="_blank" rel="noopener" class="text-sfi-sea text-sm hover:underline">Website</a>` 
-                    : '';
+                // Close any open modals
+                closeAllModals(true); // silent close
                 
-                const speakerImage = speaker.image || 'https://placehold.co/100x100/ccc/fff?text=Speaker';
-
-                return `
-                    <div class="flex items-center space-x-4">
-                        <img src="${speakerImage}" alt="${speaker.name}" class="h-16 w-16 rounded-full object-cover bg-gray-100 flex-shrink-0"
-                             onerror="this.onerror=null; this.src='https://placehold.co/100x100/ccc/fff?text=Speaker';">
-                        <div>
-                            <p class="font-bold text-lg">${speaker.name}</p>
-                            <p class="text-gray-600 text-sm">${speaker.tagline}</p>
-                            ${websiteLink}
-                        </div>
-                    </div>
-                `;
-            }
-
-            /**
-             * Helper to create HTML for a single Event Series "playlist" card.
-             */
-            function createSeriesCardHTML(series) {
-                const altText = series.title.replace(/"/g, "'");
-                return `
-                    <article>
-                        <button type="button" class="sfi-card-container ${series.gradient_class} group text-left" data-series-title="${series.title}">
-                            <img src="${series.image_path}" alt="${altText}" 
-                                 onerror="this.onerror=null; this.src='https://placehold.co/600x400/333/fff?text=Image+Missing';">
-                            
-                            <div class="sfi-card-content">
-                                <span class="text-xs font-bold uppercase tracking-wider ${series.tag_color_class}">${series.tag_matcher}</span>
-                            </div>
-                            <div class="sfi-card-content">
-                                <h3 class="mt-2 text-2xl font-bold font-serif-display">
-                                    ${series.title}
-                                </h3>
-                                <p class="mt-2 text-sm text-gray-200">${series.description}</p>
-                            </div>
-                        </button>
-                    </article>
-                `;
-            }
-
-            /**
-             * Helper to create HTML for a single Team Member card.
-             */
-            function createTeamCardHTML(teamMember) {
-                const altText = teamMember.name.replace(/"/g, "'");
-                return `
-                    <article class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col">
-                        <button type="button" class="group text-left w-full" data-member-id="${teamMember.id}">
-                            <div class="w-full aspect-square overflow-hidden">
-                                <img src="${teamMember.image_path}" alt="${altText}" 
-                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                     onerror="this.onerror=null; this.src='https://placehold.co/400x400/ccc/fff?text=Image+Missing';">
-                            </div>
-                            <div class="p-5">
-                                <h3 class="text-2xl font-bold font-serif-display group-hover:text-sfi-sea transition-colors">
-                                    ${teamMember.name}
-                                </h3>
-                                <p class="mt-1 text-base text-gray-600">${teamMember.role}</p>
-                            </div>
-                        </button>
-                    </article>
-                `;
-            }
-
-
-            /**
-             * Opens the main event modal with data from a card.
-             */
-            const maxSpeakersToShow = 2; // Show 2 speakers before hiding behind "See More"
-            window.openModal = (card) => {
-                // Get all data from the card
-                const title = card.dataset.title;
-                const location = card.dataset.location;
-                const image = card.dataset.image;
-                const tag = card.dataset.tag;
-                const tagColor = card.dataset.tagColor || 'text-gray-500';
-                const description = card.dataset.description;
-                const registerUrl = card.dataset.registerUrl;
-                const recordingUrl = card.dataset.recordingUrl;
-                // *** UPDATED ***
-                const dateTimeFull = card.dataset.datetimeFull;
-                
-                // Parse speakers JSON
-                let speakers = [];
-                try {
-                    speakers = JSON.parse(card.dataset.speakers);
-                } catch (e) {
-                    console.error("Failed to parse speakers JSON:", e, card.dataset.speakers);
-                    speakers = [{ name: "Error loading speakers", tagline: "", image: "" }];
+                if (params.eventId) {
+                    // Open event modal if data is ready
+                    if (ALL_EVENTS_DATA.length > 0) {
+                        openEventById(params.eventId);
+                    }
+                    // If data isn't ready, it will be handled by the data loader's `onSuccess`
+                } else if (params.teamId) {
+                    // Open team modal if data is ready
+                    if (ALL_TEAM_DATA.length > 0) {
+                        openTeamMemberById(params.teamId);
+                    }
+                } else if (params.section) {
+                    // Scroll to section
+                    setTimeout(() => {
+                        const element = document.getElementById(params.section);
+                        if (element) {
+                            element.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }, 50);
+                } else if (isInitialLoad && params.page === 'home') {
+                    // Do nothing, just stay at top
+                } else if (!isInitialLoad) {
+                    // Scroll to top on page navigation (but not on initial load)
+                    window.scrollTo(0, 0);
                 }
-                currentSpeakers = speakers; // Store for the "See More" modal
+            }
+
+            // --- Main Event Modal ---
+            function openEventById(eventId) {
+                const event = ALL_EVENTS_DATA.find(e => e.id === eventId);
+                if (!event) {
+                    console.error(`Event with ID ${eventId} not found.`);
+                    // Clear the invalid event ID from URL
+                    const params = getHashParams();
+                    delete params.eventId;
+                    updateHash(params, true);
+                    return;
+                }
+
+                // Get all data for the modal
+                const { title, location, image_path, tag, description_html, links, speakers, formattedDate } = event;
+                const { dateTimeFull, isPast } = formattedDate;
+                
+                currentSpeakers = speakers || []; // Store for the "See More" modal
 
                 // Populate the modal
                 modalTitle.textContent = title;
                 modalTag.textContent = tag;
-                // --- FIX: Hardcode a visible color for the tag on the white modal ---
-                modalTag.className = 'text-xs font-bold uppercase tracking-wider text-sfi-sea';
-                modalDateTime.textContent = dateTimeFull; // UPDATED
-                modalLocation.textContent = location;     // UPDATED
-                modalDescription.innerHTML = description;
-                modalImage.src = image;
+                modalTag.className = 'text-xs font-bold uppercase tracking-wider text-sfi-sea'; // Always visible color
+                modalDateTime.textContent = dateTimeFull;
+                modalLocation.textContent = location;
+                modalDescription.innerHTML = description_html;
+                modalImage.src = image_path || 'https://placehold.co/600x400/3c1053/fff?text=Event+Image';
                 modalImage.alt = title;
 
                 // Populate speaker list
                 modalSpeakerList.innerHTML = ''; // Clear previous speakers
-                if (speakers.length > 0) {
-                    speakers.slice(0, maxSpeakersToShow).forEach(speaker => {
+                if (currentSpeakers.length > 0) {
+                    const maxSpeakersToShow = 2;
+                    currentSpeakers.slice(0, maxSpeakersToShow).forEach(speaker => {
                         modalSpeakerList.innerHTML += createSpeakerHTML(speaker);
                     });
 
                     // Show or hide "See More" button
-                    if (speakers.length > maxSpeakersToShow) {
-                        modalSeeMoreBtn.textContent = `See all ${speakers.length} speakers`;
+                    if (currentSpeakers.length > maxSpeakersToShow) {
+                        modalSeeMoreBtn.textContent = `See all ${currentSpeakers.length} speakers`;
                         modalSeeMoreBtn.classList.remove('hidden');
                     } else {
                         modalSeeMoreBtn.classList.add('hidden');
@@ -1195,15 +1027,32 @@
                 }
 
                 // Configure CTA button
-                if (registerUrl && registerUrl !== "#") {
+                const registerUrl = links?.register;
+                const recordingUrl = links?.recording;
+
+                if (!isPast && registerUrl && registerUrl !== "#" && registerUrl !== "null") {
+                    // Upcoming & Register link exists
                     modalCtaButton.href = registerUrl;
                     modalCtaButton.textContent = "Register for Event";
+                    modalCtaButton.classList.remove('opacity-50', 'cursor-not-allowed');
                     modalCtaButton.style.display = 'block';
-                } else if (recordingUrl) {
+                    modalCtaButton.onclick = null;
+                } else if (isPast && recordingUrl && recordingUrl !== "null") {
+                    // Past & Recording link exists
                     modalCtaButton.href = recordingUrl;
                     modalCtaButton.textContent = "Watch Recording";
+                    modalCtaButton.classList.remove('opacity-50', 'cursor-not-allowed');
                     modalCtaButton.style.display = 'block';
+                    modalCtaButton.onclick = null;
+                } else if (!isPast) {
+                    // Upcoming, but no register link
+                    modalCtaButton.href = "#";
+                    modalCtaButton.textContent = "Registration Coming Soon";
+                    modalCtaButton.classList.add('opacity-50', 'cursor-not-allowed');
+                    modalCtaButton.style.display = 'block';
+                    modalCtaButton.onclick = (e) => e.preventDefault(); // Prevent hash change
                 } else {
+                    // Past, but no recording link
                     modalCtaButton.style.display = 'none';
                 }
 
@@ -1211,12 +1060,28 @@
                 modalBackdrop.classList.add('is-open');
                 modalContainer.classList.add('is-open');
                 body.style.overflow = 'hidden';
+
+                // If opening from the series modal, hide the series modal
+                if (seriesModalContainer.classList.contains('is-open')) {
+                    seriesModalContainer.classList.remove('is-open');
+                }
             }
+            window.openEventById = openEventById; // Make public for card clicks
 
             function closeModal() {
                 modalBackdrop.classList.remove('is-open');
                 modalContainer.classList.remove('is-open');
-                body.style.overflow = '';
+                
+                const params = getHashParams();
+                delete params.eventId;
+
+                // If we were in a series, re-open the series modal
+                if (seriesModalBackdrop.classList.contains('is-open')) {
+                    seriesModalContainer.classList.add('is-open');
+                } else {
+                    body.style.overflow = '';
+                    updateHash(params, true); // Update URL, replace history
+                }
             }
 
             // --- Speaker List Modal Logic ---
@@ -1231,11 +1096,17 @@
                 });
                 speakerModalBackdrop.classList.add('is-open');
                 speakerModalContainer.classList.add('is-open');
+                
+                // Hide the main event modal
+                modalContainer.classList.remove('is-open');
             }
 
             function closeSpeakerListModal() {
                 speakerModalBackdrop.classList.remove('is-open');
                 speakerModalContainer.classList.remove('is-open');
+                
+                // Show the main event modal again
+                modalContainer.classList.add('is-open');
             }
 
             // --- Event Series Modal Logic ---
@@ -1256,26 +1127,46 @@
                 }
                 
                 // CRITICAL: Re-attach listeners to the *new* event cards inside this modal
-                seriesModalGrid.querySelectorAll('button[data-title]').forEach(card => {
-                    card.addEventListener('click', () => openModal(card));
+                seriesModalGrid.querySelectorAll('button[data-event-id]').forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        e.preventDefault(); // Prevent default button action
+                        const eventId = card.dataset.eventId;
+                        const params = getHashParams();
+                        params.eventId = eventId;
+                        updateHash(params); // Update URL, add to history
+                        // The hashchange listener will call openEventById
+                    });
                 });
 
                 seriesModalBackdrop.classList.add('is-open');
                 seriesModalContainer.classList.add('is-open');
                 body.style.overflow = 'hidden';
             }
+            // FIX: Make this function globally accessible for the onclick attribute
+            window.openSeriesModal = openSeriesModal;
+
 
             function closeSeriesModal() {
                 seriesModalBackdrop.classList.remove('is-open');
                 seriesModalContainer.classList.remove('is-open');
-                // Only restore body scroll if the main modal isn't *also* open
+                
                 if (!modalContainer.classList.contains('is-open')) {
                     body.style.overflow = '';
                 }
             }
 
             // --- Team Member Modal Logic ---
-            function openTeamModal(member) {
+            function openTeamMemberById(teamId) {
+                const member = ALL_TEAM_DATA.find(m => m.id === teamId);
+                if (!member) {
+                    console.error(`Team member with ID ${teamId} not found.`);
+                    // Clear the invalid team ID from URL
+                    const params = getHashParams();
+                    delete params.teamId;
+                    updateHash(params, true);
+                    return;
+                }
+
                 teamModalName.textContent = member.name;
                 teamModalRole.textContent = member.role;
                 teamModalImage.src = member.image_path;
@@ -1301,127 +1192,311 @@
                 teamModalContainer.classList.add('is-open');
                 body.style.overflow = 'hidden';
             }
+            window.openTeamMemberById = openTeamMemberById; // Make public
 
             function closeTeamModal() {
                 teamModalBackdrop.classList.remove('is-open');
                 teamModalContainer.classList.remove('is-open');
                 body.style.overflow = '';
+                
+                // Clear the team ID from URL
+                const params = getHashParams();
+                delete params.teamId;
+                updateHash(params, true);
             }
 
-            // --- Attach listeners to static modal elements ---
-            modalCloseBtn.addEventListener('click', closeModal);
-            modalBackdrop.addEventListener('click', closeModal);
-            modalSeeMoreBtn.addEventListener('click', openSpeakerListModal);
-            
-            speakerModalCloseBtn.addEventListener('click', closeSpeakerListModal);
-            speakerModalBackdrop.addEventListener('click', closeSpeakerListModal);
-            
-            seriesCloseBtn.addEventListener('click', closeSeriesModal);
-            seriesModalBackdrop.addEventListener('click', closeSeriesModal);
-
-            teamModalCloseBtn.addEventListener('click', closeTeamModal);
-            teamModalBackdrop.addEventListener('click', closeTeamModal);
-
-            // Global Keydown Listener
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    if (speakerModalContainer.classList.contains('is-open')) {
-                        closeSpeakerListModal();
-                    } else if (teamModalContainer.classList.contains('is-open')) {
-                        closeTeamModal();
-                    } else if (modalContainer.classList.contains('is-open')) {
-                        closeModal();
-                    } else if (seriesModalContainer.classList.contains('is-open')) {
-                        closeSeriesModal();
-                    } else if (mobileMenu.classList.contains('is-open')) {
-                        closeMenu();
-                    }
+            function closeAllModals(isSilent = false) {
+                if (speakerModalContainer.classList.contains('is-open')) {
+                    speakerModalBackdrop.classList.remove('is-open');
+                    speakerModalContainer.classList.remove('is-open');
                 }
-            });
+                if (teamModalContainer.classList.contains('is-open')) {
+                    teamModalBackdrop.classList.remove('is-open');
+                    teamModalContainer.classList.remove('is-open');
+                }
+                if (modalContainer.classList.contains('is-open')) {
+                    modalBackdrop.classList.remove('is-open');
+                    modalContainer.classList.remove('is-open');
+                }
+                if (seriesModalContainer.classList.contains('is-open')) {
+                    seriesModalBackdrop.classList.remove('is-open');
+                    seriesModalContainer.classList.remove('is-open');
+                }
+
+                body.style.overflow = '';
+
+                if (!isSilent) {
+                    const params = getHashParams();
+                    delete params.eventId;
+                    delete params.teamId;
+                    updateHash(params, true);
+                }
+            }
 
 
             // =======================================================
-            // === 4. DATA FETCHING & RENDERING (RUNS ON LOAD)
+            // === 3. HELPER FUNCTIONS (FORMATTING, HTML)
             // =======================================================
 
             /**
-             * Main function to fetch time, fetch events, and render them.
+             * Formats an event timestamp for display.
+             * @param {number} timestamp - The event timestamp *in milliseconds*.
+             * @param {string} location - The event's listed location.
+             * @param {number} nowTimestamp - The current time in milliseconds.
+             * @returns {object} - { dateDisplay, timeDisplay, dateTimeFull, locationDisplay, isPast }
              */
-            async function loadEvents() {
-                let now;
+            function formatEventDateTime(timestamp, location, nowTimestamp) {
+                const eventDate = new Date(timestamp);
+                const isPast = timestamp < nowTimestamp;
+
+                const dateDisplay = eventDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+
+                const timeDisplay = eventDate.toLocaleTimeString('en-US', {
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    timeZoneName: 'short'
+                });
+
+                const dateTimeFull = `${dateDisplay} at ${timeDisplay}`;
+                const locationDisplay = location; // Always show the real location
+
+                return { dateDisplay, timeDisplay, dateTimeFull, locationDisplay, isPast };
+            }
+
+            /**
+             * Helper function to get the correct styling for an event card.
+             */
+            function getEventStyling(event) {
+                if (event.gradient_class && event.tag_color_class) {
+                    return {
+                        gradient_class: event.gradient_class,
+                        tag_color_class: event.tag_color_class
+                    };
+                }
+                const matchedSeries = eventSeries.find(s => s.tag_matcher.toLowerCase() === event.tag.toLowerCase());
+                if (matchedSeries) {
+                    return {
+                        gradient_class: matchedSeries.gradient_class,
+                        tag_color_class: matchedSeries.tag_color_class
+                    };
+                }
+                return {
+                    gradient_class: 'sfi-gradient-sea',
+                    tag_color_class: 'text-white'
+                };
+            }
+
+            /**
+             * Helper function to create the HTML for a single event card.
+             * @param {object} event - The *processed* event object
+             * @returns {string} - The HTML string for the event card
+             */
+            function createEventCardHTML(event) {
+                // Determine the speaker text for the card face
+                let speakerDisplay;
+                if (!event.speakers || event.speakers.length === 0 || event.speakers[0].name.toLowerCase() === 'to be announced') {
+                    speakerDisplay = "(Coming Soon)";
+                } else if (event.speakers.length === 1) {
+                    speakerDisplay = event.speakers[0].name;
+                } else {
+                    speakerDisplay = "Various Speakers";
+                }
+                
+                const { gradient_class, tag_color_class } = getEventStyling(event);
+                const imagePath = event.image_path || 'https://placehold.co/600x400/3c1053/fff?text=Event+Image';
+                const altText = event.title.replace(/"/g, "'"); 
+                const { dateDisplay } = event.formattedDate;
+
+                // Use an <a> tag for hash routing
+                return `
+                    <article>
+                        <a href="#page=${getHashParams().page}&event=${event.id}" class="sfi-card-container ${gradient_class} group text-left"
+                            data-event-id="${event.id}">
+                            
+                            <img src="${imagePath}" alt="${altText}" 
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x400/333/fff?text=Image+Missing';">
+                            
+                            <div class="sfi-card-content">
+                                <span class="text-xs font-bold uppercase tracking-wider ${tag_color_class}">${event.tag}</span>
+                            </div>
+                            <div class="sfi-card-content">
+                                <h3 class="mt-2 text-2xl font-bold font-serif-display">
+                                    ${event.title}
+                                </h3>
+                                <p class="mt-2 text-sm text-gray-200">${dateDisplay} | ${speakerDisplay}</p>
+                            </div>
+                        </a>
+                    </article>
+                `;
+            }
+
+            /**
+             * Helper to create HTML for a single speaker in the modal.
+             */
+            function createSpeakerHTML(speaker) {
+                const websiteLink = speaker.website_url 
+                    ? `<a href="${speaker.website_url}" target="_blank" rel="noopener" class="text-sfi-sea text-sm hover:underline">Website</a>` 
+                    : '';
+                
+                const speakerImage = speaker.image_path || 'https://placehold.co/100x100/ccc/fff?text=Speaker';
+
+                return `
+                    <div class="flex items-center space-x-4">
+                        <img src="${speakerImage}" alt="${speaker.name}" class="h-16 w-16 rounded-full object-cover bg-gray-100 flex-shrink-0"
+                             onerror="this.onerror=null; this.src='https://placehold.co/100x100/ccc/fff?text=Speaker';">
+                        <div>
+                            <p class="font-bold text-lg">${speaker.name}</p>
+                            <p class="text-gray-600 text-sm">${speaker.tagline}</p>
+                            ${websiteLink}
+                        </div>
+                    </div>
+                `;
+            }
+
+            /**
+             * Helper to create HTML for a single Event Series "playlist" card.
+             */
+            function createSeriesCardHTML(series) {
+                const altText = series.title.replace(/"/g, "'");
+                // Use a <button> here since it opens a modal, not a new page
+                return `
+                    <article>
+                        <button type="button" class="sfi-card-container ${series.gradient_class} group text-left" 
+                                onclick="openSeriesModal('${series.title}')">
+                            <img src="${series.image_path}" alt="${altText}" 
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x400/333/fff?text=Image+Missing';">
+                            
+                            <div class="sfi-card-content">
+                                <span class="text-xs font-bold uppercase tracking-wider ${series.tag_color_class}">${series.tag_matcher}</span>
+                            </div>
+                            <div class="sfi-card-content">
+                                <h3 class="mt-2 text-2xl font-bold font-serif-display">
+                                    ${series.title}
+                                </h3>
+                                <p class="mt-2 text-sm text-gray-200">${series.description}</p>
+                            </div>
+                        </button>
+                    </article>
+                `;
+            }
+
+            /**
+             * Helper to create HTML for a single Team Member card.
+             */
+            function createTeamCardHTML(teamMember) {
+                const altText = teamMember.name.replace(/"/g, "'");
+                // Use an <a> tag for hash routing
+                return `
+                    <article class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+                        <a href="#page=team&team=${teamMember.id}" class="group text-left w-full" 
+                           data-member-id="${teamMember.id}">
+                            <div class="w-full aspect-square overflow-hidden">
+                                <img src="${teamMember.image_path}" alt="${altText}" 
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/400x400/ccc/fff?text=Image+Missing';">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-2xl font-bold font-serif-display group-hover:text-sfi-sea transition-colors">
+                                    ${teamMember.name}
+                                </h3>
+                                <p class="mt-1 text-base text-gray-600">${teamMember.role}</p>
+                            </div>
+                        </a>
+                    </article>
+                `;
+            }
+
+            // =======================================================
+            // === 4. DATA FETCHING & RENDERING
+            // =======================================================
+
+            /**
+             * Fetches, processes, and renders all dynamic data.
+             */
+            async function loadAllData() {
                 
                 // --- 4.1: Get the "true" current time ---
+                let now;
                 try {
-                    // Use worldtimeapi to get non-local time. 'ip' guesses timezone.
                     const response = await fetch('https://worldtimeapi.org/api/ip');
                     if (!response.ok) throw new Error('Time API failed');
                     const data = await response.json();
-                    // Use the precise UTC datetime string
                     now = new Date(data.utc_datetime); 
-                    console.log('Using reliable world time:', now);
                 } catch (error) {
-                    // FALLBACK: If time API fails, use the user's local time
                     console.warn('World time API failed. Falling back to local time.', error);
                     now = new Date();
                 }
-                
-                // *** NEW: Get the current time in milliseconds for comparison ***
                 const nowMs = now.getTime();
 
-                // --- 4.2: Get the event data ---
+                // --- 4.2: Fetch and process Events ---
+                const eventsPromise = fetch('./data/events.json?v=' + new Date().getTime())
+                    .then(response => {
+                        if (!response.ok) throw new Error(`Events JSON not found (${response.status})`);
+                        return response.json();
+                    })
+                    .then(events => {
+                        ALL_EVENTS_DATA = events.map(event => {
+                            if (typeof event.event_time !== 'number') {
+                                event.event_time = 0;
+                            } else if (event.event_time.toString().length < 11) {
+                                event.event_time = event.event_time * 1000;
+                            }
+                            event.formattedDate = formatEventDateTime(event.event_time, event.location, nowMs);
+                            return event;
+                        });
+                        renderEvents(nowMs);
+                    })
+                    .catch(error => {
+                        console.error('Failed to fetch or process events:', error);
+                        const errorMsg = '<p class="text-gray-700 md:col-span-3">Could not load events. Please try refreshing the page.</p>';
+                        ['home-upcoming-grid', 'archive-upcoming-grid', 'archive-past-grid', 'archive-series-grid'].forEach(id => {
+                            const el = document.getElementById(id);
+                            if (el) el.innerHTML = errorMsg;
+                        });
+                    });
+
+                // --- 4.3: Fetch and process Team ---
+                const teamPromise = fetch('./data/team.json?v=' + new Date().getTime())
+                    .then(response => {
+                        if (!response.ok) throw new Error(`Team JSON not found (${response.status})`);
+                        return response.json();
+                    })
+                    .then(team => {
+                        ALL_TEAM_DATA = team;
+                        renderTeam();
+                    })
+                    .catch(error => {
+                        console.error('Failed to fetch or process team data:', error);
+                        document.getElementById('team-grid').innerHTML = '<p class="text-gray-700 md:col-span-3">Could not load team data. Please try refreshing the page.</p>';
+                    });
+                
+                // --- 4.4: After all data is loaded, handle initial URL ---
+                Promise.all([eventsPromise, teamPromise]).then(() => {
+                    handleRouting(true); // This is the initial load
+                });
+            }
+
+            /**
+             * Renders all event grids once data is processed.
+             */
+            function renderEvents(nowMs) {
                 const homeUpcomingGrid = document.getElementById('home-upcoming-grid');
                 const archiveUpcomingGrid = document.getElementById('archive-upcoming-grid');
                 const archiveSeriesGrid = document.getElementById('archive-series-grid');
                 const archivePastGrid = document.getElementById('archive-past-grid');
-                let allEvents = [];
 
-                try {
-                    // ADDED cache-busting query to force reload of JSON
-                    const response = await fetch('./data/events.json?v=' + new Date().getTime()); 
-                    if (!response.ok) {
-                        throw new Error(`Events JSON not found (${response.status})`);
-                    }
-                    allEvents = await response.json();
-                } catch (error) {
-                    console.error('Failed to fetch or process events:', error);
-                    const errorMsg = '<p class="text-gray-700 md:col-span-3">Could not load events. Please try refreshing the page.</p>';
-                    if (homeUpcomingGrid) homeUpcomingGrid.innerHTML = errorMsg;
-                    if (archiveUpcomingGrid) archiveUpcomingGrid.innerHTML = errorMsg;
-                    if (archivePastGrid) archivePastGrid.innerHTML = errorMsg;
-                    if (archiveSeriesGrid) archiveSeriesGrid.innerHTML = '<p class="text-gray-700 md:col-span-3">Could not load event series.</p>';
-                    return; // Stop execution if events can't load
-                }
-
-                // --- 4.3: Process events, adding formatted date info ---
-                allEvents.forEach(event => {
-                    let timestamp = event.event_time; // Always an integer
-                    
-                    // --- FIX: Check if timestamp is in seconds (10 digits) or milliseconds (13 digits) ---
-                    // If the timestamp is 10 digits or less, it's in seconds. Multiply by 1000.
-                    if (String(timestamp).length <= 10) {
-                        timestamp = timestamp * 1000;
-                    }
-                    
-                    // Attach the formatted date/time object to each event
-                    event.formattedDate = formatEventDateTime(timestamp, event.location, nowMs);
-                    // Store the processed timestamp back on the event object for sorting
-                    event.event_time_processed = timestamp;
-                });
-
-                // --- 4.4: Sort events based on the "true" time ---
-                
-                // Filter and sort upcoming events (future dates, ascending)
-                const upcomingEvents = allEvents
+                const upcomingEvents = ALL_EVENTS_DATA
                     .filter(event => !event.formattedDate.isPast)
-                    .sort((a, b) => a.event_time_processed - b.event_time_processed); // ASC
+                    .sort((a, b) => a.event_time - b.event_time); // ASC
                 
-                // Filter and sort past events (past dates, descending)
-                const pastEvents = allEvents
+                const pastEvents = ALL_EVENTS_DATA
                     .filter(event => event.formattedDate.isPast)
-                    .sort((a, b) => b.event_time_processed - a.event_time_processed); // DESC
+                    .sort((a, b) => b.event_time - a.event_time); // DESC
 
-                // --- 4.5: Populate event grids ---
-                
                 // Home Page Grid (Max 3)
                 if (homeUpcomingGrid) {
                     const homeEvents = upcomingEvents.slice(0, 3);
@@ -1450,75 +1525,107 @@
                     }
                 }
 
-                // --- 4.6: Populate Event Series Grid & Cache Data ---
+                // Archive Page - Event Series Grid
                 if (archiveSeriesGrid) {
                     archiveSeriesGrid.innerHTML = ''; // Clear loading message
                     eventSeries.forEach(series => {
-                        // Filter and sort events for this series (DESC)
-                        const seriesEvents = allEvents
+                        const seriesEvents = ALL_EVENTS_DATA
                             .filter(event => event.tag.toLowerCase() === series.tag_matcher.toLowerCase())
-                            .sort((a, b) => b.event_time_processed - a.event_time_processed); // DESC
+                            .sort((a, b) => b.event_time - a.event_time); // DESC
                         
-                        // Store in cache for the modal
                         seriesEventCache.set(series.title, seriesEvents);
-                        
-                        // Add the card to the grid
                         archiveSeriesGrid.innerHTML += createSeriesCardHTML(series);
                     });
-
-                    // Add listeners to the new series cards
-                    archiveSeriesGrid.querySelectorAll('button[data-series-title]').forEach(card => {
-                        card.addEventListener('click', () => openSeriesModal(card.dataset.seriesTitle));
-                    });
                 }
-
-                // --- 4.7: Attach listeners to *all* newly created event cards ---
-                document.querySelectorAll('button[data-title]').forEach(card => {
-                    card.addEventListener('click', () => openModal(card));
-                });
             }
 
             /**
-             * Function to fetch and render the team page.
+             * Renders the team grid once data is processed.
              */
-            async function loadTeamData() {
+            function renderTeam() {
                 const teamGrid = document.getElementById('team-grid');
-                let allTeamMembers = [];
-
-                try {
-                    // ADDED cache-busting query to force reload of JSON
-                    const response = await fetch('./data/team.json?v=' + new Date().getTime());
-                    if (!response.ok) {
-                        throw new Error(`Team JSON not found (${response.status})`);
-                    }
-                    allTeamMembers = await response.json();
-                } catch (error) {
-                    console.error('Failed to fetch or process team data:', error);
-                    teamGrid.innerHTML = '<p class="text-gray-700 md:col-span-3">Could not load team data. Please try refreshing the page.</p>';
-                    return;
-                }
-
-                // Populate grid
-                if (allTeamMembers.length > 0) {
-                    teamGrid.innerHTML = allTeamMembers.map(createTeamCardHTML).join('');
+                if (ALL_TEAM_DATA.length > 0) {
+                    teamGrid.innerHTML = ALL_TEAM_DATA.map(createTeamCardHTML).join('');
                 } else {
                     teamGrid.innerHTML = '<p class="text-gray-600 md:col-span-3">Team information is not available at this time.</p>';
                 }
-
-                // Attach listeners to new team cards
-                document.querySelectorAll('button[data-member-id]').forEach(card => {
-                    card.addEventListener('click', () => {
-                        const member = allTeamMembers.find(m => m.id === card.dataset.memberId);
-                        if(member) openTeamModal(member);
-                    });
-                });
             }
+            
 
-            // --- 5. RUN EVERYTHING! ---
-            loadEvents();
-            loadTeamData();
+            // =======================================================
+            // === 5. EVENT LISTENERS
+            // =======================================================
 
-        });
+            // --- Mobile Menu ---
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.contains('is-open') ? closeMenu() : openMenu();
+            });
+            overlay.addEventListener('click', closeMenu);
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // --- Modal Close Buttons ---
+            modalCloseBtn.addEventListener('click', closeModal);
+            modalBackdrop.addEventListener('click', closeModal);
+            modalSeeMoreBtn.addEventListener('click', openSpeakerListModal);
+            
+            speakerModalCloseBtn.addEventListener('click', closeSpeakerListModal);
+            speakerModalBackdrop.addEventListener('click', closeSpeakerListModal);
+            
+            seriesCloseBtn.addEventListener('click', closeSeriesModal);
+            seriesModalBackdrop.addEventListener('click', closeSeriesModal);
+
+            teamModalCloseBtn.addEventListener('click', closeTeamModal);
+            teamModalBackdrop.addEventListener('click', closeTeamModal);
+
+            // --- Global Listeners ---
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (speakerModalContainer.classList.contains('is-open')) {
+                        closeSpeakerListModal();
+                    } else if (teamModalContainer.classList.contains('is-open')) {
+                        closeTeamModal();
+                    } else if (modalContainer.classList.contains('is-open')) {
+                        closeModal();
+                    } else if (seriesModalContainer.classList.contains('is-open')) {
+                        closeSeriesModal();
+                    } else if (mobileMenu.classList.contains('is-open')) {
+                        closeMenu();
+                    }
+                }
+            });
+
+            // Listen for hash changes to handle routing
+            window.addEventListener('hashchange', () => handleRouting(false));
+
+            // --- Dynamic Content Click Delegation (for <a> tags) ---
+            document.body.addEventListener('click', (e) => {
+                // Find the closest <a> tag
+                const link = e.target.closest('a');
+                if (!link) return;
+
+                // Get the href
+                const href = link.getAttribute('href');
+                if (!href || !href.startsWith('#')) return;
+
+                // Prevent default anchor click behavior
+                e.preventDefault();
+                
+                // If it's a mobile nav link, it's already handled
+                if (link.classList.contains('mobile-nav-link')) return;
+
+                // Update the hash, which will trigger the 'hashchange' listener
+                window.location.hash = href;
+            });
+
+
+            // =======================================================
+            // === 6. RUN ON LOAD
+            // =======================================================
+            loadAllData();
+        }
+
     </script>
 
 </body>

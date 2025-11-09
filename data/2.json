@@ -1,23 +1,5 @@
 [
 	{
-		"id":"evt-001",
-		"title":"Realizing the Potential of Community-led, Science-driven Participatory Complex Systems Modeling",
-		"event_time":1761744600,
-		"location":"Virtual \/ Zoom",
-		"image_path":"img\/events\/speaker-series\/moira-zellner-1.png",
-		"tag":"Guest Talk",
-		"description_html":"<p>Participatory modeling (PM) is particularly well-suited to address complex socio-environmental problems like climate hazards and their implications for sustainable resource management and landscape planning. Despite its potential to inform planning and policy, particularly in conflictive contexts, PM has yet to become a mainstream practice for decision-making. While most PM research and development has focused on modeling tools and engagement techniques, multiple other dimensions must be recognized and articulated for impactful planning support. I present a PM platform, Fora.ai, that supports the iterative steps in PM: problem definition and goal setting, preference elicitation, collaborative scenario-building, simulation, tradeoff deliberation, and solution-building. I demonstrate the platform's effectiveness when embedded in a stakeholder-led process that integrates diverse knowledge, data sources, and values in pursuit of impactful green infrastructure (GI) planning to address flooding. I show how the combination of specific facilitation practices and platform features leverages the power of data, computational modeling, and social complexity to contribute to collaborative learning, creative and convergent solution-building for urban sustainability and climate resilience.<\/p>",
-		"speakers":[
-			{
-				"name":"Dr. Moira Zellner",
-				"tagline":"Professor of Public Policy and Urban Affairs at Northeastern University",
-				"image_path":"img\/general\/marble1.jpeg",
-				"website_url":"https:\/\/cssh.northeastern.edu\/faculty\/moira-zellner\/"
-			}
-		],
-		"links":{}
-	},
-	{
 		"id":"evt-000",
 		"title":"Inaugural Nascent Research Ideas",
 		"event_time":1760536800,
@@ -46,6 +28,27 @@
 			}
 		],
 		"links":{}
+	},
+	{
+		"id":"evt-001",
+		"title":"Scaling Laws in Urban Environments",
+		"event_time":1760912400000,
+		"location":"Virtual \/ Zoom",
+		"image_path":"img\/general\/tiling4.jpeg",
+		"tag":"Guest Talk",
+		"description_html":"<p>Dr. Ana Petrova explored the fascinating world of scaling laws in cities, from infrastructure needs to economic output. This talk provided a deep dive into the mathematical principles that govern urban systems.<\/p>",
+		"speakers":[
+			{
+				"name":"Dr. Ana Petrova",
+				"tagline":"Professor of Urban Dynamics, NYU",
+				"image_path":"img\/general\/marble1.jpeg",
+				"website_url":"https:\/\/nyu.edu"
+			}
+		],
+		"links":{
+			"register":null,
+			"recording":"https:\/\/youtube.com\/watch?v=..."
+		}
 	},
 	{
 		"id":"evt-002",
