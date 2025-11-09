@@ -520,7 +520,7 @@
         </div>
 
         <!-- =================== -->
-        <!--  "ALL EVENTS" PAGE  -->
+        <!--   "ALL EVENTS" PAGE   -->
         <!-- =================== -->
         <div data-page="archive">
             <section class="py-16 md:py-24"> <!-- SFI Gray Background (from body) -->
@@ -686,7 +686,9 @@
                     <h2 id="modal-title" class="mt-2 text-3xl font-bold font-serif-display"></h2>
                     
                     <div class="mt-4 text-gray-700 space-y-1">
+                        <!-- This will now show the full date/time string, e.g., "October 20, 2025 at 10:00 AM MST" -->
                         <p id="modal-date-time" class="font-medium text-lg"></p>
+                        <!-- This will show "Past Event" or "Virtual / Zoom" -->
                         <p id="modal-location" class="text-gray-600"></p>
                     </div>
 
@@ -901,7 +903,7 @@
                     title: "Guest Talks",
                     description: "In-depth lectures from leading researchers and guest lecturers on foundational and cutting-edge topics in complexity science.",
                     tag_matcher: "Guest Talk",
-                    image_path: "img/general/tiling1.jpeg",
+                    image_path: "img/general/tiling4.jpeg",
                     gradient_class: "sfi-gradient-turmeric",
                     tag_color_class: "text-white"
                 },
@@ -924,6 +926,44 @@
             ];
             // Cache for storing the filtered/sorted event lists for each series
             const seriesEventCache = new Map();
+
+            // =======================================================
+            // === 3. HELPER FUNCTIONS (STYLING, HTML, DATE)
+            // =======================================================
+
+            /**
+             * NEW: Formats an event timestamp for display.
+             * @param {number} timestamp - The event timestamp in milliseconds.
+             * @param {string} location - The event's listed location.
+             * @param {number} nowTimestamp - The current time in milliseconds.
+             * @returns {object} - { dateDisplay, timeDisplay, dateTimeFull, locationDisplay, isPast }
+             */
+            function formatEventDateTime(timestamp, location, nowTimestamp) {
+                const eventDate = new Date(timestamp);
+                const isPast = timestamp < nowTimestamp;
+
+                // Format: "October 20, 2025"
+                const dateDisplay = eventDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+
+                // Format: "10:00 AM MST"
+                const timeDisplay = eventDate.toLocaleTimeString('en-US', {
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    timeZoneName: 'short'
+                });
+
+                // Format: "October 20, 2025 at 10:00 AM MST"
+                const dateTimeFull = `${dateDisplay} at ${timeDisplay}`;
+                
+                // Location is now read directly from the JSON.
+                const locationDisplay = location;
+
+                return { dateDisplay, timeDisplay, dateTimeFull, locationDisplay, isPast };
+            }
 
             /**
              * Helper function to get the correct styling for an event card.
@@ -957,7 +997,7 @@
 
             /**
              * Helper function to create the HTML for a single event card.
-             * @param {object} event - The event object from events.json
+             * @param {object} event - The *processed* event object (with .formattedDate)
              * @returns {string} - The HTML string for the event card
              */
             function createEventCardHTML(event) {
@@ -991,13 +1031,16 @@
                 // Clean title for alt text (remove quotes)
                 const altText = event.title.replace(/"/g, "'"); 
 
+                // *** UPDATED ***
+                // Get formatted date/time from the event object
+                const { dateDisplay, dateTimeFull, locationDisplay } = event.formattedDate;
+
                 return `
                     <article>
                         <button type="button" class="sfi-card-container ${gradient_class} group text-left"
                             data-title="${event.title.replace(/"/g, "'")}"
-                            data-date="${event.date_display}"
-                            data-time="${event.time_display}"
-                            data-location="${event.location}"
+                            data-datetime-full="${dateTimeFull}"
+                            data-location="${locationDisplay}"
                             data-image="${imagePath}"
                             data-tag="${event.tag}"
                             data-tag-color="${tag_color_class}"
@@ -1016,7 +1059,8 @@
                                 <h3 class="mt-2 text-2xl font-bold font-serif-display">
                                     ${event.title}
                                 </h3>
-                                <p class="mt-2 text-sm text-gray-200">${event.date_display} | ${speakerDisplay}</p>
+                                <!-- UPDATED to use just the formatted date -->
+                                <p class="mt-2 text-sm text-gray-200">${dateDisplay} | ${speakerDisplay}</p>
                             </div>
                         </button>
                     </article>
@@ -1073,7 +1117,6 @@
 
             /**
              * Helper to create HTML for a single Team Member card.
-             * This is a NEW, cleaner card style.
              */
             function createTeamCardHTML(teamMember) {
                 const altText = teamMember.name.replace(/"/g, "'");
@@ -1104,8 +1147,6 @@
             window.openModal = (card) => {
                 // Get all data from the card
                 const title = card.dataset.title;
-                const date = card.dataset.date;
-                const time = card.dataset.time || '';
                 const location = card.dataset.location;
                 const image = card.dataset.image;
                 const tag = card.dataset.tag;
@@ -1113,6 +1154,8 @@
                 const description = card.dataset.description;
                 const registerUrl = card.dataset.registerUrl;
                 const recordingUrl = card.dataset.recordingUrl;
+                // *** UPDATED ***
+                const dateTimeFull = card.dataset.datetimeFull;
                 
                 // Parse speakers JSON
                 let speakers = [];
@@ -1128,8 +1171,8 @@
                 modalTitle.textContent = title;
                 modalTag.textContent = tag;
                 modalTag.className = `text-xs font-bold uppercase tracking-wider ${tagColor}`;
-                modalDateTime.textContent = `${date}${time ? ' at ' + time : ''}`;
-                modalLocation.textContent = location;
+                modalDateTime.textContent = dateTimeFull; // UPDATED
+                modalLocation.textContent = location;     // UPDATED
                 modalDescription.innerHTML = description;
                 modalImage.src = image;
                 modalImage.alt = title;
@@ -1297,7 +1340,7 @@
 
 
             // =======================================================
-            // === 3. DATA FETCHING & RENDERING (RUNS ON LOAD)
+            // === 4. DATA FETCHING & RENDERING (RUNS ON LOAD)
             // =======================================================
 
             /**
@@ -1306,7 +1349,7 @@
             async function loadEvents() {
                 let now;
                 
-                // --- 3.1: Get the "true" current time ---
+                // --- 4.1: Get the "true" current time ---
                 try {
                     // Use worldtimeapi to get non-local time. 'ip' guesses timezone.
                     const response = await fetch('https://worldtimeapi.org/api/ip');
@@ -1320,8 +1363,11 @@
                     console.warn('World time API failed. Falling back to local time.', error);
                     now = new Date();
                 }
+                
+                // *** NEW: Get the current time in milliseconds for comparison ***
+                const nowMs = now.getTime();
 
-                // --- 3.2: Get the event data ---
+                // --- 4.2: Get the event data ---
                 const homeUpcomingGrid = document.getElementById('home-upcoming-grid');
                 const archiveUpcomingGrid = document.getElementById('archive-upcoming-grid');
                 const archiveSeriesGrid = document.getElementById('archive-series-grid');
@@ -1345,19 +1391,29 @@
                     return; // Stop execution if events can't load
                 }
 
-                // --- 3.3: Sort events based on the "true" time ---
+                // --- 4.3: Process events, adding formatted date info ---
+                allEvents.forEach(event => {
+                    const timestamp = event.event_time; // Always an integer
+                    
+                    // Attach the formatted date/time object to each event
+                    event.formattedDate = formatEventDateTime(timestamp, event.location, nowMs);
+                    // Store the processed timestamp back on the event object for sorting
+                    event.event_time_processed = timestamp;
+                });
+
+                // --- 4.4: Sort events based on the "true" time ---
                 
                 // Filter and sort upcoming events (future dates, ascending)
                 const upcomingEvents = allEvents
-                    .filter(event => new Date(event.event_datetime) >= now)
-                    .sort((a, b) => new Date(a.event_datetime) - new Date(b.event_datetime)); // ASC
+                    .filter(event => !event.formattedDate.isPast)
+                    .sort((a, b) => a.event_time_processed - b.event_time_processed); // ASC
                 
                 // Filter and sort past events (past dates, descending)
                 const pastEvents = allEvents
-                    .filter(event => new Date(event.event_datetime) < now)
-                    .sort((a, b) => new Date(b.event_datetime) - new Date(a.event_datetime)); // DESC
+                    .filter(event => event.formattedDate.isPast)
+                    .sort((a, b) => b.event_time_processed - a.event_time_processed); // DESC
 
-                // --- 3.4: Populate event grids ---
+                // --- 4.5: Populate event grids ---
                 
                 // Home Page Grid (Max 3)
                 if (homeUpcomingGrid) {
@@ -1387,14 +1443,14 @@
                     }
                 }
 
-                // --- 3.5: Populate Event Series Grid & Cache Data ---
+                // --- 4.6: Populate Event Series Grid & Cache Data ---
                 if (archiveSeriesGrid) {
                     archiveSeriesGrid.innerHTML = ''; // Clear loading message
                     eventSeries.forEach(series => {
                         // Filter and sort events for this series (DESC)
                         const seriesEvents = allEvents
                             .filter(event => event.tag.toLowerCase() === series.tag_matcher.toLowerCase())
-                            .sort((a, b) => new Date(b.event_datetime) - new Date(a.event_datetime)); // DESC
+                            .sort((a, b) => b.event_time_processed - a.event_time_processed); // DESC
                         
                         // Store in cache for the modal
                         seriesEventCache.set(series.title, seriesEvents);
@@ -1409,7 +1465,7 @@
                     });
                 }
 
-                // --- 3.6: Attach listeners to *all* newly created event cards ---
+                // --- 4.7: Attach listeners to *all* newly created event cards ---
                 document.querySelectorAll('button[data-title]').forEach(card => {
                     card.addEventListener('click', () => openModal(card));
                 });
@@ -1451,7 +1507,7 @@
                 });
             }
 
-            // --- 4. RUN EVERYTHING! ---
+            // --- 5. RUN EVERYTHING! ---
             loadEvents();
             loadTeamData();
 
