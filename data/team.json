@@ -1,0 +1,49 @@
+[
+  {
+    "id": "team-001",
+    "name": "Dr. Aris Thorne",
+    "role": "Program Director & SFI Alum",
+    "image_path": "img/general/marble1.jpeg",
+    "bio_html": "<p>As the Program Director, Aris (they/them) shapes the vision for Complexity Coffee. An SFI alum, their research focuses on the emergence of large-scale social structures from individual-level behaviors.</p><p>Aris is passionate about making complexity science accessible to a global audience and fostering the next generation of interdisciplinary researchers.</p>",
+    "links": [
+      {
+        "type": "website",
+        "url": "https://santafe.edu",
+        "text": "SFI Profile"
+      },
+      {
+        "type": "social",
+        "url": "https://twitter.com/sfiscience",
+        "text": "Follow on X"
+      }
+    ]
+  },
+  {
+    "id": "team-002",
+    "name": "Samira Chen",
+    "role": "Program Coordinator",
+    "image_path": "img/general/marble2.jpeg",
+    "bio_html": "<p>Samira (she/her) is the organizational backbone of Complexity Coffee. She manages event logistics, coordinates with speakers, and ensures every session runs smoothly.</p><p>With a background in non-profit management and digital media, Samira is dedicated to building and supporting vibrant academic communities.</p>",
+    "links": [
+      {
+        "type": "social",
+        "url": "https.linkedin.com/...",
+        "text": "Connect on LinkedIn"
+      }
+    ]
+  },
+  {
+    "id": "team-003",
+    "name": "Leo Kim",
+    "role": "Community & Outreach",
+    "image_path": "img/general/marble3.jpeg",
+    "bio_html": "<p>Leo (he/him) manages community engagement and outreach. He runs the social media channels, moderates Q&A sessions, and works to connect our audience with speakers and resources.</p><p>Leo is a current SFI Postdoctoral Fellow studying information dynamics in social networks.</p>",
+    "links": [
+      {
+        "type": "website",
+        "url": "https://santafe.edu",
+        "text": "SFI Profile"
+      }
+    ]
+  }
+]
