@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    402270,       7572]
-NotebookOptionsPosition[    398981,       7506]
-NotebookOutlinePosition[    399416,       7523]
-CellTagsIndexPosition[    399373,       7520]
+NotebookDataLength[    402315,       7572]
+NotebookOptionsPosition[    399026,       7506]
+NotebookOutlinePosition[    399461,       7523]
+CellTagsIndexPosition[    399418,       7520]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -6538,7 +6538,7 @@ climate resilience.</p>\>\""}], ",",
             
             RowBox[{"\"\<tagline\>\"", 
              "\[Rule]", "\"\<Professor of Public Policy and Urban Affairs at \
-Northeastern University.\>\""}], ",", 
+Northeastern University\>\""}], ",", 
             
             RowBox[{"\"\<image_path\>\"", 
              "\[Rule]", "\"\<img/general/marble1.jpeg\>\""}], ",", 
@@ -6564,18 +6564,18 @@ Northeastern University.\>\""}], ",",
    3.971703864840177*^9, 3.971703865621933*^9}, {3.971703905356407*^9, 
    3.971703982109438*^9}, 3.971704035228592*^9, 3.971704141065572*^9, {
    3.971704206656095*^9, 3.971704260431353*^9}, {3.971704372486277*^9, 
-   3.971704372549543*^9}},
+   3.971704372549543*^9}, 3.971704431934836*^9},
  CellLabel->
-  "In[124]:=",ExpressionUUID->"9342e396-6e64-4c8d-9273-cf8738ebdd08"],
+  "In[125]:=",ExpressionUUID->"9342e396-6e64-4c8d-9273-cf8738ebdd08"],
 
 Cell[BoxData["\<\"/Users/phileasdazeleygaist/Desktop/My \
 Websites/complexity-coffee/data/events1.json\"\>"], "Output",
  CellChangeTimes->{{3.9717007956024723`*^9, 3.971700802410315*^9}, 
    3.971700885840386*^9, 3.9717012085124702`*^9, {3.97170131890945*^9, 
    3.971701357491768*^9}, 3.971704037389085*^9, 3.971704207745749*^9, 
-   3.9717042631570587`*^9, 3.971704373605089*^9},
+   3.9717042631570587`*^9, 3.971704373605089*^9, 3.9717044432945967`*^9},
  CellLabel->
-  "Out[124]=",ExpressionUUID->"049c53bd-056d-4ccb-90bb-830979bb68d8"]
+  "Out[125]=",ExpressionUUID->"cb1bc552-04db-4a19-a42e-e952b512ccad"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -7559,18 +7559,18 @@ Cell[342236, 6415, 2113, 48, 233, "Input",ExpressionUUID->"364902ec-9df4-4440-bf
 Cell[344352, 6465, 335, 4, 33, "Output",ExpressionUUID->"e4c8ba77-6d33-49ba-bb50-804e66c1f63b"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[344724, 6474, 5119, 94, 961, "Input",ExpressionUUID->"9342e396-6e64-4c8d-9273-cf8738ebdd08"],
-Cell[349846, 6570, 463, 7, 33, "Output",ExpressionUUID->"049c53bd-056d-4ccb-90bb-830979bb68d8"]
+Cell[344724, 6474, 5140, 94, 961, "Input",ExpressionUUID->"9342e396-6e64-4c8d-9273-cf8738ebdd08"],
+Cell[349867, 6570, 487, 7, 33, "Output",ExpressionUUID->"cb1bc552-04db-4a19-a42e-e952b512ccad"]
 }, Open  ]],
-Cell[350324, 6580, 223, 4, 29, "Input",ExpressionUUID->"483854f3-87aa-462b-a389-6ead7c9475e1"],
+Cell[350369, 6580, 223, 4, 29, "Input",ExpressionUUID->"483854f3-87aa-462b-a389-6ead7c9475e1"],
 Cell[CellGroupData[{
-Cell[350572, 6588, 765, 20, 31, "Input",ExpressionUUID->"e2703fbc-1d21-4c69-90a2-dc1add751d57"],
-Cell[351340, 6610, 184, 3, 33, "Output",ExpressionUUID->"b7b206be-68c9-4c34-b20f-8b7eba4e9a70"]
+Cell[350617, 6588, 765, 20, 31, "Input",ExpressionUUID->"e2703fbc-1d21-4c69-90a2-dc1add751d57"],
+Cell[351385, 6610, 184, 3, 33, "Output",ExpressionUUID->"b7b206be-68c9-4c34-b20f-8b7eba4e9a70"]
 }, Open  ]],
-Cell[351539, 6616, 182, 3, 29, "Input",ExpressionUUID->"e582211c-1b3f-4918-8b21-a6e62eb0f7cb"],
+Cell[351584, 6616, 182, 3, 29, "Input",ExpressionUUID->"e582211c-1b3f-4918-8b21-a6e62eb0f7cb"],
 Cell[CellGroupData[{
-Cell[351746, 6623, 1661, 35, 192, "Input",ExpressionUUID->"0317dd35-6562-46cb-b066-15ca1dd0dc2e"],
-Cell[353410, 6660, 45531, 841, 124, "Output",ExpressionUUID->"387a8029-7722-4030-bbf2-7b0ee2edd22a"]
+Cell[351791, 6623, 1661, 35, 192, "Input",ExpressionUUID->"0317dd35-6562-46cb-b066-15ca1dd0dc2e"],
+Cell[353455, 6660, 45531, 841, 124, "Output",ExpressionUUID->"387a8029-7722-4030-bbf2-7b0ee2edd22a"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
