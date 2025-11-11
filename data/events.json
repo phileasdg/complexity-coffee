@@ -1,5 +1,26 @@
 [
 	{
+		"id":"evt-002",
+		"title":"Melding Qualitative and Quantitative Perspectives in Complex Systems Research",
+		"event_time":1763649000,
+		"location":"Virtual \/ Zoom",
+		"image_path":"img\/events\/workshops\/emmy-tither-1.png",
+		"tag":"Workshop",
+		"description_html":"<p>Using sound as a lens, we will explore how these different methodologies can work together to help untangle complexity. Through a series of collaborative activities, participants will explore options for integrating mixed methods into their own research. Please note that no prior experience with mixed-methods research, or sound as a medium, is required.<\/p>",
+		"speakers":[
+			{
+				"name":"Emmy Tither",
+				"tagline":"PhD Student, University of Illinois Urbana-Champaign; Complexity Global School 2 Alum",
+				"image_path":"img\/general\/marble1.jpeg",
+				"website_url":"https:\/\/scholar.google.com\/citations?user=jZae7IsAAAAJ&hl=en"
+			}
+		],
+		"links":{
+			"Join Event":"https:\/\/us02web.zoom.us\/j\/89981389749?pwd=VJviGOzsKgJAqzFs1BeNLaRErcZjlb.1",
+			"recording":null
+		}
+	},
+	{
 		"id":"evt-001",
 		"title":"Realizing the Potential of Community-led, Science-driven Participatory Complex Systems Modeling",
 		"event_time":1761744600,
@@ -46,272 +67,5 @@
 			}
 		],
 		"links":{}
-	},
-	{
-		"id":"evt-002",
-		"title":"Rapid-Fire: AI & Emergent Behavior",
-		"event_time":1761340800000,
-		"location":"Virtual \/ Zoom",
-		"image_path":"img\/general\/feltpen1.jpeg",
-		"tag":"Nascent Research",
-		"description_html":"<p>Three researchers presented their work on emergent behaviors in large-scale AI models. Topics included spontaneous cooperation, unintended capabilities, and the challenges of alignment.<\/p>",
-		"speakers":[
-			{
-				"name":"Dr. Sam Arneson",
-				"tagline":"SFI Postdoc",
-				"image_path":"img\/general\/tiling1.jpeg",
-				"website_url":null
-			},
-			{
-				"name":"Jia Li",
-				"tagline":"PhD Student, Stanford",
-				"image_path":"img\/general\/tiling2.jpeg",
-				"website_url":"https:\/\/stanford.edu"
-			}
-		],
-		"links":{
-			"register":null,
-			"recording":"https:\/\/youtube.com\/watch?v=..."
-		}
-	},
-	{
-		"id":"evt-003",
-		"title":"The Emergence of Collective Intelligence",
-		"event_time":1763268000000,
-		"location":"Virtual \/ Zoom",
-		"image_path":"img\/general\/marble1.jpeg",
-		"tag":"Guest Talk",
-		"description_html":"<p>Join us for an in-depth lecture from Dr. Elara Vance on the foundational principles of collective intelligence. We will explore how simple interactions between agents can lead to complex, adaptive group behaviors.<\/p><p>This talk will cover examples from social insects, bird flocks, and human organizations, followed by an extended Q&A session.<\/p>",
-		"speakers":[
-			{
-				"name":"Dr. Elara Vance",
-				"tagline":"Postdoctoral Fellow, SFI",
-				"image_path":"img\/general\/marble2.jpeg",
-				"website_url":"https:\/\/santafe.edu"
-			}
-		],
-		"links":{
-			"register":"https:\/\/sfi.zoom.us\/register\/...",
-			"recording":null
-		}
-	},
-	{
-		"id":"evt-004",
-		"title":"Rapid-Fire: Network Models & Urban Systems",
-		"event_time":1763865600000,
-		"location":"Virtual \/ Zoom",
-		"image_path":"img\/general\/marble2.jpeg",
-		"tag":"Nascent Research",
-		"description_html":"<p>Our Nascent Research series returns with three rapid-fire presentations on the application of network models to urban systems. Each speaker will have 10 minutes to present their emerging research, followed by 10 minutes of Q&A.<\/p><p>This session is perfect for sparking new collaborations and getting a quick overview of the latest developments in the field.<\/p>",
-		"speakers":[
-			{
-				"name":"Dr. Ben Carter",
-				"tagline":"SFI Alum, Urban Dynamics",
-				"image_path":"img\/general\/tiling3.jpeg",
-				"website_url":null
-			},
-			{
-				"name":"Aisha Khan",
-				"tagline":"PhD Candidate, MIT",
-				"image_path":"img\/general\/tiling4.jpeg",
-				"website_url":"https:\/\/mit.edu"
-			},
-			{
-				"name":"Prof. Maria Flores",
-				"tagline":"University of Barcelona",
-				"image_path":"img\/general\/marble3.jpeg",
-				"website_url":"https:\/\/ub.edu"
-			}
-		],
-		"links":{
-			"register":"https:\/\/sfi.zoom.us\/register\/...",
-			"recording":null
-		}
-	},
-	{
-		"id":"evt-005",
-		"title":"Intro to Agent-Based Modeling",
-		"event_time":1764646800000,
-		"location":"Virtual Workshop",
-		"image_path":"img\/general\/paint1.jpeg",
-		"tag":"Workshop",
-		"description_html":"<p>Join us for a hands-on workshop designed to introduce the fundamentals of agent-based modeling (ABM). This session will cover basic concepts and guide participants through building their first models in NetLogo.<\/p><p>No prior experience is required.<\/p>",
-		"speakers":[
-			{
-				"name":"Dr. Simon Chen",
-				"tagline":"SFI Faculty",
-				"image_path":"img\/general\/feltpen1.jpeg",
-				"website_url":null
-			}
-		],
-		"links":{
-			"register":"https:\/\/sfi.zoom.us\/register\/...",
-			"recording":null
-		}
-	},
-	{
-		"id":"evt-006",
-		"title":"Advanced Network Analysis in Python",
-		"event_time":1765598400000,
-		"location":"Virtual Workshop",
-		"image_path":"img\/general\/beads1.jpeg",
-		"tag":"Workshop",
-		"description_html":"<p>Go beyond the basics in this hands-on workshop. Dr. Tanaka will guide participants through advanced techniques in network analysis using Python libraries like NetworkX and igraph.<\/p><p>Prerequisites: Basic Python knowledge and familiarity with Jupyter notebooks.<\/p>",
-		"speakers":[
-			{
-				"name":"Dr. Kenji Tanaka",
-				"tagline":"SFI External Professor",
-				"image_path":"img\/general\/marble1.jpeg",
-				"website_url":"https:\/\/santafe.edu"
-			}
-		],
-		"links":{
-			"register":"https:\/\/sfi.zoom.us\/register\/...",
-			"recording":null
-		}
-	},
-	{
-		"id":"evt-007",
-		"title":"Antifragility: Beyond Robustness",
-		"event_time":1768035600000,
-		"location":"Virtual \/ Zoom",
-		"image_path":"img\/general\/tiling2.jpeg",
-		"tag":"Guest Talk",
-		"description_html":"<p>This talk explores the concept of antifragility, where systems gain from disorder, volatility, and stressors. Dr. Hamid will discuss how this principle applies to everything from financial markets to biological systems.<\/p>",
-		"speakers":[
-			{
-				"name":"Dr. Lena Hamid",
-				"tagline":"Author & Independent Researcher",
-				"image_path":"img\/general\/marble2.jpeg",
-				"website_url":"https:\/\/lenahamid.com"
-			}
-		],
-		"links":{
-			"register":"https:\/\/sfi.zoom.us\/register\/...",
-			"recording":null
-		}
-	},
-	{
-		"id":"evt-008",
-		"title":"The Dynamics of Information Spread",
-		"event_time":1759021200000,
-		"location":"Virtual \/ Zoom",
-		"image_path":"img\/general\/tiling1.jpeg",
-		"tag":"Guest Talk",
-		"description_html":"<p>This session covered how information and misinformation spread through social networks. Dr. Kenji Tanaka presented models that help us understand and predict viral phenomena online.<\/p>",
-		"speakers":[
-			{
-				"name":"Dr. Kenji Tanaka",
-				"tagline":"SFI External Professor",
-				"image_path":"img\/general\/marble1.jpeg",
-				"website_url":"https:\/\/santafe.edu"
-			}
-		],
-		"links":{
-			"register":null,
-			"recording":"https:\/\/youtube.com\/watch?v=..."
-		}
-	},
-	{
-		"id":"evt-009",
-		"title":"The Future of Urban Complexity",
-		"event_time":1755290400000,
-		"location":"Virtual \/ Zoom",
-		"image_path":"img\/general\/marble3.jpeg",
-		"tag":"Guest Talk",
-		"description_html":"<p>A recording of our inaugural talk. Prof. Maria Flores discusses the challenges and opportunities for cities in the 21st century, viewed through the lens of complexity science.<\/p>",
-		"speakers":[
-			{
-				"name":"Prof. Maria Flores",
-				"tagline":"University of Barcelona",
-				"image_path":"img\/general\/tiling3.jpeg",
-				"website_url":"https:\/\/ub.edu"
-			}
-		],
-		"links":{
-			"register":null,
-			"recording":"https:\/\/youtube.com\/watch?v=..."
-		}
-	},
-	{
-		"id":"evt-010",
-		"title":"Rapid-Fire: Econophysics and Market Dynamics",
-		"event_time":1759190400000,
-		"location":"Virtual \/ Zoom",
-		"image_path":"img\/general\/tiling4.jpeg",
-		"tag":"Nascent Research",
-		"description_html":"<p>A look back at our session on econophysics. Presenters shared rapid-fire talks on market volatility, agent-based financial models, and network effects in economic systems.<\/p>",
-		"speakers":[
-			{
-				"name":"Dr. David Chen",
-				"tagline":"SFI Alum",
-				"image_path":"img\/general\/beads1.jpeg",
-				"website_url":null
-			},
-			{
-				"name":"Dr. Sarah Jenkins",
-				"tagline":"London School of Economics",
-				"image_max_path":"img\/general\/paint1.jpeg",
-				"website_url":"https:\/\/lse.ac.uk"
-			}
-		],
-		"links":{
-			"register":null,
-			"recording":"https:\/\/youtube.com\/watch?v=..."
-		}
-	},
-	{
-		"id":"evt-011",
-		"title":"Rapid-Fire: Evolvability and ALife",
-		"event_time":1768876800000,
-		"location":"Virtual \/ Zoom",
-		"image_path":"img\/general\/beads1.jpeg",
-		"tag":"Nascent Research",
-		"description_html":"<p>Join us for three exciting 10-minute talks on the frontiers of evolvability and artificial life. This session will explore how complex systems learn, adapt, and innovate.<\/p>",
-		"speakers":[
-			{
-				"name":"Dr. Leo Kim",
-				"tagline":"SFI Postdoctoral Fellow",
-				"image_path":"img\/general\/tiling1.jpeg",
-				"website_url":"https:\/\/santafe.edu"
-			},
-			{
-				"name":"Prof. R. S. Gupta",
-				"tagline":"Michigan State University",
-				"image_path":"img\/general\/tiling2.jpeg",
-				"website_url":null
-			},
-			{
-				"name":"Chloë Devereaux",
-				"tagline":"PhD Candidate, U of T",
-				"image_path":"img\/general\/tiling3.jpeg",
-				"website_url":"https:\/\/utoronto.ca"
-			}
-		],
-		"links":{
-			"register":"https:\/\/sfi.zoom.us\/register\/...",
-			"recording":null
-		}
-	},
-	{
-		"id":"evt-012",
-		"title":"Genetic Algorithms: From Theory to Practice",
-		"event_time":1771174800000,
-		"location":"Virtual Workshop",
-		"image_path":"img\/general\/paint1.jpeg",
-		"tag":"Workshop",
-		"description_html":"<p>(Coming Soon) A hands-on workshop on the principles and applications of genetic algorithms. Learn how to implement GAs to solve optimization and search problems.<\/p><p>Registration details will be posted in January.<\/p>",
-		"speakers":[
-			{
-				"name":"To Be Announced",
-				"tagline":"SFI Faculty",
-				"image_path":"img\/general\/marble1.jpeg",
-				"website_url":null
-			}
-		],
-		"links":{
-			"register":"#",
-			"recording":null
-		}
 	}
 ]
