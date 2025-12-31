@@ -133,6 +133,7 @@ h6 {
 }
 
 /* SFI "Happenings" Card Image Effect */
+/* SFI "Happenings" Card Image Effect */
 .sfi-card-container {
     position: relative;
     overflow: hidden;
@@ -148,6 +149,18 @@ h6 {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
+/* Gradient Scrim Overlay */
+.sfi-card-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* Solid scrim as requested */
+    background-color: rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+    z-index: 1;
+    /* On top of image (z-index implicit), below content (z-index 2) */
+}
+
 .sfi-card-container img {
     position: absolute;
     top: 0;
@@ -155,9 +168,10 @@ h6 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.7;
-    /* Use opacity to blend with gradient */
-    transition: all 0.3s ease;
+    opacity: 0.8;
+    /* Slightly increased from 0.7 since we have a scrim now */
+    transition: all 0.5s ease;
+    z-index: 0;
 }
 
 .sfi-card-container:hover img {
@@ -169,7 +183,10 @@ h6 {
 .sfi-card-content {
     padding: 1.5rem;
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    /* Ensure content is above the scrim (z-index 1) */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    /* Softer shadow */
 }
 
 /* SFI-inspired Mobile Menu Styles */

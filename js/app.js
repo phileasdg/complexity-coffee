@@ -293,19 +293,32 @@ document.addEventListener('DOMContentLoaded', () => {
     function createSeriesCardHTML(series) {
         const altText = series.title.replace(/"/g, "'");
         return `
-            <article>
-                <button type="button" class="sfi-card-container ${series.gradient_class} group text-left" data-series-title="${series.title}">
-                    <img src="${series.image_path}" alt="${altText}" 
-                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/333/fff?text=Image+Missing';">
-                    
-                    <div class="sfi-card-content">
-                        <span class="text-xs font-bold uppercase tracking-wider ${series.tag_color_class}">${series.tag_matcher}</span>
+            <article class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden flex flex-col h-full hover:shadow-md transition-shadow duration-300">
+                <button type="button" class="group text-left w-full flex flex-col h-full" data-series-title="${series.title}">
+                    <div class="w-full h-48 overflow-hidden relative">
+                        <img src="${series.image_path}" alt="${altText}" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/333/fff?text=Image+Missing';">
+                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+                            <span class="text-xs font-bold uppercase tracking-wider text-white bg-sfi-ming/80 px-2 py-1 rounded inline-block">
+                                ${series.tag_matcher}
+                            </span>
+                        </div>
                     </div>
-                    <div class="sfi-card-content">
-                        <h3 class="mt-2 text-2xl font-bold font-serif-display">
-                            ${series.title}
-                        </h3>
-                        <p class="mt-2 text-sm text-gray-200">${series.description}</p>
+                    
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold font-serif-display group-hover:text-sfi-sea transition-colors text-gray-900">
+                                ${series.title}
+                            </h3>
+                            <p class="mt-3 text-sm text-gray-600 line-clamp-3 leading-relaxed">
+                                ${series.description}
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center text-sfi-sea text-sm font-bold uppercase tracking-wide group-hover:text-sfi-ming transition-colors">
+                            View Series
+                            <svg class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
                     </div>
                 </button>
             </article>
@@ -730,20 +743,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- 4.5: Populate event grids ---
 
+        // --- 4.5: Populate event grids ---
+
+        // NEW: Toggle "Upcoming" nav link based on availability
+        const navUpcoming = document.getElementById('nav-upcoming');
+        const mobileNavUpcoming = document.getElementById('mobile-nav-upcoming');
+        if (upcomingEvents.length > 0) {
+            if (navUpcoming) navUpcoming.style.display = 'inline-block'; // Or whatever flex/inline style matches
+            if (mobileNavUpcoming) mobileNavUpcoming.style.display = 'block';
+        } else {
+            if (navUpcoming) navUpcoming.style.display = 'none';
+            if (mobileNavUpcoming) mobileNavUpcoming.style.display = 'none';
+        }
+
         if (homeUpcomingGrid) {
+            const upcomingSection = document.getElementById('upcoming');
             const homeEvents = upcomingEvents.slice(0, 3);
             if (homeEvents.length > 0) {
                 homeUpcomingGrid.innerHTML = homeEvents.map(createEventCardHTML).join('');
+                if (upcomingSection) upcomingSection.style.display = 'block';
             } else {
-                homeUpcomingGrid.innerHTML = '<p class="text-gray-600 md:col-span-3">No upcoming events scheduled at this time. Please check back soon!</p>';
+                // homeUpcomingGrid.innerHTML = '<p class="text-gray-600 md:col-span-3">No upcoming events scheduled at this time. Please check back soon!</p>';
+                // Logic update: HIDE the section if no events
+                if (upcomingSection) upcomingSection.style.display = 'none';
             }
         }
 
         if (archiveUpcomingGrid) {
+            const archiveUpcomingHeader = document.getElementById('archive-upcoming');
             if (upcomingEvents.length > 0) {
                 archiveUpcomingGrid.innerHTML = upcomingEvents.map(createEventCardHTML).join('');
+                if (archiveUpcomingHeader) archiveUpcomingHeader.style.display = 'block';
+                archiveUpcomingGrid.style.display = 'grid';
             } else {
-                archiveUpcomingGrid.innerHTML = '<p class="text-gray-600 md:col-span-3">No upcoming events scheduled at this time.</p>';
+                // archiveUpcomingGrid.innerHTML = '<p class="text-gray-600 md:col-span-3">No upcoming events scheduled at this time.</p>';
+                // Logic update: HIDE the section/header if no events
+                if (archiveUpcomingHeader) archiveUpcomingHeader.style.display = 'none';
+                archiveUpcomingGrid.style.display = 'none';
             }
         }
 
