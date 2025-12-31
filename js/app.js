@@ -1,0 +1,818 @@
+// We wrap everything in a DOMContentLoaded listener
+document.addEventListener('DOMContentLoaded', () => {
+
+    // =======================================================
+    // === 1. NON-DATA-DEPENDENT UI (Menu, Page Switching)
+    // =======================================================
+
+    // --- Global Elements ---
+    const body = document.body;
+
+    // --- Mobile Menu Elements ---
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('mobile-menu-overlay');
+
+    // --- Mobile Menu Logic ---
+    function openMenu() {
+        menuButton.classList.add('is-active');
+        menuButton.setAttribute('aria-expanded', 'true');
+        mobileMenu.classList.add('is-open');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        overlay.classList.remove('hidden');
+        body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        menuButton.classList.remove('is-active');
+        menuButton.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('is-open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        overlay.classList.add('hidden');
+        body.style.overflow = '';
+    }
+
+    menuButton.addEventListener('click', () => {
+        mobileMenu.classList.contains('is-open') ? closeMenu() : openMenu();
+    });
+
+    overlay.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // --- Page Switching Logic ---
+    window.showPage = (pageId, anchor) => {
+        // Set the active page
+        document.querySelectorAll('[data-page]').forEach(page => page.classList.remove('is-active'));
+        const targetPage = document.querySelector(`[data-page="${pageId}"]`);
+        if (targetPage) targetPage.classList.add('is-active');
+
+        // Clear the hash to prevent modal from opening
+        clearHash();
+
+        if (anchor) {
+            setTimeout(() => {
+                const element = document.querySelector(anchor);
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+            }, 50);
+        } else {
+            window.scrollTo(0, 0);
+        }
+    }
+
+    // =======================================================
+    // === 2. MODAL & DYNAMIC CONTENT LOGIC
+    // =======================================================
+
+    // --- Main Event Modal Elements ---
+    const modalBackdrop = document.getElementById('event-modal-backdrop');
+    const modalContainer = document.getElementById('event-modal-container');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const modalTitle = document.getElementById('modal-title');
+    const modalTag = document.getElementById('modal-tag');
+    const modalDateTime = document.getElementById('modal-date-time');
+    const modalLocation = document.getElementById('modal-location');
+    const modalDescription = document.getElementById('modal-description');
+    const modalImage = document.getElementById('modal-image');
+    const modalCtaButton = document.getElementById('modal-cta-button');
+    const modalSpeakerList = document.getElementById('modal-speaker-list');
+    const modalSeeMoreBtn = document.getElementById('modal-see-more-speakers');
+
+    // --- Speaker List Modal Elements ---
+    const speakerModalBackdrop = document.getElementById('speaker-list-modal-backdrop');
+    const speakerModalContainer = document.getElementById('speaker-list-modal-container');
+    const speakerModalCloseBtn = document.getElementById('speaker-list-close-btn');
+    const fullSpeakerListContainer = document.getElementById('full-speaker-list-container');
+
+    // --- Event Series Modal Elements ---
+    const seriesModalBackdrop = document.getElementById('series-modal-backdrop');
+    const seriesModalContainer = document.getElementById('series-modal-container');
+    const seriesCloseBtn = document.getElementById('series-close-btn');
+    const seriesModalTitle = document.getElementById('series-modal-title');
+    const seriesModalDescription = document.getElementById('series-modal-description');
+    const seriesModalGrid = document.getElementById('series-modal-grid');
+
+    // --- Team Modal Elements ---
+    const teamModalBackdrop = document.getElementById('team-modal-backdrop');
+    const teamModalContainer = document.getElementById('team-modal-container');
+    const teamModalCloseBtn = document.getElementById('team-modal-close-btn');
+    const teamModalImage = document.getElementById('team-modal-image');
+    const teamModalName = document.getElementById('team-modal-name');
+    const teamModalRole = document.getElementById('team-modal-role');
+    const teamModalBio = document.getElementById('team-modal-bio');
+    const teamModalLinks = document.getElementById('team-modal-links');
+
+    // --- Global Data Caches ---
+    let allEventsCache = [];
+    let allTeamDataCache = [];
+    let currentSpeakers = []; // To hold speakers for the "see more" modal
+
+    // --- Data Definitions ---
+    // Defines the static "playlist" cards for the Event Series
+    const eventSeries = [
+        {
+            title: "Guest Talks",
+            description: "In-depth lectures from leading researchers and guest lecturers on foundational and cutting-edge topics in complexity science.",
+            tag_matcher: "Guest Talk",
+            image_path: "img/general/tiling1.jpeg",
+            gradient_class: "sfi-gradient-turmeric",
+            tag_color_class: "text-white"
+        },
+        {
+            title: "Nascent Research",
+            description: "A rapid-fire series. Presenters share emerging research in 10-minute talks, followed by 10 minutes of Q&A.",
+            tag_matcher: "Nascent Research",
+            image_path: "img/general/feltpen1.jpeg",
+            gradient_class: "sfi-gradient-sea",
+            tag_color_class: "text-white"
+        },
+        {
+            title: "Workshops",
+            description: "Hands-on sessions to learn new methods, tools, and skills related to complexity science.",
+            tag_matcher: "Workshop",
+            image_path: "img/general/paint1.jpeg",
+            gradient_class: "sfi-gradient-eggplant",
+            tag_color_class: "text-white"
+        }
+    ];
+    // Cache for storing the filtered/sorted event lists for each series
+    const seriesEventCache = new Map();
+
+    // =======================================================
+    // === 3. HELPER FUNCTIONS (STYLING, HTML, DATE)
+    // =======================================================
+
+    /**
+     * NEW: Helper to safely clear the URL hash without scrolling
+     */
+    function clearHash() {
+        if (window.location.hash) {
+            history.pushState("", document.title, window.location.pathname + window.location.search);
+        }
+    }
+
+    /**
+     * Formats an event timestamp for display.
+     * @param {number} timestamp - The event timestamp *in milliseconds*.
+     * @param {string} location - The event's listed location.
+     * @param {number} nowTimestamp - The current time in milliseconds.
+     * @returns {object} - { dateDisplay, timeDisplay, dateTimeFull, locationDisplay, isPast }
+     */
+    function formatEventDateTime(timestamp, location, nowTimestamp) {
+        const eventDate = new Date(timestamp);
+        const isPast = timestamp < nowTimestamp;
+
+        // Format: "October 20, 2025"
+        const dateDisplay = eventDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Format: "10:00 AM EST" (Local time with timezone)
+        const timeDisplay = eventDate.toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: '2-digit',
+            timeZoneName: 'short' // Re-added to show the timezone
+        });
+
+        // Format: "October 20, 2025 at 10:00 AM EST"
+        const dateTimeFull = `${dateDisplay} at ${timeDisplay}`;
+
+        // Use the location from the JSON directly
+        const locationDisplay = location;
+
+        return { dateDisplay, timeDisplay, dateTimeFull, locationDisplay, isPast };
+    }
+
+    /**
+     * Helper function to get the correct styling for an event card.
+     * @param {object} event - The event object
+     * @returns {object} - { gradient_class, tag_color_class }
+     */
+    function getEventStyling(event) {
+        // 1. Check if styling is provided in the event JSON (backward compatibility)
+        if (event.gradient_class && event.tag_color_class) {
+            return {
+                gradient_class: event.gradient_class,
+                tag_color_class: event.tag_color_class
+            };
+        }
+
+        // 2. Try to match the event tag to a defined series
+        const matchedSeries = eventSeries.find(s => s.tag_matcher.toLowerCase() === event.tag.toLowerCase());
+        if (matchedSeries) {
+            return {
+                gradient_class: matchedSeries.gradient_class,
+                tag_color_class: matchedSeries.tag_color_class
+            };
+        }
+
+        // 3. Fallback to a default
+        return {
+            gradient_class: 'sfi-gradient-sea',
+            tag_color_class: 'text-white'
+        };
+    }
+
+    /**
+     * Helper function to create the HTML for a single event card.
+     * @param {object} event - The *processed* event object (with .formattedDate)
+     * @returns {string} - The HTML string for the event card
+     */
+    function createEventCardHTML(event) {
+        // Determine the speaker text for the card face
+        let speakerDisplay;
+        if (!event.speakers || event.speakers.length === 0 || event.speakers[0].name.toLowerCase() === 'to be announced') {
+            speakerDisplay = "(Coming Soon)";
+        } else if (event.speakers.length === 1) {
+            speakerDisplay = event.speakers[0].name;
+        } else {
+            speakerDisplay = "Various Speakers";
+        }
+
+        // Get dynamic styling
+        const { gradient_class, tag_color_class } = getEventStyling(event);
+
+        // Provide a fallback for the main image
+        const imagePath = event.image_path || 'https://placehold.co/600x400/3c1053/fff?text=Event+Image';
+        // Clean title for alt text (remove quotes)
+        const altText = event.title.replace(/"/g, "'");
+
+        // Get formatted date/time from the event object
+        const { dateDisplay } = event.formattedDate;
+
+        return `
+            <article>
+                <button type="button" class="sfi-card-container ${gradient_class} group text-left"
+                    data-event-id="${event.id}">
+                    
+                    <img src="${imagePath}" alt="${altText}" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/333/fff?text=Image+Missing';">
+                    
+                    <div class="sfi-card-content">
+                        <span class="text-xs font-bold uppercase tracking-wider ${tag_color_class}">${event.tag}</span>
+                    </div>
+                    <div class="sfi-card-content">
+                        <h3 class="mt-2 text-2xl font-bold font-serif-display">
+                            ${event.title}
+                        </h3>
+                        <p class="mt-2 text-sm text-gray-200">${dateDisplay} | ${speakerDisplay}</p>
+                    </div>
+                </button>
+            </article>
+        `;
+    }
+
+    /**
+     * Helper to create HTML for a single speaker in the modal.
+     */
+    function createSpeakerHTML(speaker) {
+        const websiteLink = speaker.website
+            ? `<a href="${speaker.website}" target="_blank" rel="noopener" class="text-sfi-sea text-sm hover:underline">Website</a>`
+            : '';
+
+        const speakerImage = speaker.image || 'https://placehold.co/100x100/ccc/fff?text=Speaker';
+
+        return `
+            <div class="flex items-center space-x-4">
+                <img src="${speakerImage}" alt="${speaker.name}" class="h-16 w-16 rounded-full object-cover bg-gray-100 flex-shrink-0"
+                     onerror="this.onerror=null; this.src='https://placehold.co/100x100/ccc/fff?text=Speaker';">
+                <div>
+                    <p class="font-bold text-lg">${speaker.name}</p>
+                    <p class="text-gray-600 text-sm">${speaker.tagline}</p>
+                    ${websiteLink}
+                </div>
+            </div>
+        `;
+    }
+
+    /**
+     * Helper to create HTML for a single Event Series "playlist" card.
+     */
+    function createSeriesCardHTML(series) {
+        const altText = series.title.replace(/"/g, "'");
+        return `
+            <article>
+                <button type="button" class="sfi-card-container ${series.gradient_class} group text-left" data-series-title="${series.title}">
+                    <img src="${series.image_path}" alt="${altText}" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/333/fff?text=Image+Missing';">
+                    
+                    <div class="sfi-card-content">
+                        <span class="text-xs font-bold uppercase tracking-wider ${series.tag_color_class}">${series.tag_matcher}</span>
+                    </div>
+                    <div class="sfi-card-content">
+                        <h3 class="mt-2 text-2xl font-bold font-serif-display">
+                            ${series.title}
+                        </h3>
+                        <p class="mt-2 text-sm text-gray-200">${series.description}</p>
+                    </div>
+                </button>
+            </article>
+        `;
+    }
+
+    /**
+     * Helper to create HTML for a single Team Member card.
+     */
+    function createTeamCardHTML(teamMember) {
+        const altText = teamMember.name.replace(/"/g, "'");
+        return `
+            <article class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+                <button type="button" class="group text-left w-full" data-member-id="${teamMember.id}">
+                    <div class="w-full aspect-square overflow-hidden">
+                        <img src="${teamMember.image_path}" alt="${altText}" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x400/ccc/fff?text=Image+Missing';">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-2xl font-bold font-serif-display group-hover:text-sfi-sea transition-colors">
+                            ${teamMember.name}
+                        </h3>
+                        ${teamMember.role ? `<p class="mt-1 text-base text-gray-600">${teamMember.role}</p>` : ''}
+                    </div>
+                </button>
+            </article>
+        `;
+    }
+
+
+    /**
+     * Opens the main event modal with an EVENT OBJECT.
+     * @param {object} event - The full event object from allEventsCache.
+     */
+    const maxSpeakersToShow = 2; // Show 2 speakers before hiding behind "See More"
+    function openEventModal(event) {
+        if (!event) return;
+        // Get all data from the event object
+        const { title, tag, description_html, speakers, links, formattedDate } = event;
+        const { dateTimeFull, locationDisplay, isPast } = formattedDate;
+        const image = event.image_path || 'https://placehold.co/600x400/3c1053/fff?text=Event+Image';
+        const registerUrl = (links && links.register) ? links.register : "";
+        const recordingUrl = (links && links.recording) ? links.recording : "";
+
+        currentSpeakers = speakers || []; // Store for the "See More" modal
+
+        // Populate the modal
+        modalTitle.textContent = title;
+        modalTag.textContent = tag;
+        // Modal tag is always 'text-sfi-sea' for visibility on white background
+        modalTag.className = 'text-xs font-bold uppercase tracking-wider text-sfi-sea';
+        modalDateTime.textContent = dateTimeFull;
+        modalLocation.textContent = locationDisplay;
+        modalDescription.innerHTML = description_html;
+        modalImage.src = image;
+        modalImage.alt = title.replace(/"/g, "'");
+
+        // Populate speaker list
+        modalSpeakerList.innerHTML = ''; // Clear previous speakers
+        if (currentSpeakers.length > 0) {
+            currentSpeakers.slice(0, maxSpeakersToShow).forEach(speaker => {
+                const speakerData = {
+                    name: speaker.name,
+                    tagline: speaker.tagline,
+                    image: speaker.image_path,
+                    website: speaker.website_url
+                };
+                modalSpeakerList.innerHTML += createSpeakerHTML(speakerData);
+            });
+
+            // Show or hide "See More" button
+            if (currentSpeakers.length > maxSpeakersToShow) {
+                modalSeeMoreBtn.textContent = `See all ${currentSpeakers.length} speakers`;
+                modalSeeMoreBtn.classList.remove('hidden');
+            } else {
+                modalSeeMoreBtn.classList.add('hidden');
+            }
+        }
+
+        // Configure CTA button
+        const isValidLink = (url) => url && url !== "#" && url !== "null" && url.trim() !== "";
+
+        modalCtaButton.removeAttribute('disabled');
+        modalCtaButton.classList.remove('bg-gray-400', 'cursor-not-allowed', 'hover:bg-gray-400');
+        modalCtaButton.classList.add('bg-sfi-sea', 'hover:bg-sfi-ming');
+
+
+        if (isPast) {
+            if (isValidLink(recordingUrl)) {
+                modalCtaButton.href = recordingUrl;
+                modalCtaButton.textContent = "Watch Recording";
+                modalCtaButton.style.display = 'block';
+            } else {
+                modalCtaButton.textContent = "Recording Not Available";
+                modalCtaButton.style.display = 'block';
+                modalCtaButton.href = '#';
+                modalCtaButton.setAttribute('disabled', 'true');
+                modalCtaButton.classList.add('bg-gray-400', 'cursor-not-allowed', 'hover:bg-gray-400');
+                modalCtaButton.classList.remove('bg-sfi-sea', 'hover:bg-sfi-ming');
+            }
+        } else {
+            if (isValidLink(registerUrl)) {
+                modalCtaButton.href = registerUrl;
+                modalCtaButton.textContent = "Register for Event";
+                modalCtaButton.style.display = 'block';
+            } else {
+                modalCtaButton.textContent = "Registration Coming Soon";
+                modalCtaButton.style.display = 'block';
+                modalCtaButton.href = '#';
+                modalCtaButton.setAttribute('disabled', 'true');
+                modalCtaButton.classList.add('bg-gray-400', 'cursor-not-allowed', 'hover:bg-gray-400');
+                modalCtaButton.classList.remove('bg-sfi-sea', 'hover:bg-sfi-ming');
+            }
+        }
+
+        // Open the modal
+        modalBackdrop.classList.add('is-open');
+        modalContainer.classList.add('is-open');
+        body.style.overflow = 'hidden';
+
+        // If opening from the series modal, hide the series modal
+        if (seriesModalContainer.classList.contains('is-open')) {
+            seriesModalContainer.classList.remove('is-open');
+        }
+    }
+
+    function closeModal() {
+        modalBackdrop.classList.remove('is-open');
+        modalContainer.classList.remove('is-open');
+
+        // If we were in a series, re-open the series modal
+        if (seriesModalBackdrop.classList.contains('is-open')) {
+            seriesModalContainer.classList.add('is-open');
+        } else {
+            // Only restore scroll if no other modal is open
+            body.style.overflow = '';
+        }
+        clearHash(); // NEW: Clear hash on modal close
+    }
+
+    // --- Speaker List Modal Logic ---
+    function openSpeakerListModal() {
+        fullSpeakerListContainer.innerHTML = ''; // Clear old list
+        currentSpeakers.forEach(speaker => {
+            const speakerData = {
+                name: speaker.name,
+                tagline: speaker.tagline,
+                image: speaker.image_path,
+                website: speaker.website_url
+            };
+            fullSpeakerListContainer.innerHTML += `
+                <div class="py-3 border-b border-gray-200 last:border-b-0">
+                    ${createSpeakerHTML(speakerData)}
+                </div>
+            `;
+        });
+        speakerModalBackdrop.classList.add('is-open');
+        speakerModalContainer.classList.add('is-open');
+
+        // Hide the main event modal
+        modalContainer.classList.remove('is-open');
+    }
+
+    function closeSpeakerListModal() {
+        speakerModalBackdrop.classList.remove('is-open');
+        speakerModalContainer.classList.remove('is-open');
+
+        // Show the main event modal again
+        modalContainer.classList.add('is-open');
+    }
+
+    // --- Event Series Modal Logic ---
+    function openSeriesModal(seriesTitle) {
+        const seriesData = eventSeries.find(s => s.title === seriesTitle);
+        if (!seriesData) {
+            console.warn(`Series "${seriesTitle}" not found.`);
+            return;
+        }
+        const events = seriesEventCache.get(seriesTitle) || [];
+
+        seriesModalTitle.textContent = seriesData.title;
+        seriesModalDescription.textContent = seriesData.description;
+
+        // Populate the grid
+        if (events.length > 0) {
+            seriesModalGrid.innerHTML = events.map(createEventCardHTML).join('');
+        } else {
+            seriesModalGrid.innerHTML = '<p class="text-gray-600">No events found for this series.</p>';
+        }
+
+        // CRITICAL: Re-attach listeners to the *new* event cards inside this modal
+        seriesModalGrid.querySelectorAll('button[data-event-id]').forEach(card => {
+            card.addEventListener('click', () => {
+                // NEW: Set hash, don't call modal directly
+                window.location.hash = `#event=${card.dataset.eventId}`;
+            });
+        });
+
+        seriesModalBackdrop.classList.add('is-open');
+        seriesModalContainer.classList.add('is-open');
+        body.style.overflow = 'hidden';
+    }
+
+    function closeSeriesModal() {
+        seriesModalBackdrop.classList.remove('is-open');
+        seriesModalContainer.classList.remove('is-open');
+
+        // Only restore body scroll if the main modal isn't *also* open
+        if (!modalContainer.classList.contains('is-open')) {
+            body.style.overflow = '';
+        }
+        clearHash(); // NEW: Clear hash on modal close
+    }
+
+    // --- Team Member Modal Logic ---
+    function openTeamModal(member) {
+        if (!member) return;
+        teamModalName.textContent = member.name;
+
+        if (member.role) {
+            teamModalRole.textContent = member.role;
+            teamModalRole.style.display = 'block';
+        } else {
+            teamModalRole.style.display = 'none';
+        }
+        teamModalImage.src = member.image_path;
+        teamModalImage.src = member.image_path;
+        teamModalImage.alt = member.name;
+
+        if (member.bio_html) {
+            teamModalBio.innerHTML = member.bio_html;
+            teamModalBio.style.display = 'block';
+        } else {
+            teamModalBio.style.display = 'none';
+        }
+
+        // Populate links
+        teamModalLinks.innerHTML = '';
+        if (member.links && member.links.length > 0) {
+            member.links.forEach(link => {
+                teamModalLinks.innerHTML += `
+                    <div>
+                        <a href="${link.url}" target="_blank" rel="noopener" class="sfi-cta cta-black text-sm">
+                            ${link.text}
+                            <svg class="arrow-circle-icon" width="24" height="14" viewBox="-395 256 24 14"><path fill="none" d="M-377 263h-17.6m15.4-2.2l2.2 2.2-2.2 2.2"/><circle fill="none" cx="-378.1" cy="263" r="6.8"/></svg>
+                        </a>
+                    </div>
+                `;
+            });
+        }
+
+        teamModalBackdrop.classList.add('is-open');
+        teamModalContainer.classList.add('is-open');
+        body.style.overflow = 'hidden';
+    }
+
+    function closeTeamModal() {
+        teamModalBackdrop.classList.remove('is-open');
+        teamModalContainer.classList.remove('is-open');
+        body.style.overflow = '';
+        clearHash(); // NEW: Clear hash on modal close
+    }
+
+    // --- Attach listeners to static modal elements ---
+    modalCloseBtn.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', closeModal);
+    modalSeeMoreBtn.addEventListener('click', openSpeakerListModal);
+
+    speakerModalCloseBtn.addEventListener('click', closeSpeakerListModal);
+    speakerModalBackdrop.addEventListener('click', closeSpeakerListModal);
+
+    seriesCloseBtn.addEventListener('click', closeSeriesModal);
+    seriesModalBackdrop.addEventListener('click', closeSeriesModal);
+
+    teamModalCloseBtn.addEventListener('click', closeTeamModal);
+    teamModalBackdrop.addEventListener('click', closeTeamModal);
+
+    // Global Keydown Listener
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (speakerModalContainer.classList.contains('is-open')) {
+                closeSpeakerListModal();
+            } else if (teamModalContainer.classList.contains('is-open')) {
+                closeTeamModal(); // This will clear the hash
+            } else if (modalContainer.classList.contains('is-open')) {
+                closeModal(); // This will clear the hash
+            } else if (seriesModalContainer.classList.contains('is-open')) {
+                closeSeriesModal(); // This will clear the hash
+            } else if (mobileMenu.classList.contains('is-open')) {
+                closeMenu();
+            }
+        }
+    });
+
+
+    // =======================================================
+    // === 4. ROUTING & DATA FETCHING (RUNS ON LOAD)
+    // =======================================================
+
+    /**
+     * NEW: Main hash routing function.
+     * This is the ONLY function that opens modals.
+     */
+    function handleHashChange() {
+        const hash = window.location.hash;
+
+        if (hash.startsWith('#event=')) {
+            if (!modalContainer.classList.contains('is-open')) {
+                const eventId = hash.substring(7);
+                const event = allEventsCache.find(e => e.id === eventId);
+                openEventModal(event);
+            }
+        } else if (hash.startsWith('#team=')) {
+            if (!teamModalContainer.classList.contains('is-open')) {
+                const teamId = hash.substring(6);
+                const member = allTeamDataCache.find(m => m.id === teamId);
+                openTeamModal(member);
+            }
+        } else if (hash.startsWith('#series=')) {
+            if (!seriesModalContainer.classList.contains('is-open')) {
+                const seriesTitle = decodeURIComponent(hash.substring(8));
+                openSeriesModal(seriesTitle);
+            }
+        } else {
+            // No hash, or unknown hash, close all modals
+            if (modalContainer.classList.contains('is-open')) closeModal();
+            if (seriesModalContainer.classList.contains('is-open')) closeSeriesModal();
+            if (teamModalContainer.classList.contains('is-open')) closeTeamModal();
+        }
+    }
+
+
+    /**
+     * Main function to fetch time, fetch events, and render them.
+     */
+    async function loadEvents() {
+        let now;
+
+        // --- 4.1: Get the "true" current time ---
+        try {
+            const response = await fetch('https://worldtimeapi.org/api/ip');
+            if (!response.ok) throw new Error('Time API failed');
+            const data = await response.json();
+            now = new Date(data.utc_datetime);
+            console.log('Using reliable world time:', now);
+        } catch (error) {
+            console.warn('World time API failed. Falling back to local time.', error);
+            now = new Date();
+        }
+
+        const nowMs = now.getTime();
+
+        // --- 4.2: Get the event data ---
+        const homeUpcomingGrid = document.getElementById('home-upcoming-grid');
+        const archiveUpcomingGrid = document.getElementById('archive-upcoming-grid');
+        const archiveSeriesGrid = document.getElementById('archive-series-grid');
+        const archivePastGrid = document.getElementById('archive-past-grid');
+
+        try {
+            const response = await fetch('./data/events.json?v=' + new Date().getTime());
+            if (!response.ok) {
+                throw new Error(`Events JSON not found (${response.status})`);
+            }
+            allEventsCache = await response.json(); // Store in cache
+        } catch (error) {
+            console.error('Failed to fetch or process events:', error);
+            const errorMsg = '<p class="text-gray-700 md:col-span-3">Could not load events. Please try refreshing the page.</p>';
+            if (homeUpcomingGrid) homeUpcomingGrid.innerHTML = errorMsg;
+            if (archiveUpcomingGrid) archiveUpcomingGrid.innerHTML = errorMsg;
+            if (archivePastGrid) archivePastGrid.innerHTML = errorMsg;
+            if (archiveSeriesGrid) archiveSeriesGrid.innerHTML = '<p class="text-gray-700 md:col-span-3">Could not load event series.</p>';
+            return; // Stop execution
+        }
+
+        // --- 4.3: Process events, adding formatted date info ---
+        allEventsCache.forEach(event => {
+            if (typeof event.event_time !== 'number') {
+                console.error('Invalid event_time for event:', event.id, event.event_time);
+                event.event_time = 0; // Set to 0 if invalid
+            } else if (event.event_time.toString().length < 11) {
+                // If timestamp is in seconds (e.g., 10 digits), convert to milliseconds
+                event.event_time = event.event_time * 1000;
+            }
+
+            // Attach the formatted date/time object to each event
+            event.formattedDate = formatEventDateTime(event.event_time, event.location, nowMs);
+        });
+
+        // --- 4.4: Sort events based on the "true" time ---
+
+        const upcomingEvents = allEventsCache
+            .filter(event => !event.formattedDate.isPast)
+            .sort((a, b) => a.event_time - b.event_time); // ASC
+
+        const pastEvents = allEventsCache
+            .filter(event => event.formattedDate.isPast)
+            .sort((a, b) => b.event_time - a.event_time); // DESC
+
+        // --- 4.5: Populate event grids ---
+
+        if (homeUpcomingGrid) {
+            const homeEvents = upcomingEvents.slice(0, 3);
+            if (homeEvents.length > 0) {
+                homeUpcomingGrid.innerHTML = homeEvents.map(createEventCardHTML).join('');
+            } else {
+                homeUpcomingGrid.innerHTML = '<p class="text-gray-600 md:col-span-3">No upcoming events scheduled at this time. Please check back soon!</p>';
+            }
+        }
+
+        if (archiveUpcomingGrid) {
+            if (upcomingEvents.length > 0) {
+                archiveUpcomingGrid.innerHTML = upcomingEvents.map(createEventCardHTML).join('');
+            } else {
+                archiveUpcomingGrid.innerHTML = '<p class="text-gray-600 md:col-span-3">No upcoming events scheduled at this time.</p>';
+            }
+        }
+
+        if (archivePastGrid) {
+            if (pastEvents.length > 0) {
+                archivePastGrid.innerHTML = pastEvents.map(createEventCardHTML).join('');
+            } else {
+                archivePastGrid.innerHTML = '<p class="text-gray-600 md:col-span-3">No past event recordings are available yet.</p>';
+            }
+        }
+
+        // --- 4.6: Populate Event Series Grid & Cache Data ---
+        if (archiveSeriesGrid) {
+            archiveSeriesGrid.innerHTML = ''; // Clear loading message
+            eventSeries.forEach(series => {
+                const seriesEvents = allEventsCache
+                    .filter(event => event.tag.toLowerCase() === series.tag_matcher.toLowerCase())
+                    .sort((a, b) => b.event_time - a.event_time); // DESC
+
+                seriesEventCache.set(series.title, seriesEvents);
+                archiveSeriesGrid.innerHTML += createSeriesCardHTML(series);
+            });
+
+            // ** NEW: Add listeners to set hash **
+            archiveSeriesGrid.querySelectorAll('button[data-series-title]').forEach(card => {
+                card.addEventListener('click', () => {
+                    const safeTitle = encodeURIComponent(card.dataset.seriesTitle);
+                    window.location.hash = `#series=${safeTitle}`;
+                });
+            });
+        }
+
+        // --- 4.7: Attach listeners to *all* newly created event cards ---
+        // ** NEW: Add listeners to set hash **
+        document.querySelectorAll('button[data-event-id]').forEach(card => {
+            card.addEventListener('click', () => {
+                window.location.hash = `#event=${card.dataset.eventId}`;
+            });
+        });
+    }
+
+    /**
+     * Function to fetch and render the team page.
+     */
+    async function loadTeamData() {
+        const teamGrid = document.getElementById('team-grid');
+
+        try {
+            const response = await fetch('./data/team.json?v=' + new Date().getTime());
+            if (!response.ok) {
+                throw new Error(`Team JSON not found (${response.status})`);
+            }
+            allTeamDataCache = await response.json(); // Store in cache
+        } catch (error) {
+            console.error('Failed to fetch or process team data:', error);
+            teamGrid.innerHTML = '<p class="text-gray-700 md:col-span-3">Could not load team data. Please try refreshing the page.</p>';
+            return;
+        }
+
+        // Populate grid
+        if (allTeamDataCache.length > 0) {
+            // Sort alphabetically by name
+            allTeamDataCache.sort((a, b) => a.name.localeCompare(b.name));
+
+            teamGrid.innerHTML = allTeamDataCache.map(createTeamCardHTML).join('');
+        } else {
+            teamGrid.innerHTML = '<p class="text-gray-600 md:col-span-3">Team information is not available at this time.</p>';
+        }
+
+        // ** NEW: Add listeners to set hash **
+        document.querySelectorAll('button[data-member-id]').forEach(card => {
+            card.addEventListener('click', () => {
+                window.location.hash = `#team=${card.dataset.memberId}`;
+            });
+        });
+    }
+
+    // --- 5. RUN EVERYTHING! ---
+    async function initializeApp() {
+        // Wait for both data sources to be loaded and DOM to be built
+        await Promise.all([
+            loadEvents(),
+            loadTeamData()
+        ]);
+
+        // Now that data is cached and DOM is built, run the hash handler for the *first time*
+        handleHashChange();
+
+        // And *now* listen for future hash changes
+        window.addEventListener('hashchange', handleHashChange);
+    }
+
+    initializeApp(); // Run the app
+});
