@@ -216,48 +216,110 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Helper function to create the HTML for a single event card.
-     * @param {object} event - The *processed* event object (with .formattedDate)
-     * @returns {string} - The HTML string for the event card
-     */
+ * Helper function to create the HTML for a single event card (Standard Grid View).
+ * Style: Clean Light Boxed
+ */
     function createEventCardHTML(event) {
-        // Determine the speaker text for the card face
+        // Determine the speaker text
         let speakerDisplay;
         if (!event.speakers || event.speakers.length === 0 || event.speakers[0].name.toLowerCase() === 'to be announced') {
-            speakerDisplay = "(Coming Soon)";
+            speakerDisplay = "Speaker TBA";
         } else if (event.speakers.length === 1) {
             speakerDisplay = event.speakers[0].name;
         } else {
             speakerDisplay = "Various Speakers";
         }
 
-        // Get dynamic styling
         const { gradient_class, tag_color_class } = getEventStyling(event);
-
-        // Provide a fallback for the main image
         const imagePath = event.image_path || 'https://placehold.co/600x400/3c1053/fff?text=Event+Image';
-        // Clean title for alt text (remove quotes)
         const altText = event.title.replace(/"/g, "'");
-
-        // Get formatted date/time from the event object
         const { dateDisplay } = event.formattedDate;
 
         return `
-            <article>
-                <button type="button" class="sfi-card-container ${gradient_class} group text-left"
-                    data-event-id="${event.id}">
-                    
-                    <img src="${imagePath}" alt="${altText}" 
-                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/333/fff?text=Image+Missing';">
-                    
-                    <div class="sfi-card-content">
-                        <span class="text-xs font-bold uppercase tracking-wider ${tag_color_class}">${event.tag}</span>
+            <article class="flex flex-col h-full hover:-translate-y-1 transition-transform duration-300">
+                <button type="button" class="group text-left w-full h-full flex flex-col bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300" data-event-id="${event.id}">
+                    <!-- Image Container -->
+                    <div class="relative w-full aspect-video overflow-hidden bg-gray-100">
+                        <img src="${imagePath}" alt="${altText}" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/333/fff?text=Image+Missing';">
+                        
+                        <!-- Floating Tag Badge -->
+                        <div class="absolute top-3 left-3">
+                            <span class="${gradient_class} ${tag_color_class} text-xs font-bold uppercase tracking-wider px-2 py-1 rounded shadow-sm opacity-95">
+                                ${event.tag}
+                            </span>
+                        </div>
                     </div>
-                    <div class="sfi-card-content">
-                        <h3 class="mt-2 text-2xl font-bold font-serif-display">
+
+                    <!-- Content (Clean Light) -->
+                    <div class="p-5 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold font-serif-display leading-tight text-gray-900 group-hover:text-sfi-sea transition-colors mb-2">
                             ${event.title}
                         </h3>
-                        <p class="mt-2 text-sm text-gray-200">${dateDisplay} | ${speakerDisplay}</p>
+                        
+                        <div class="mt-auto space-y-1 pt-3">
+                            <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                                ${dateDisplay}
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                ${speakerDisplay}
+                            </p>
+                        </div>
+                    </div>
+                </button>
+            </article>
+        `;
+    }
+
+    /**
+     * Helper function to create the HTML for a COMPACT event card (List View / Modal).
+     * Style: Horizontal Row
+     */
+    function createCompactEventCardHTML(event) {
+        let speakerDisplay;
+        if (!event.speakers || event.speakers.length === 0 || event.speakers[0].name.toLowerCase() === 'to be announced') {
+            speakerDisplay = "Speaker TBA";
+        } else if (event.speakers.length === 1) {
+            speakerDisplay = event.speakers[0].name;
+        } else {
+            speakerDisplay = "Various Speakers";
+        }
+
+        const { gradient_class, tag_color_class } = getEventStyling(event);
+        const imagePath = event.image_path || 'https://placehold.co/600x400/3c1053/fff?text=Event+Image';
+        const altText = event.title.replace(/"/g, "'");
+        const { dateDisplay } = event.formattedDate;
+
+        return `
+            <article class="w-full">
+                <button type="button" class="group text-left w-full flex items-center bg-white rounded-lg p-3 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-200" data-event-id="${event.id}">
+                    <!-- Thumbnail -->
+                    <div class="relative w-24 h-24 flex-shrink-0 rounded-md overflow-hidden bg-gray-100 mr-4">
+                        <img src="${imagePath}" alt="${altText}" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                             onerror="this.onerror=null; this.src='https://placehold.co/200x200/333/fff?text=+';">
+                    </div>
+
+                    <!-- Content -->
+                    <div class="flex-grow min-w-0">
+                         <div class="flex items-center mb-1">
+                            <!-- Tag removed per user request (redundant in series view) -->
+                            <span class="text-xs font-semibold text-gray-400 uppercase tracking-wide truncate">
+                                ${dateDisplay}
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold font-serif-display leading-tight text-gray-900 group-hover:text-sfi-sea transition-colors truncate">
+                            ${event.title}
+                        </h3>
+                        <p class="text-sm text-gray-600 truncate mt-0.5">
+                            ${speakerDisplay}
+                        </p>
+                    </div>
+                    
+                    <!-- Arrow -->
+                    <div class="ml-4 flex-shrink-0 text-gray-300 group-hover:text-sfi-sea transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </div>
                 </button>
             </article>
@@ -505,10 +567,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Populate the grid
         if (events.length > 0) {
-            seriesModalGrid.innerHTML = events.map(createEventCardHTML).join('');
+            // Use COMPACT cards for the modal loop
+            seriesModalGrid.innerHTML = events.map(createCompactEventCardHTML).join('');
         } else {
             seriesModalGrid.innerHTML = '<p class="text-gray-600">No events found for this series.</p>';
         }
+
 
         // CRITICAL: Re-attach listeners to the *new* event cards inside this modal
         seriesModalGrid.querySelectorAll('button[data-event-id]').forEach(card => {
