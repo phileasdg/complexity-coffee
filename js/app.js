@@ -48,8 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetPage = document.querySelector(`[data-page="${pageId}"]`);
         if (targetPage) targetPage.classList.add('is-active');
 
-        // Clear the hash to prevent modal from opening
-        clearHash();
+        // Note: We removed clearHash() here because handleHashChange drives this now.
 
         if (anchor) {
             setTimeout(() => {
@@ -614,29 +613,52 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleHashChange() {
         const hash = window.location.hash;
 
+        // --- 1. Modal Logic (Preserved) ---
         if (hash.startsWith('#event=')) {
             if (!modalContainer.classList.contains('is-open')) {
                 const eventId = hash.substring(7);
                 const event = allEventsCache.find(e => e.id === eventId);
                 openEventModal(event);
             }
-        } else if (hash.startsWith('#team=')) {
+            return; // Stop here if opening a modal
+        } else if (hash.startsWith('#team=') && hash.length > 6) { // Ensure it's not just "#team"
             if (!teamModalContainer.classList.contains('is-open')) {
                 const teamId = hash.substring(6);
                 const member = allTeamDataCache.find(m => m.id === teamId);
                 openTeamModal(member);
             }
+            return;
         } else if (hash.startsWith('#series=')) {
             if (!seriesModalContainer.classList.contains('is-open')) {
                 const seriesTitle = decodeURIComponent(hash.substring(8));
                 openSeriesModal(seriesTitle);
             }
-        } else {
-            // No hash, or unknown hash, close all modals
-            if (modalContainer.classList.contains('is-open')) closeModal();
-            if (seriesModalContainer.classList.contains('is-open')) closeSeriesModal();
-            if (teamModalContainer.classList.contains('is-open')) closeTeamModal();
+            return;
         }
+
+        // --- 2. Page Navigation Logic (New) ---
+
+        // Define page mapping
+        // Hashes that map to 'home' but scroll to specific sections
+        if (hash === '#about' || hash === '#upcoming' || hash === '#events') {
+            showPage('home', hash);
+        }
+        // Direct page hashes
+        else if (hash === '#archive') {
+            showPage('archive');
+        }
+        else if (hash === '#team') {
+            showPage('team');
+        }
+        else if (hash === '#home' || hash === '') {
+            showPage('home');
+        }
+
+        // --- 3. Cleanup ---
+        // If we are navigating to a page (not a modal), ensure modals are closed
+        if (modalContainer.classList.contains('is-open')) closeModal();
+        if (seriesModalContainer.classList.contains('is-open')) closeSeriesModal();
+        if (teamModalContainer.classList.contains('is-open')) closeTeamModal();
     }
 
 
