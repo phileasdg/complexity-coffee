@@ -361,11 +361,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         <img src="${series.image_path}" alt="${altText}" 
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                              onerror="this.onerror=null; this.src='https://placehold.co/600x400/333/fff?text=Image+Missing';">
-                         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
-                            <span class="text-xs font-bold uppercase tracking-wider text-white bg-sfi-ming/80 px-2 py-1 rounded inline-block">
-                                ${series.tag_matcher}
-                            </span>
-                        </div>
                     </div>
                     
                     <div class="p-6 flex-grow flex flex-col justify-between">
