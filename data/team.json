@@ -22,7 +22,7 @@
 		"id": "team-001",
 		"name": "Travis Holmes",
 		"role": "",
-		"image_path": "img/general/marble1.jpeg",
+		"image_path": "",
 		"bio_html": "",
 		"links": []
 	},
@@ -30,7 +30,7 @@
 		"id": "team-002",
 		"name": "Arhan",
 		"role": "",
-		"image_path": "img/general/marble1.jpeg",
+		"image_path": "",
 		"bio_html": "",
 		"links": []
 	},
@@ -38,7 +38,7 @@
 		"id": "team-003",
 		"name": "Ariel",
 		"role": "",
-		"image_path": "img/general/marble1.jpeg",
+		"image_path": "",
 		"bio_html": "",
 		"links": []
 	},
@@ -65,7 +65,7 @@
 		"id": "team-001",
 		"name": "Shaheen",
 		"role": "",
-		"image_path": "img/general/marble1.jpeg",
+		"image_path": "",
 		"bio_html": "",
 		"links": []
 	},
