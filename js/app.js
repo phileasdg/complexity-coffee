@@ -140,21 +140,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Image Assets for Randomization (Hero Only) ---
     const marbleImages = [
-        "img/general/marble1.jpeg",
-        "img/general/marble2.jpeg",
-        "img/general/marble3.jpeg",
-        "img/general/marble4.png",
-        "img/general/marble5.png"
+        "./img/general/marble1.jpeg",
+        "./img/general/marble2.jpeg",
+        "./img/general/marble3.jpeg",
+        "./img/general/marble4.png",
+        "./img/general/marble5.png"
     ];
 
     const generalImages = [
-        "img/general/beads1.jpeg",
-        "img/general/feltpen1.jpeg",
-        "img/general/paint1.jpeg",
-        "img/general/tiling1.jpeg",
-        "img/general/tiling2.jpeg",
-        "img/general/tiling3.jpeg",
-        "img/general/tiling4.jpeg",
+        "./img/general/beads1.jpeg",
+        "./img/general/feltpen1.jpeg",
+        "./img/general/paint1.jpeg",
+        "./img/general/tiling1.jpeg",
+        "./img/general/tiling2.jpeg",
+        "./img/general/tiling3.jpeg",
+        "./img/general/tiling4.jpeg",
         ...marbleImages // Include marbles in general rotation
     ];
 
@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const { gradient_class, tag_color_class } = getEventStyling(event);
-        const imagePath = event.image_path || 'img/general/marble4.png';
+        const imagePath = event.image_path || './img/general/marble4.png';
         const altText = event.title.replace(/"/g, "'");
         const { dateDisplay } = event.formattedDate;
 
@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="relative w-24 h-24 flex-shrink-0 rounded-md overflow-hidden bg-gray-100 mr-4">
                         <img src="${imagePath}" alt="${altText}" 
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                             onerror="this.onerror=null; this.src='img/general/marble4.png';">
+                             onerror="this.onerror=null; this.src='./img/general/marble4.png';">
                     </div>
 
                     <!-- Content -->
@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ? `<a href="${speaker.website}" target="_blank" rel="noopener" class="text-sfi-sea text-sm hover:underline">Website</a>`
             : '';
 
-        const speakerImage = speaker.image || 'img/general/marble4.png';
+        const speakerImage = speaker.image || './img/general/marble4.png';
 
         return `
             <div class="flex items-center space-x-4">
@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="w-full h-48 overflow-hidden relative">
                         <img src="${series.image_path}" alt="${altText}" 
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                             onerror="this.onerror=null; this.src='img/general/marble4.png';">
+                             onerror="this.onerror=null; this.src='./img/general/marble4.png';">
                     </div>
                     
                     <div class="p-6 flex-grow flex flex-col justify-between">
@@ -423,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="w-full aspect-square overflow-hidden">
                         <img src="${teamMember.image_path}" alt="${altText}" 
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                             onerror="this.onerror=null; this.src='img/general/marble4.png';">
+                             onerror="this.onerror=null; this.src='./img/general/marble4.png';">
                     </div>
                     <div class="p-5">
                         <h3 class="text-2xl font-bold font-serif-display group-hover:text-sfi-sea transition-colors">
@@ -447,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Get all data from the event object
         const { title, tag, description_html, speakers, links, formattedDate } = event;
         const { dateTimeFull, locationDisplay, isPast } = formattedDate;
-        const image = event.image_path || 'img/general/marble4.png';
+        const image = event.image_path || './img/general/marble4.png';
         const registerUrl = (links && links.register) ? links.register : "";
         const recordingUrl = (links && links.recording) ? links.recording : "";
 
