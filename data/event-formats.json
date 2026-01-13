@@ -1,0 +1,37 @@
+[
+    {
+        "title": "Guest Talks",
+        "description": "In-depth lectures from leading researchers and guest lecturers on foundational and cutting-edge topics in complexity science. Followed by an extended Q&A session.",
+        "cta": null
+    },
+    {
+        "title": "Nascent Research",
+        "description": "A rapid-fire series inspired by Pecha Kucha. Presenters share emerging research in 10-minute talks, followed by 10 minutes of Q&A. Perfect for gathering feedback and sparking new collaborations.",
+        "cta": {
+            "text": "Inquire about presenting",
+            "url": "https://forms.gle/B1TpzPKLFLefRrM4A"
+        }
+    },
+    {
+        "title": "Workshops",
+        "description": "Hands-on sessions to learn new methods, tools, and skills related to complexity science. Check back for announcements.",
+        "cta": null
+    },
+    {
+        "title": "Community Talks",
+        "description": "Seminar-style talks by CGS participants and EPE network members, designed to showcase ongoing research and projects, share theoretical and methodological approaches, and stimulate critical discussion.",
+        "cta": {
+            "text": "Submit a Proposal",
+            "url": "https://forms.gle/Hpr1pczfxXZ1ZXWu9"
+        }
+    },
+    {
+        "title": "Complexity Narratives",
+        "description": "An epistemologically-forward attempt at historically recontextualizing the ways in which our world systems have developed, and how we can better address their emergent challenges.",
+        "cta": {
+            "text": "Coming Soon",
+            "url": null,
+            "badge": true
+        }
+    }
+]

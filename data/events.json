@@ -1,0 +1,116 @@
+[
+	{
+		"id": "evt-004",
+		"title": "Community Talks: Edition 1",
+		"event_time": 1771513200,
+		"location": "Virtual / Zoom",
+		"image_path": "",
+		"tag": "Community Talks",
+		"description_html": "<p>The Complexity Coffee team is gathering submissions for the first edition of Community Talks. Community talks are seminar-style talks by CGS participants, and EPE network members, designed to showcase ongoing research and projects, share theoretical and methodological approaches, and stimulate critical discussion and collaboration across disciplinary and institutional boundaries.</p><p>Presenters will have 30 minutes to present, followed by 10 minutes for discussion. Two presentations will be shared per session.</p><p>Interested? Have something you want to share? Have a question? Fill out this form by 28 January 2026 at 0830 MST.</p>",
+		"speakers": [],
+		"links": {
+			"Submit Proposal": "https://forms.gle/Hpr1pczfxXZ1ZXWu9"
+		},
+		"cta": {
+			"text": "Submit Proposal",
+			"url": "https://forms.gle/Hpr1pczfxXZ1ZXWu9"
+		}
+	},
+	{
+		"id": "evt-003",
+		"title": "Featured Speaker: Dr. Sam Bowles",
+		"event_time": 1769180400,
+		"location": "Virtual / Zoom",
+		"image_path": "",
+		"tag": "Guest Talk",
+		"description_html": "<p>We are pleased to announce our next speaker in the Complexity Coffee Speaker Series, Dr. Sam Bowles. Among many honors, Sam is a Resident Faculty Member at the Santa Fe Institute and co-founder of the CORE (Curriculum Open-access Resources for Economics) project. He's also been described as one of the most important contemporary figures in offering comprehensive explanations of why humans are prosocial, and how cooperation can emerge in societies.</p><p>Dr. Bowles is an interdisciplinary scientist whose research spans behavioral economics, evolutionary theory, and institutional design. His work explores cooperation, inequality, and the evolution of social institutions, combining insights from economics, anthropology, and evolutionary biology to understand how human societies organize and function.</p>",
+		"speakers": [
+			{
+				"name": "Dr. Sam Bowles",
+				"tagline": "Resident Faculty Member, Santa Fe Institute; Co-founder, CORE Project",
+				"image_path": "",
+				"website_url": "https://www.santafe.edu/people/profile/samuel-bowles"
+			}
+		],
+		"links": {
+			"Join Event": "https://us02web.zoom.us/j/84453749335?pwd=bCICi1iJOFfM3YbaiEWUFuTafaatEM.1"
+		},
+		"cta": {
+			"text": "Join Event",
+			"url": "https://us02web.zoom.us/j/84453749335?pwd=bCICi1iJOFfM3YbaiEWUFuTafaatEM.1"
+		}
+	},
+	{
+		"id": "evt-002",
+		"title": "Melding Qualitative and Quantitative Perspectives in Complex Systems Research",
+		"event_time": 1763649000,
+		"location": "Virtual \/ Zoom",
+		"image_path": "img\/events\/workshops\/emmy-tither-1.jpg",
+		"tag": "Workshop",
+		"description_html": "<p>Using sound as a lens, we will explore how these different methodologies can work together to help untangle complexity. Through a series of collaborative activities, participants will explore options for integrating mixed methods into their own research. Please note that no prior experience with mixed-methods research, or sound as a medium, is required.<\/p>",
+		"speakers": [
+			{
+				"name": "Emmy Tither",
+				"tagline": "PhD Student, University of Illinois Urbana-Champaign; Complexity Global School 2 Alum",
+				"image_path": "img/team/emmy_tither.jpeg",
+				"website_url": "https:\/\/scholar.google.com\/citations?user=jZae7IsAAAAJ&hl=en"
+			}
+		],
+		"links": {
+			"Join Event": "https://us02web.zoom.us/j/89981389749?pwd=VJviGOzsKgJAqzFs1BeNLaRErcZjlb.1",
+			"recording": null
+		},
+		"cta": {
+			"text": "Join Event",
+			"url": "https://us02web.zoom.us/j/89981389749?pwd=VJviGOzsKgJAqzFs1BeNLaRErcZjlb.1"
+		}
+	},
+	{
+		"id": "evt-001",
+		"title": "Realizing the Potential of Community-led, Science-driven Participatory Complex Systems Modeling",
+		"event_time": 1761744600,
+		"location": "Virtual \/ Zoom",
+		"image_path": "img\/events\/speaker-series\/moira-zellner-1.png",
+		"tag": "Guest Talk",
+		"description_html": "<p>Participatory modeling (PM) is particularly well-suited to address complex socio-environmental problems like climate hazards and their implications for sustainable resource management and landscape planning. Despite its potential to inform planning and policy, particularly in conflictive contexts, PM has yet to become a mainstream practice for decision-making. While most PM research and development has focused on modeling tools and engagement techniques, multiple other dimensions must be recognized and articulated for impactful planning support. I present a PM platform, Fora.ai, that supports the iterative steps in PM: problem definition and goal setting, preference elicitation, collaborative scenario-building, simulation, tradeoff deliberation, and solution-building. I demonstrate the platform's effectiveness when embedded in a stakeholder-led process that integrates diverse knowledge, data sources, and values in pursuit of impactful green infrastructure (GI) planning to address flooding. I show how the combination of specific facilitation practices and platform features leverages the power of data, computational modeling, and social complexity to contribute to collaborative learning, creative and convergent solution-building for urban sustainability and climate resilience.<\/p>",
+		"speakers": [
+			{
+				"name": "Dr. Moira Zellner",
+				"tagline": "Professor of Public Policy and Urban Affairs at Northeastern University",
+				"image_path": "",
+				"website_url": "https:\/\/cssh.northeastern.edu\/faculty\/moira-zellner\/"
+			}
+		],
+		"links": {}
+	},
+	{
+		"id": "evt-000",
+		"title": "Nascent Research Ideas: Edition 1",
+		"event_time": 1760536800,
+		"location": "Virtual \/ Zoom",
+		"image_path": "img\/events\/nascent-research\/nascent-research-1.png",
+		"tag": "Nascent Research",
+		"description_html": "<p>Anelise Assumpção will discuss her doctoral research, and the complexity of dealing with data in text format that requires a high degree of interpretation. How the inherent complexity of textual data arises from its dependence on interpretation, context, and linguistic nuance, which makes its processing particularly challenging in academic research.<\/p><p>Emilio Munoz will present his work on Order-Aware State Representations for Path-Dependent Reinforcement Learning, exploring how we might design compact state representations that preserve chronological order while still being computationally feasible.<\/p><p>Phileas Dazeley-Gaist will discuss their ongoing work with the 2025 CGS Sympoietic Art Organism group. The talk will showcase a citation network grown by a small artist community in intentional collaboration working from a shared commons. Over a series of co-creative cycles, artists iteratively remix and take inspiration from works already in the commons, contributing new pieces while tracking citation relationships.<\/p>",
+		"speakers": [
+			{
+				"name": "Anelise Assumpção",
+				"tagline": "TBD",
+				"image_path": "",
+				"website_url": "TBD"
+			},
+			{
+				"name": "Emilio Munoz",
+				"tagline": "TBD",
+				"image_path": "",
+				"website_url": "TBD"
+			},
+			{
+				"name": "Phileas Dazeley-Gaist",
+				"tagline": "Applications Developer: Wolfram Research",
+				"image_path": "img/team/phileas.png",
+				"website_url": "https://phileasdg.github.io"
+			}
+		],
+		"links": {}
+	}
+]

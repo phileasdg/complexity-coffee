@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complexity Coffee</title>
+    <meta name="description"
+        content="Complexity Coffee: A new series of webinars, talks, and workshops exploring the frontiers of complexity science.">
+    <meta property="og:title" content="Complexity Coffee">
+    <meta property="og:description"
+        content="Complexity Coffee: A new series of webinars, talks, and workshops exploring the frontiers of complexity science.">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="img/general/beads1.jpeg">
+    <link rel="preload" as="image" href="img/general/paint1.jpeg">
+
+    <!-- Load SFI-style Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-[#ecebe6] text-gray-900 font-sans-body"> <!-- SFI Page Background Color -->
+
+    <!-- Header -->
+    <!-- Dark bg on mobile (absolute), light bg on desktop (sticky) -->
+    <header
+        class="absolute md:sticky top-0 w-full z-50 bg-gray-900 md:bg-white md:border-b md:border-gray-200 transition-colors duration-300">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo / Site Title -->
+                <div class="flex-shrink-0 flex items-center">
+                    <!-- White text on mobile, dark on desktop -->
+                    <a href="#home"
+                        class="text-2xl md:text-3xl font-bold font-serif-display text-white md:text-gray-900 transition-colors duration-300">
+                        Complexity Coffee
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-sfi-sea font-medium">About</a>
+                    <a href="#upcoming" id="nav-upcoming" style="display: none;"
+                        class="text-gray-700 hover:text-sfi-sea font-medium">Upcoming</a>
+                    <a href="#events" class="text-gray-700 hover:text-sfi-sea font-medium">Event Formats</a>
+                    <a href="#archive" class="text-gray-700 hover:text-sfi-sea font-medium">All Events</a>
+                    <a href="#team" class="text-gray-700 hover:text-sfi-sea font-medium">Team</a>
+                </div>
+
+                <!-- Mobile Menu Button (SFI Style) -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="burger-button" aria-label="navigation menu"
+                        aria-expanded="false">
+                        <span class="patty"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Panel (hidden by default) -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/60 z-40 hidden" aria-hidden="true"></div>
+    <div id="mobile-menu" class="mobile-menu-panel sfi-gradient-eggplant" aria-hidden="true">
+        <div class="px-6 pt-24 pb-4 space-y-2">
+            <!-- Mobile links are larger and white, per SFI style -->
+            <a href="#about"
+                class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">About</a>
+            <a href="#upcoming" id="mobile-nav-upcoming" style="display: none;"
+                class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">Upcoming</a>
+            <a href="#events"
+                class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">Event
+                Formats</a>
+            <a href="#archive"
+                class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">All
+                Events</a>
+            <a href="#team"
+                class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">Team</a>
+            <a href="https://santafe.edu" target="_blank" rel="noopener"
+                class="block px-3 py-2 rounded-md text-xl font-medium text-gray-300 hover:bg-white/10 mt-8">
+                santafe.edu
+            </a>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+    <!-- Added pt-20 (header height) for mobile, md:pt-0 for desktop -->
+    <main class="pt-20 md:pt-0">
+
+        <!-- =================== -->
+        <!--     HOME PAGE       -->
+        <!-- =================== -->
+        <div data-page="home" class="is-active">
+            <!-- Hero Section -->
+            <section class="relative h-[75vh] min-h-[450px] bg-sfi-ming flex items-center text-white">
+                <!-- Background Image -->
+                <div class="absolute inset-0">
+                    <!-- Base Image (Always visible, prevents flash) -->
+                    <img id="hero-image-base" src="img/general/marble4.png" alt=""
+                        class="absolute inset-0 w-full h-full object-cover opacity-50 transition-opacity duration-1000 ease-in-out">
+
+                    <!-- Overlay Image (Fades in dynamically) -->
+                    <img id="hero-image-overlay" alt="Abstract complexity-themed background"
+                        class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000 ease-in-out"
+                        onerror="this.style.display='none'">
+                </div>
+
+                <!-- Hero Content -->
+                <div class="relative container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl">
+                        <h1 class="text-4xl sm:text-5xl md:text-7xl font-black font-serif-display tracking-tight">
+                            Complexity Coffee
+                        </h1>
+                        <p class="mt-6 text-lg sm:text-xl md:text-2xl font-sans-body max-w-2xl">
+                            A new series of webinars, talks, and workshops exploring the frontiers of complexity
+                            science.
+                        </p>
+                        <div class="mt-10">
+                            <a href="#upcoming" class="sfi-cta cta-white text-base md:text-lg">
+                                View Upcoming Events
+                                <svg class="arrow-circle-icon" width="24" height="14" viewBox="-395 256 24 14">
+                                    <path fill="none" d="M-377 263h-17.6m15.4-2.2l2.2 2.2-2.2 2.2" />
+                                    <circle fill="none" cx="-378.1" cy="263" r="6.8" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section (SFI-style: centered, focused) -->
+            <section id="about" class="py-16 md:py-24 bg-white scroll-target"> <!-- White Background -->
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl mx-auto text-center">
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black font-serif-display">
+                            What is Complexity Coffee?
+                        </h2>
+                        <div class="mt-6 space-y-6 text-lg text-gray-700 font-sans-body">
+                            <p>
+                                Complexity Coffee is a community-driven virtual series from Santa Fe Institute alums,
+                                presented in partnership with SFI. We are dedicated to fostering discussion and sharing
+                                new ideas in the field of complexity science.
+                            </p>
+                            <p>
+                                This initiative is organized by the alumni of the Complexity Global School (CGS). Since
+                                2023, CGS has engaged students from 30+ countries. Complexity Coffee connects this
+                                growing alumni network with leading researchers in complexity science through talks,
+                                interactive workshops, and collaborative opportunities.
+                            </p>
+                            <p>
+                                Our goal is to create an accessible, global forum for exploring the diverse topics,
+                                methods, and applications of complexity. Whether you're a seasoned researcher or just
+                                complexity-curious, grab a cup of coffee and join the conversation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upcoming Events Section (Happenings Style) -->
+            <section id="upcoming" class="py-16 md:py-24 scroll-target"> <!-- SFI Gray Background (from body) -->
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-center mb-12">
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black font-serif-display">
+                            Upcoming Events
+                        </h2>
+                        <a href="javascript:void(0)" onclick="showPage('archive')"
+                            class="sfi-cta cta-black hidden md:inline-flex">
+                            View All Events
+                            <svg class="arrow-circle-icon" width="24" height="14" viewBox="-395 256 24 14">
+                                <path fill="none" d="M-377 263h-17.6m15.4-2.2l2.2 2.2-2.2 2.2" />
+                                <circle fill="none" cx="-378.1" cy="263" r="6.8" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- 
+                        DYNAMIC EVENT GRID
+                        Events will be injected here by JavaScript.
+                     -->
+                    <div id="home-upcoming-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Loading or error message will be shown here -->
+                        <p class="text-gray-600 md:col-span-3">Loading upcoming events...</p>
+                    </div>
+
+                    <div class="text-center mt-12 md:hidden">
+                        <a href="javascript:void(0)" onclick="showPage('archive')" class="sfi-cta cta-black">
+                            View All Events
+                            <svg class="arrow-circle-icon" width="24" height="14" viewBox="-395 256 24 14">
+                                <path fill="none" d="M-377 263h-17.6m15.4-2.2l2.2 2.2-2.2 2.2" />
+                                <circle fill="none" cx="-378.1" cy="263" r="6.8" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Event Types Section -->
+            <section id="events" class="py-16 md:py-24 bg-white scroll-target"> <!-- White Background -->
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black font-serif-display">
+                            Our Event Formats
+                        </h2>
+                        <p class="mt-4 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+                            Distinct formats designed for discovery, dialogue, and active engagement with complexity.
+                        </p>
+                    </div>
+
+                    <div id="event-formats-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        <!-- Content loaded dynamically from data/event-formats.json -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =================== -->
+        <!--   "ALL EVENTS" PAGE   -->
+        <!-- =================== -->
+        <div data-page="archive">
+            <section class="py-16 md:py-24"> <!-- SFI Gray Background (from body) -->
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl mb-12">
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black font-serif-display">
+                            All Events
+                        </h2>
+                        <p class="mt-4 text-lg text-gray-600">
+                            Explore our library of upcoming and past talks, research presentations, and workshops.
+                        </p>
+                    </div>
+
+                    <!-- Upcoming Events Section -->
+                    <h3 id="archive-upcoming"
+                        class="text-2xl sm:text-3xl font-bold font-serif-display mb-8 pt-8 border-t border-gray-300 scroll-target">
+                        Upcoming Events
+                    </h3>
+                    <!-- 
+                        DYNAMIC UPCOMING GRID (ARCHIVE)
+                        Events will be injected here by JavaScript.
+                     -->
+                    <div id="archive-upcoming-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <p class="text-gray-600 md:col-span-3">Loading upcoming events...</p>
+                    </div>
+
+                    <!-- Event Series Section -->
+                    <h3 id="archive-series"
+                        class="text-2xl sm:text-3xl font-bold font-serif-display mb-8 pt-16 mt-16 border-t border-gray-300 scroll-target">
+                        Event Series
+                    </h3>
+                    <!-- 
+                        DYNAMIC SERIES GRID (ARCHIVE)
+                        Event series "playlists" will be injected here by JavaScript.
+                     -->
+                    <div id="archive-series-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <p class="text-gray-600 md:col-span-3">Loading event series...</p>
+                    </div>
+
+                    <!-- Past Events Section -->
+                    <h3 id="archive-past"
+                        class="text-2xl sm:text-3xl font-bold font-serif-display mb-8 pt-16 mt-16 border-t border-gray-300 scroll-target">
+                        Past Events
+                    </h3>
+                    <!-- 
+                        DYNAMIC PAST GRID (ARCHIVE)
+                        Events will be injected here by JavaScript.
+                     -->
+                    <div id="archive-past-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <p class="text-gray-600 md:col-span-3">Loading past events...</p>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- =================== -->
+        <!--     TEAM PAGE       -->
+        <!-- =================== -->
+        <div data-page="team">
+            <section class="py-16 md:py-24"> <!-- SFI Gray Background (from body) -->
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl mb-16">
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black font-serif-display">
+                            Meet the Team
+                        </h2>
+                        <p class="mt-4 text-lg text-gray-600">
+                            Complexity Coffee is organized by a dedicated team of SFI alums and community members.
+                        </p>
+                    </div>
+
+                    <!-- 
+                        DYNAMIC TEAM GRID
+                        Team members will be injected here by JavaScript.
+                     -->
+                    <!-- Added max-w-6xl and mx-auto to center the grid -->
+                    <div id="team-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        <p class="text-gray-600 md:col-span-3">Loading team...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer (SFI Style) -->
+    <footer class="relative bg-sfi-ming text-gray-300 font-sans-body overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="img/general/paint1.jpeg" alt="Footer background" class="w-full h-full object-cover opacity-20"
+                onerror="this.onerror=null; this.src='https://placehold.co/1920x500/003d5b/fff?text=SFI';">
+        </div>
+
+        <!-- Content (must be relative z-10) -->
+        <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <h2 class="text-2xl sm:text-3xl font-bold font-serif-display text-white text-center">Science for a Complex
+                World</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
+                <!-- Footer Column 1: About -->
+                <div>
+                    <h5 class="text-lg font-bold text-white mb-4">Complexity Coffee</h5>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-gray-400 hover:text-white text-sm">About The Series</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-white text-sm">Event Formats</a></li>
+                        <li><a href="#upcoming" class="text-gray-400 hover:text-white text-sm">Upcoming Events</a></li>
+                        <li><a href="#archive" class="text-gray-400 hover:text-white text-sm">All Events</a></li>
+                        <li><a href="#team" class="text-gray-400 hover:text-white text-sm">Team</a></li>
+                    </ul>
+                </div>
+                <!-- Footer Column 2: SFI -->
+                <div>
+                    <h5 class="text-lg font-bold text-white mb-4">Santa Fe Institute</h5>
+                    <ul class="space-y-3">
+                        <li><a href="https://santafe.edu" target="_blank" rel="noopener"
+                                class="text-gray-400 hover:text-white text-sm">SFI Homepage</a></li>
+                        <li><a href="https://santafe.edu/about/contact" target="_blank" rel="noopener"
+                                class="text-gray-400 hover:text-white text-sm">Contact SFI</a></li>
+                        <li><a href="https://santafe.edu/engage/support" target="_blank" rel="noopener"
+                                class="text-gray-400 hover:text-white text-sm">Support SFI</a></li>
+                        <li><a href="https://santafe.edu/research/overview" target="_blank" rel="noopener"
+                                class="text-gray-400 hover:text-white text-sm">Research</a></li>
+                    </ul>
+                </div>
+                <!-- Footer Column 3: Subscribe -->
+                <div>
+                    <h5 class="text-lg font-bold text-white mb-4">Subscribe</h5>
+                    <p class="text-gray-400 text-sm mb-4">Sign up for SFI research news.</p>
+                    <a href="http://eepurl.com/b175gL" target="_blank" rel="noopener" class="sfi-cta cta-white text-sm">
+                        Sign Up
+                        <svg class="arrow-circle-icon" width="24" height="14" viewBox="-395 256 24 14">
+                            <path fill="none" d="M-377 263h-17.6m15.4-2.2l2.2 2.2-2.2 2.2" />
+                            <circle fill="none" cx="-378.1" cy="263" r="6.8" />
+                        </svg>
+                    </a>
+                </div>
+                <!-- Footer Column 4: Connect -->
+                <div>
+                    <h5 class="text-lg font-bold text-white mb-4">Connect</h5>
+                    <ul class="flex space-x-4">
+                        <!-- SFI Social Icons (from their site) -->
+                        <li><a target="_blank" rel="noopener" title="X" href="https://twitter.com/sfiscience"
+                                class="text-gray-400 hover:text-white">
+                                <svg class="h-6 w-6" viewBox="0 0 1200 1227" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
+                                </svg>
+                            </a></li>
+                        <li><a target="_blank" rel="noopener" title="YouTube"
+                                href="https://www.youtube.com/user/santafeinst" class="text-gray-400 hover:text-white">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 25.37 25"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M1254.94 565.558a.3.3 0 0 0-.26.1.565.565 0 0 0-.07.332v.373h.65v-.373a.556.556 0 0 0-.08-.332.275.275 0 0 0-.24-.1zm-2.55-.013a.406.406 0 0 0-.16.036.547.547 0 0 0-.15.113V568a.6.6 0 0 0 .18.131.386.386 0 0 0 .18.04.218.218 0 0 0 .19-.079.357.357 0 0 0 .07-.255v-1.91a.459.459 0 0 0-.08-.284.278.278 0 0 0-.23-.098zm2.22 1.4v.7a.79.79 0 0 0 .07.4.274.274 0 0 0 .25.112.284.284 0 0 0 .25-.1.763.763 0 0 0 .08-.422v-.169h.76v.19a1.174 1.174 0 0 1-.28.858 1.1 1.1 0 0 1-.83.285 1.01 1.01 0 0 1-.78-.305 1.174 1.174 0 0 1-.28-.838V566a1.035 1.035 0 0 1 .31-.784 1.12 1.12 0 0 1 .81-.3 1.064 1.064 0 0 1 .78.281 1.114 1.114 0 0 1 .27.806v.943h-1.41zm-1.33 1.6a.6.6 0 0 1-.5.208.848.848 0 0 1-.38-.08.92.92 0 0 1-.32-.25v.277h-.74v-5.014h.74v1.614a1.149 1.149 0 0 1 .32-.257.7.7 0 0 1 .34-.088.632.632 0 0 1 .53.235 1.067 1.067 0 0 1 .19.692v2.052a.9.9 0 0 1-.18.606zm-3.24.162v-.407a1.427 1.427 0 0 1-.42.343.9.9 0 0 1-.43.117.469.469 0 0 1-.39-.165.834.834 0 0 1-.13-.5V565h.74v2.837a.315.315 0 0 0 .05.19.177.177 0 0 0 .15.058.406.406 0 0 0 .2-.078.9.9 0 0 0 .23-.2V565h.74v3.7h-.74zm-2.55-4.286v4.279h-.83v-4.286h-.86v-.728h2.55v.728h-.86zm3.41-2.342s-5.1.008-5.71.6-.61 3.548-.61 3.565 0 2.967.61 3.565 5.71.609 5.71.609 5.11-.013 5.72-.609.61-3.565.61-3.565c0-.017 0-2.967-.61-3.565s-5.72-.605-5.72-.605zm4.03-1.551h-.83v-.45a1.687 1.687 0 0 1-.48.379 1.008 1.008 0 0 1-.48.13.509.509 0 0 1-.43-.182.846.846 0 0 1-.15-.547v-3.4h.83v3.124a.37.37 0 0 0 .05.209.222.222 0 0 0 .17.065.532.532 0 0 0 .24-.086 1.206 1.206 0 0 0 .25-.219v-3.093h.83v4.075zm-4.51-.7a.326.326 0 0 0 .25.092.38.38 0 0 0 .27-.093.328.328 0 0 0 .1-.258v-2.219a.258.258 0 0 0-.1-.217.429.429 0 0 0-.27-.081.345.345 0 0 0-.24.081.258.258 0 0 0-.1.217v2.219a.356.356 0 0 0 .09.259zm-.61-3.2a1.363 1.363 0 0 1 .9-.281 1.217 1.217 0 0 1 .85.3.975.975 0 0 1 .33.761v2.105a1.078 1.078 0 0 1-.32.82 1.3 1.3 0 0 1-.9.3 1.229 1.229 0 0 1-.87-.306 1.076 1.076 0 0 1-.33-.827v-2.12a.946.946 0 0 1 .34-.754zm-2.6-1.626l.61 2.208h.06l.58-2.208h.95l-1.09 3.231v2.292h-.94v-2.189l-1.11-3.336h.94zm3.7 20a12.5 12.5 0 1 0-12.69-12.5A12.593 12.593 0 0 0 1250.91 575z"
+                                        transform="translate(-1238.22 -550)" />
+                                </svg>
+                            </a></li>
+                        <li><a target="_blank" rel="noopener" title="Facebook"
+                                href="https://www.facebook.com/santafeinstitute/"
+                                class="text-gray-400 hover:text-white">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 25.37 25"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M1182.3 569.3v-6.8h-1.42v-2.344h1.42v-1.407c0-1.912.81-3.049 3.09-3.049h1.91v2.344h-1.19c-.89 0-.95.328-.95.939l-.01 1.173h2.16l-.25 2.343h-1.91v6.8h-2.87zm1.79 5.7a12.5 12.5 0 1 0-12.68-12.5 12.595 12.595 0 0 0 12.68 12.5z"
+                                        transform="translate(-1171.41 -550)" />
+                                </svg>
+                            </a></li>
+                        <li><a target="_blank" rel="noopener" title="LinkedIn"
+                                href="https://www.linkedin.com/company/santafeinstitute/"
+                                class="text-gray-400 hover:text-white">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 25.38 25"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M1291.43 568.39h-2.87v-4.553c0-1.144-.41-1.924-1.45-1.924a1.56 1.56 0 0 0-1.47 1.034 1.82 1.82 0 0 0-.1.69v4.753h-2.87s.04-7.712 0-8.511h2.87v1.206a2.852 2.852 0 0 1 2.59-1.406c1.89 0 3.3 1.217 3.3 3.831v4.88zm-11.79-9.672h-.01a1.644 1.644 0 1 1 .01 0zm1.44 9.672h-2.87v-8.511h2.87v8.511zm3.23 6.61a12.5 12.5 0 1 0-12.68-12.5 12.595 12.595 0 0 0 12.68 12.5z"
+                                        transform="translate(-1271.62 -550)" />
+                                </svg>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main Event Modal -->
+    <div id="event-modal-backdrop" class="modal-backdrop"></div>
+    <div id="event-modal-container" class="modal-container">
+        <div class="modal-content">
+            <button id="modal-close-btn" class="modal-close-btn" aria-label="Close modal">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8 p-6 md:p-8">
+                <!-- Left Column (Content) -->
+                <div class="md:col-span-3">
+                    <span id="modal-tag" class="text-xs font-bold uppercase tracking-wider"></span>
+                    <h2 id="modal-title" class="mt-2 text-3xl font-bold font-serif-display"></h2>
+
+                    <div class="mt-4 text-gray-700 space-y-1">
+                        <!-- This will now show the full date/time string, e.g., "October 20, 2025 at 10:00 AM MST" -->
+                        <p id="modal-date-time" class="font-medium text-lg"></p>
+                        <!-- This will show "Past Event" or "Virtual / Zoom" -->
+                        <p id="modal-location" class="text-gray-600"></p>
+                    </div>
+
+                    <a id="modal-cta-button" href="#" target="_blank" rel="noopener"
+                        class="block w-full text-center bg-sfi-sea text-white font-bold py-3 px-5 rounded-lg mt-6 hover:bg-sfi-ming transition text-base"></a>
+
+                    <div id="modal-description" class="mt-6 text-gray-600 font-sans-body space-y-4"></div>
+                </div>
+
+                <!-- Right Column (Media & Speaker) -->
+                <div class="md:col-span-2 space-y-6">
+                    <img id="modal-image" src="" alt="Event" class="w-full h-48 md:h-64 object-cover rounded-lg">
+
+                    <div>
+                        <h4 class="text-xl font-serif-display font-bold mb-4">Speaker(s)</h4>
+                        <!-- Speaker list will be dynamically injected here -->
+                        <div id="modal-speaker-list" class="space-y-4"></div>
+
+                        <!-- "See More" button, hidden by default -->
+                        <button id="modal-see-more-speakers"
+                            class="hidden mt-4 text-sm font-medium text-sfi-sea hover:underline">
+                            See All Speakers
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Speaker List Modal (Secondary Modal) -->
+    <div id="speaker-list-modal-backdrop" class="modal-backdrop"></div>
+    <div id="speaker-list-modal-container" class="modal-container">
+        <div class="modal-content">
+            <button id="speaker-list-close-btn" class="modal-close-btn" aria-label="Close speaker list">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <div class="p-6 md:p-8">
+                <h2 class="text-2xl font-bold font-serif-display mb-6">All Speakers</h2>
+                <!-- Full speaker list will be injected here -->
+                <div id="full-speaker-list-container" class="space-y-5"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Series Modal (Secondary Modal) -->
+    <div id="series-modal-backdrop" class="modal-backdrop"></div>
+    <div id="series-modal-container" class="modal-container">
+        <div class="modal-content">
+            <button id="series-close-btn" class="modal-close-btn" aria-label="Close modal">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <div class="p-6 md:p-8">
+                <h2 id="series-modal-title" class="text-3xl font-bold font-serif-display mb-2"></h2>
+                <p id="series-modal-description" class="text-lg text-gray-600 mb-8"></p>
+
+                <div class="border-t border-gray-200 pt-6">
+                    <h3 class="text-xl font-serif-display font-bold mb-6">Events in this series (Newest First)</h3>
+                    <!-- Event cards will be dynamically injected here -->
+                    <div id="series-modal-grid"
+                        class="grid grid-cols-1 md:grid-cols-2 gap-6 max-h-[60vh] overflow-y-auto pr-2">
+                        <!-- Event cards... -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Member Modal -->
+    <div id="team-modal-backdrop" class="modal-backdrop"></div>
+    <div id="team-modal-container" class="modal-container">
+        <div class="modal-content">
+            <button id="team-modal-close-btn" class="modal-close-btn" aria-label="Close modal">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8 p-6 md:p-8">
+                <!-- Left Column (Image) -->
+                <div class="md:col-span-2">
+                    <img id="team-modal-image" src="" alt="Team member"
+                        class="w-full h-64 md:h-auto object-cover rounded-lg bg-gray-100">
+                </div>
+
+                <!-- Right Column (Content) -->
+                <div class="md:col-span-3">
+                    <h2 id="team-modal-name" class="text-3xl font-bold font-serif-display"></h2>
+                    <p id="team-modal-role" class="mt-1 text-xl font-medium text-sfi-sea"></p>
+
+                    <div id="team-modal-bio" class="mt-6 text-gray-700 font-sans-body space-y-4"></div>
+
+                    <div id="team-modal-links" class="mt-6 space-y-3">
+                        <!-- Links injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js?v=2"></script>
+
+</body>
+
+</html>

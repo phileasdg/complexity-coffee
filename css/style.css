@@ -1,0 +1,424 @@
+/* SFI Font Definitions */
+.font-sans-body {
+    font-family: 'Inter', sans-serif;
+}
+
+.font-serif-display {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Apply base fonts */
+body {
+    font-family: 'Inter', sans-serif;
+    color: #111;
+    /* SFI uses a near-black, not pure black */
+}
+
+/* Increased "sharpness" on headings */
+h1,
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    /* Use font-black for high contrast */
+}
+
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    /* Use font-bold */
+}
+
+/* SFI Color Palette & Gradients */
+.sfi-red {
+    color: #e4002b;
+}
+
+.bg-sfi-red {
+    background-color: #e4002b;
+}
+
+.sfi-sea {
+    color: #00a9b7;
+}
+
+.bg-sfi-sea {
+    background-color: #00a9b7;
+}
+
+/* <-- Button fix */
+.sfi-gradient-sea {
+    background-image: linear-gradient(-45deg, rgba(42, 103, 115, .93), rgba(66, 102, 74, .98));
+}
+
+.hover\:text-sfi-sea:hover {
+    color: #00a9b7;
+}
+
+.sfi-ming {
+    color: #003d5b;
+}
+
+.bg-sfi-ming {
+    background-color: #003d5b;
+}
+
+.hover\:bg-sfi-ming:hover {
+    background-color: #003d5b;
+}
+
+.sfi-turmeric {
+    color: #f5a623;
+}
+
+.sfi-gradient-turmeric {
+    background-image: linear-gradient(-45deg, rgba(185, 167, 68, .93), rgba(185, 112, 68, .93));
+}
+
+.hover\:text-sfi-turmeric:hover {
+    color: #f5a623;
+}
+
+.sfi-eggplant {
+    color: #3c1053;
+}
+
+.sfi-gradient-eggplant {
+    background-image: linear-gradient(-45deg, rgba(117, 83, 111, .93), rgba(42, 103, 115, .98));
+}
+
+.hover\:text-sfi-eggplant:hover {
+    color: #3c1053;
+}
+
+
+/* SFI-style "Arrow CTA" Button */
+.sfi-cta {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.sfi-cta svg {
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.sfi-cta:hover svg {
+    transform: translateX(4px);
+}
+
+.sfi-cta.cta-black {
+    color: #111;
+}
+
+.sfi-cta.cta-black circle,
+.sfi-cta.cta-black path {
+    stroke: #111;
+}
+
+.sfi-cta.cta-white {
+    color: white;
+}
+
+.sfi-cta.cta-white circle,
+.sfi-cta.cta-white path {
+    stroke: white;
+}
+
+/* SFI "Happenings" Card Image Effect */
+/* SFI "Happenings" Card Image Effect */
+.sfi-card-container {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Pushes content to top and bottom */
+    min-height: 24rem;
+    /* Set a consistent height */
+    color: white;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Gradient Scrim Overlay */
+.sfi-card-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* Solid scrim as requested */
+    background-color: rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+    z-index: 1;
+    /* On top of image (z-index implicit), below content (z-index 2) */
+}
+
+.sfi-card-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    /* Slightly increased from 0.7 since we have a scrim now */
+    transition: all 0.5s ease;
+    z-index: 0;
+}
+
+.sfi-card-container:hover img {
+    opacity: 1;
+    /* Reveal full image on hover */
+    transform: scale(1.05);
+}
+
+.sfi-card-content {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 2;
+    /* Ensure content is above the scrim (z-index 1) */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    /* Softer shadow */
+}
+
+/* SFI-inspired Mobile Menu Styles */
+.burger-button {
+    position: relative;
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+    z-index: 1050;
+    /* Above header, below menu */
+}
+
+.burger-button .patty {
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 2em;
+    /* Shorter than container */
+    height: .2em;
+    background-color: white;
+    /* White on dark header */
+    transform: translateY(-50%);
+    transition: all 0ms .15s;
+}
+
+.burger-button .patty:after,
+.burger-button .patty:before {
+    content: "";
+    position: absolute;
+    right: 0;
+    height: .2em;
+    width: 2em;
+    background-color: white;
+}
+
+.burger-button .patty:before {
+    bottom: .6em;
+    transition: bottom .15s ease-out .15s, background .15s ease-out .15s, transform .15s ease-out;
+}
+
+.burger-button .patty:after {
+    top: .6em;
+    transition: width .15s ease-out, top .15s ease-out .15s, background .15s ease-out .15s, transform .15s ease-out;
+}
+
+/* Desktop styles for burger */
+@media (min-width: 768px) {
+
+    .burger-button .patty,
+    .burger-button .patty:after,
+    .burger-button .patty:before {
+        background-color: #111;
+        /* Dark on light header */
+    }
+}
+
+/* Active (X) state for burger */
+.burger-button.is-active .patty {
+    background-color: transparent;
+}
+
+.burger-button.is-active .patty:after {
+    width: 2em;
+    top: 0;
+    transform: rotate(45deg);
+    transition: width .15s ease-out, top .15s ease-out, background .15s ease-out .15s, transform .15s ease-out .15s;
+}
+
+.burger-button.is-active .patty:before {
+    bottom: 0;
+    transform: rotate(-45deg);
+    transition: bottom .15s ease-out, background .15s ease-out .15s, transform .15s ease-out .15s;
+}
+
+/* SFI-inspired Slide-out Panel */
+.mobile-menu-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform .6s cubic-bezier(.23, 1, .32, 1);
+    background-color: #75536f;
+    /* Fallback */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-menu-panel.is-open {
+    transform: translateX(0);
+}
+
+/* Modal Styles */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1100;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.modal-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-container {
+    position: fixed;
+    inset: 0;
+    z-index: 1110;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.modal-container.is-open {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.modal-content {
+    position: relative;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 42rem;
+    /* Default width */
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Make modal wider on desktop */
+@media (min-width: 1024px) {
+    .modal-content {
+        max-width: 56rem;
+        /* 4xl */
+    }
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1120;
+    color: #9ca3af;
+    background-color: #fff;
+    border-radius: 99px;
+    padding: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    color: #111;
+}
+
+/* Secondary Speaker Modal */
+#speaker-list-modal-container .modal-content {
+    max-width: 32rem;
+    /* Smaller modal for speaker list */
+}
+
+#speaker-list-modal-container {
+    z-index: 1130;
+    /* Above main modal backdrop */
+}
+
+#speaker-list-modal-backdrop {
+    z-index: 1125;
+    /* Above main modal, below speaker modal */
+}
+
+/* Series Modal (Layers below main event modal) */
+#series-modal-container .modal-content {
+    max-width: 56rem;
+    /* 4xl, same as main event modal */
+}
+
+#series-modal-container {
+    z-index: 1105;
+    /* Below main modal, above backdrop */
+}
+
+#series-modal-backdrop {
+    z-index: 1102;
+    /* Below series modal container */
+}
+
+/* Team Member Modal */
+#team-modal-container .modal-content {
+    max-width: 48rem;
+    /* 3xl, slightly smaller */
+}
+
+#team-modal-container {
+    z-index: 1130;
+    /* Same layer as speaker modal */
+}
+
+#team-modal-backdrop {
+    z-index: 1125;
+    /* Same layer as speaker backdrop */
+}
+
+
+/* Page Switching */
+[data-page] {
+    display: none;
+    /* Hidden by default */
+}
+
+[data-page].is-active {
+    display: block;
+    /* Shown when active */
+}
+
+/* Scroll margin for sticky header */
+@media (min-width: 768px) {
+    .scroll-target {
+        scroll-margin-top: 80px;
+        /* 80px = header height */
+    }
+}

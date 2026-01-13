@@ -1,0 +1,97 @@
+[
+	{
+		"id": "team-000",
+		"name": "Phileas Dazeley-Gaist",
+		"role": "",
+		"image_path": "img\/team\/phileas.png",
+		"bio_html": "<p>Phileas is a human ecologist, creative technologist, and developer at Wolfram Research, working at the crossroads between human ecology and complexity science. Their work spans agent-based modeling, ecological and environmental systems modeling, GIS, and digital humanities, with a special focus on interdisciplinary, human-ecological projects.</p>",
+		"links": [
+			{
+				"type": "website",
+				"url": "https:\/\/phileasdg.github.io\/",
+				"text": "Personal Website"
+			},
+			{
+				"type": "social",
+				"url": "https:\/\/bsky.app\/profile\/phileasdg.bsky.social",
+				"text": "BlueSky"
+			},
+			{
+				"type": "linkedin",
+				"url": "https://www.linkedin.com/in/phileas",
+				"text": "LinkedIn"
+			}
+		]
+	},
+	{
+		"id": "team-001",
+		"name": "Travis Holmes",
+		"role": "",
+		"image_path": "img/team/travis_holmes.jpeg",
+		"bio_html": "<p>With previous experience in international education, law enforcement, military service, and higher education program management, Travis\u2019 interests involve the application of complexity science theories and principles to better understand how information (at multiple scales) impacts collective human decision making. Examples include social collective action, the evolution of social and cultural institutions, or the construction of epistemic architectures. Methodologically, he is interested in the use of ethnographic data and narratives to facilitate the design of evidence-based models for positive social intervention. He holds a B.A. in Psychology and Criminal Justice from Virginia Commonwealth University, an M.A. in International Studies from the University of San Francisco, and a doctorate in International Studies from Old Dominion University.<\/p>",
+		"links": [
+			{
+				"type": "linkedin",
+				"url": "https://www.linkedin.com/in/holmes-travis",
+				"text": "LinkedIn"
+			}
+		]
+	},
+	{
+		"id": "team-002",
+		"name": "Arhan Vora",
+		"role": "",
+		"image_path": "img/team/arhan_vora.jpeg",
+		"bio_html": "<p>Arhan is a Mathematical Biologist and Complex Systems scientist at the Institut des Sciences de l'Evolution, Montpellier. He is interested in understanding Ecology and Evolution through a complex systems lens. His work spans the collective behaviour of mixed species flocks and stochastic models for the evolution of antibiotic resistance in E. Coli.</p>",
+		"links": []
+	},
+	{
+		"id": "team-003",
+		"name": "Ariel",
+		"role": "",
+		"image_path": "",
+		"bio_html": "",
+		"links": []
+	},
+	{
+		"id": "team-004",
+		"name": "Emmy Tither",
+		"role": "",
+		"image_path": "img/team/emmy_tither.jpeg",
+		"bio_html": "<p>Emmy is a PhD Candidate in Informatics at the University of Illinois Urbana-Champaign, studying information policy and armed conflict.</p>",
+		"links": [
+			{
+				"type": "linkedin",
+				"url": "https://www.linkedin.com/in/emmy-t-351a1bb9",
+				"text": "LinkedIn"
+			},
+			{
+				"type": "scholar",
+				"url": "https://scholar.google.com/citations?user=jZae7IsAAAAJ&hl=en",
+				"text": "Google Scholar"
+			}
+		]
+	},
+	{
+		"id": "team-005",
+		"name": "Shaheen",
+		"role": "",
+		"image_path": "",
+		"bio_html": "",
+		"links": []
+	},
+	{
+		"id": "team-006",
+		"name": "Swathi Nachiar Manivannan",
+		"role": "",
+		"image_path": "img/team/swathi_nachiar_manivannan.jpeg",
+		"bio_html": "<p>Swathi is a PhD student at the Department of Ecology and Evolutionary Biology at Yale University. Her research focuses on understanding the mechanisms and factors that influence the capacity of (pathogenic) microbes to adaptively evolve (i.e., their evolvability), and what this means for the spread and control of infectious disease outbreaks. More broadly, she is also interested in thinking about the importance of context-dependence in evolutionary biology, both in terms of how context-dependence manifests in our understanding of evolution and the historical and contemporary contexts in which evolutionary biologists develop and engage with theory.</p>",
+		"links": [
+			{
+				"type": "website",
+				"url": "https://swathi-nm.github.io",
+				"text": "Personal Website"
+			}
+		]
+	}
+]
