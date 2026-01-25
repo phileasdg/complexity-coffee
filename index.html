@@ -24,22 +24,21 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700;900&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 
 <body class="bg-[#ecebe6] text-gray-900 font-sans-body"> <!-- SFI Page Background Color -->
 
     <!-- Header -->
-    <!-- Dark bg on mobile (absolute), light bg on desktop (sticky) -->
-    <header
-        class="absolute md:sticky top-0 w-full z-50 bg-gray-900 md:bg-white md:border-b md:border-gray-200 transition-colors duration-300">
+    <!-- Unified sticky header for both mobile and desktop -->
+    <header class="sticky top-0 w-full z-50 bg-white border-b border-gray-200 transition-colors duration-300">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo / Site Title -->
                 <div class="flex-shrink-0 flex items-center">
-                    <!-- White text on mobile, dark on desktop -->
+                    <!-- Dark text on both mobile and desktop -->
                     <a href="#home"
-                        class="text-2xl md:text-3xl font-bold font-serif-display text-white md:text-gray-900 transition-colors duration-300">
+                        class="text-2xl md:text-3xl font-bold font-serif-display text-gray-900 transition-colors duration-300">
                         Complexity Coffee
                     </a>
                 </div>
@@ -66,24 +65,27 @@
     </header>
 
     <!-- Mobile Menu Panel (hidden by default) -->
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/60 z-40 hidden" aria-hidden="true"></div>
-    <div id="mobile-menu" class="mobile-menu-panel sfi-gradient-eggplant" aria-hidden="true">
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-40 hidden" aria-hidden="true"></div>
+    <div id="mobile-menu" class="mobile-menu-panel bg-white" aria-hidden="true">
         <div class="px-6 pt-24 pb-4 space-y-2">
-            <!-- Mobile links are larger and white, per SFI style -->
+            <!-- Mobile links are dark, per unified style -->
             <a href="#about"
-                class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">About</a>
+                class="mobile-nav-link block px-3 py-3 rounded-lg text-2xl font-bold font-serif-display text-gray-900 hover:bg-gray-100 transition-colors">About</a>
             <a href="#upcoming" id="mobile-nav-upcoming" style="display: none;"
-                class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">Upcoming</a>
+                class="mobile-nav-link block px-3 py-3 rounded-lg text-2xl font-bold font-serif-display text-gray-900 hover:bg-gray-100 transition-colors">Upcoming</a>
             <a href="#events"
-                class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">Event
+                class="mobile-nav-link block px-3 py-3 rounded-lg text-2xl font-bold font-serif-display text-gray-900 hover:bg-gray-100 transition-colors">Event
                 Formats</a>
             <a href="#archive"
-                class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">All
+                class="mobile-nav-link block px-3 py-3 rounded-lg text-2xl font-bold font-serif-display text-gray-900 hover:bg-gray-100 transition-colors">All
                 Events</a>
             <a href="#team"
-                class="mobile-nav-link block px-3 py-2 rounded-md text-2xl font-semibold text-white hover:bg-white/10">Team</a>
+                class="mobile-nav-link block px-3 py-3 rounded-lg text-2xl font-bold font-serif-display text-gray-900 hover:bg-gray-100 transition-colors">Team</a>
+
+            <div class="border-t border-gray-200 my-6"></div>
+
             <a href="https://santafe.edu" target="_blank" rel="noopener"
-                class="block px-3 py-2 rounded-md text-xl font-medium text-gray-300 hover:bg-white/10 mt-8">
+                class="block px-3 py-2 rounded-md text-lg font-medium text-gray-500 hover:text-sfi-sea hover:bg-gray-50 transition-colors">
                 santafe.edu
             </a>
         </div>
@@ -91,15 +93,17 @@
 
 
     <!-- Main Content -->
-    <!-- Added pt-20 (header height) for mobile, md:pt-0 for desktop -->
-    <main class="pt-20 md:pt-0">
+    <!-- Removed pt-20 padding since header is now sticky on all devices and body content will flow under it naturally or we need to ensure flow -->
+    <!-- Actually, sticky keeps it in flow, fixed takes it out. Sticky is better for layout. -->
+    <main>
 
         <!-- =================== -->
         <!--     HOME PAGE       -->
         <!-- =================== -->
         <div data-page="home" class="is-active">
             <!-- Hero Section -->
-            <section class="relative h-[75vh] min-h-[450px] bg-sfi-ming flex items-center text-white">
+            <section
+                class="relative h-[50vh] sm:h-[75vh] min-h-[350px] sm:min-h-[450px] bg-sfi-ming flex items-center text-white">
                 <!-- Background Image -->
                 <div class="absolute inset-0">
                     <!-- Base Image (Always visible, prevents flash) -->
@@ -321,7 +325,7 @@
             <h2 class="text-2xl sm:text-3xl font-bold font-serif-display text-white text-center">Science for a Complex
                 World</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 max-w-4xl mx-auto">
                 <!-- Footer Column 1: About -->
                 <div>
                     <h5 class="text-lg font-bold text-white mb-4">Complexity Coffee</h5>
@@ -350,58 +354,15 @@
                 <!-- Footer Column 3: Subscribe -->
                 <div>
                     <h5 class="text-lg font-bold text-white mb-4">Subscribe</h5>
-                    <p class="text-gray-400 text-sm mb-4">Sign up for SFI research news.</p>
-                    <a href="http://eepurl.com/b175gL" target="_blank" rel="noopener" class="sfi-cta cta-white text-sm">
+                    <p class="text-gray-400 text-sm mb-4">Sign up for updates.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScKXCERRX5AAp5jeR7e5dZTeHENF1SisvKqphEoqRZat1TtKw/viewform"
+                        target="_blank" rel="noopener" class="sfi-cta cta-white text-sm">
                         Sign Up
                         <svg class="arrow-circle-icon" width="24" height="14" viewBox="-395 256 24 14">
                             <path fill="none" d="M-377 263h-17.6m15.4-2.2l2.2 2.2-2.2 2.2" />
                             <circle fill="none" cx="-378.1" cy="263" r="6.8" />
                         </svg>
                     </a>
-                </div>
-                <!-- Footer Column 4: Connect -->
-                <div>
-                    <h5 class="text-lg font-bold text-white mb-4">Connect</h5>
-                    <ul class="flex space-x-4">
-                        <!-- SFI Social Icons (from their site) -->
-                        <li><a target="_blank" rel="noopener" title="X" href="https://twitter.com/sfiscience"
-                                class="text-gray-400 hover:text-white">
-                                <svg class="h-6 w-6" viewBox="0 0 1200 1227" fill="currentColor"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
-                                </svg>
-                            </a></li>
-                        <li><a target="_blank" rel="noopener" title="YouTube"
-                                href="https://www.youtube.com/user/santafeinst" class="text-gray-400 hover:text-white">
-                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 25.37 25"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M1254.94 565.558a.3.3 0 0 0-.26.1.565.565 0 0 0-.07.332v.373h.65v-.373a.556.556 0 0 0-.08-.332.275.275 0 0 0-.24-.1zm-2.55-.013a.406.406 0 0 0-.16.036.547.547 0 0 0-.15.113V568a.6.6 0 0 0 .18.131.386.386 0 0 0 .18.04.218.218 0 0 0 .19-.079.357.357 0 0 0 .07-.255v-1.91a.459.459 0 0 0-.08-.284.278.278 0 0 0-.23-.098zm2.22 1.4v.7a.79.79 0 0 0 .07.4.274.274 0 0 0 .25.112.284.284 0 0 0 .25-.1.763.763 0 0 0 .08-.422v-.169h.76v.19a1.174 1.174 0 0 1-.28.858 1.1 1.1 0 0 1-.83.285 1.01 1.01 0 0 1-.78-.305 1.174 1.174 0 0 1-.28-.838V566a1.035 1.035 0 0 1 .31-.784 1.12 1.12 0 0 1 .81-.3 1.064 1.064 0 0 1 .78.281 1.114 1.114 0 0 1 .27.806v.943h-1.41zm-1.33 1.6a.6.6 0 0 1-.5.208.848.848 0 0 1-.38-.08.92.92 0 0 1-.32-.25v.277h-.74v-5.014h.74v1.614a1.149 1.149 0 0 1 .32-.257.7.7 0 0 1 .34-.088.632.632 0 0 1 .53.235 1.067 1.067 0 0 1 .19.692v2.052a.9.9 0 0 1-.18.606zm-3.24.162v-.407a1.427 1.427 0 0 1-.42.343.9.9 0 0 1-.43.117.469.469 0 0 1-.39-.165.834.834 0 0 1-.13-.5V565h.74v2.837a.315.315 0 0 0 .05.19.177.177 0 0 0 .15.058.406.406 0 0 0 .2-.078.9.9 0 0 0 .23-.2V565h.74v3.7h-.74zm-2.55-4.286v4.279h-.83v-4.286h-.86v-.728h2.55v.728h-.86zm3.41-2.342s-5.1.008-5.71.6-.61 3.548-.61 3.565 0 2.967.61 3.565 5.71.609 5.71.609 5.11-.013 5.72-.609.61-3.565.61-3.565c0-.017 0-2.967-.61-3.565s-5.72-.605-5.72-.605zm4.03-1.551h-.83v-.45a1.687 1.687 0 0 1-.48.379 1.008 1.008 0 0 1-.48.13.509.509 0 0 1-.43-.182.846.846 0 0 1-.15-.547v-3.4h.83v3.124a.37.37 0 0 0 .05.209.222.222 0 0 0 .17.065.532.532 0 0 0 .24-.086 1.206 1.206 0 0 0 .25-.219v-3.093h.83v4.075zm-4.51-.7a.326.326 0 0 0 .25.092.38.38 0 0 0 .27-.093.328.328 0 0 0 .1-.258v-2.219a.258.258 0 0 0-.1-.217.429.429 0 0 0-.27-.081.345.345 0 0 0-.24.081.258.258 0 0 0-.1.217v2.219a.356.356 0 0 0 .09.259zm-.61-3.2a1.363 1.363 0 0 1 .9-.281 1.217 1.217 0 0 1 .85.3.975.975 0 0 1 .33.761v2.105a1.078 1.078 0 0 1-.32.82 1.3 1.3 0 0 1-.9.3 1.229 1.229 0 0 1-.87-.306 1.076 1.076 0 0 1-.33-.827v-2.12a.946.946 0 0 1 .34-.754zm-2.6-1.626l.61 2.208h.06l.58-2.208h.95l-1.09 3.231v2.292h-.94v-2.189l-1.11-3.336h.94zm3.7 20a12.5 12.5 0 1 0-12.69-12.5A12.593 12.593 0 0 0 1250.91 575z"
-                                        transform="translate(-1238.22 -550)" />
-                                </svg>
-                            </a></li>
-                        <li><a target="_blank" rel="noopener" title="Facebook"
-                                href="https://www.facebook.com/santafeinstitute/"
-                                class="text-gray-400 hover:text-white">
-                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 25.37 25"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M1182.3 569.3v-6.8h-1.42v-2.344h1.42v-1.407c0-1.912.81-3.049 3.09-3.049h1.91v2.344h-1.19c-.89 0-.95.328-.95.939l-.01 1.173h2.16l-.25 2.343h-1.91v6.8h-2.87zm1.79 5.7a12.5 12.5 0 1 0-12.68-12.5 12.595 12.595 0 0 0 12.68 12.5z"
-                                        transform="translate(-1171.41 -550)" />
-                                </svg>
-                            </a></li>
-                        <li><a target="_blank" rel="noopener" title="LinkedIn"
-                                href="https://www.linkedin.com/company/santafeinstitute/"
-                                class="text-gray-400 hover:text-white">
-                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 25.38 25"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M1291.43 568.39h-2.87v-4.553c0-1.144-.41-1.924-1.45-1.924a1.56 1.56 0 0 0-1.47 1.034 1.82 1.82 0 0 0-.1.69v4.753h-2.87s.04-7.712 0-8.511h2.87v1.206a2.852 2.852 0 0 1 2.59-1.406c1.89 0 3.3 1.217 3.3 3.831v4.88zm-11.79-9.672h-.01a1.644 1.644 0 1 1 .01 0zm1.44 9.672h-2.87v-8.511h2.87v8.511zm3.23 6.61a12.5 12.5 0 1 0-12.68-12.5 12.595 12.595 0 0 0 12.68 12.5z"
-                                        transform="translate(-1271.62 -550)" />
-                                </svg>
-                            </a></li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -536,7 +497,7 @@
         </div>
     </div>
 
-    <script src="js/app.js?v=2"></script>
+    <script src="js/app.js?v=3"></script>
 
 </body>
 

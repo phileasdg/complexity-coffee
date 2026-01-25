@@ -206,7 +206,10 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function formatEventDateTime(timestamp, location, nowTimestamp) {
         const eventDate = new Date(timestamp);
-        const isPast = timestamp < nowTimestamp;
+        // Assume default duration of 2 hours (7200000 ms)
+        // Event is "past" only if it ended (start + 2h < now)
+        const twoHoursMs = 7200000;
+        const isPast = (timestamp + twoHoursMs) < nowTimestamp;
 
         // Format: "October 20, 2025"
         const dateDisplay = eventDate.toLocaleDateString('en-US', {

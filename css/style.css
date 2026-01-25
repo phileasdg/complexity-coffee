@@ -205,11 +205,12 @@ h6 {
     top: 50%;
     width: 2em;
     /* Shorter than container */
-    height: .2em;
-    background-color: white;
-    /* White on dark header */
+    height: .25em;
+    background-color: #000;
+    /* Dark for light header */
     transform: translateY(-50%);
     transition: all 0ms .15s;
+    border-radius: 4px;
 }
 
 .burger-button .patty:after,
@@ -217,9 +218,11 @@ h6 {
     content: "";
     position: absolute;
     right: 0;
-    height: .2em;
+    height: .25em;
     width: 2em;
-    background-color: white;
+    background-color: #000;
+    /* Dark for light header */
+    border-radius: 4px;
 }
 
 .burger-button .patty:before {
@@ -230,17 +233,6 @@ h6 {
 .burger-button .patty:after {
     top: .6em;
     transition: width .15s ease-out, top .15s ease-out .15s, background .15s ease-out .15s, transform .15s ease-out;
-}
-
-/* Desktop styles for burger */
-@media (min-width: 768px) {
-
-    .burger-button .patty,
-    .burger-button .patty:after,
-    .burger-button .patty:before {
-        background-color: #111;
-        /* Dark on light header */
-    }
 }
 
 /* Active (X) state for burger */
@@ -272,9 +264,10 @@ h6 {
     height: 100vh;
     z-index: 1000;
     transform: translateX(100%);
-    transition: transform .6s cubic-bezier(.23, 1, .32, 1);
-    background-color: #75536f;
-    /* Fallback */
+    transition: transform .4s cubic-bezier(.23, 1, .32, 1);
+    background-color: white;
+    /* Light theme */
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
@@ -416,9 +409,8 @@ h6 {
 }
 
 /* Scroll margin for sticky header */
-@media (min-width: 768px) {
-    .scroll-target {
-        scroll-margin-top: 80px;
-        /* 80px = header height */
-    }
+/* Scroll margin for sticky header */
+.scroll-target {
+    scroll-margin-top: 80px;
+    /* 80px = header height */
 }

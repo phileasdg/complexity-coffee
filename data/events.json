@@ -28,8 +28,8 @@
 			{
 				"name": "Dr. Sam Bowles",
 				"tagline": "Resident Faculty Member, Santa Fe Institute; Co-founder, CORE Project",
-				"image_path": "",
-				"website_url": "https://www.santafe.edu/people/profile/samuel-bowles"
+				"image_path": "img/people/sam_bowles.jpg",
+				"website_url": "https://www.santafe.edu/people/profile/sam-bowles"
 			}
 		],
 		"links": {
@@ -44,16 +44,16 @@
 		"id": "evt-002",
 		"title": "Melding Qualitative and Quantitative Perspectives in Complex Systems Research",
 		"event_time": 1763649000,
-		"location": "Virtual \/ Zoom",
-		"image_path": "img\/events\/workshops\/emmy-tither-1.jpg",
+		"location": "Virtual / Zoom",
+		"image_path": "img/events/workshops/evt-002.jpg",
 		"tag": "Workshop",
-		"description_html": "<p>Using sound as a lens, we will explore how these different methodologies can work together to help untangle complexity. Through a series of collaborative activities, participants will explore options for integrating mixed methods into their own research. Please note that no prior experience with mixed-methods research, or sound as a medium, is required.<\/p>",
+		"description_html": "<p>Using sound as a lens, we will explore how these different methodologies can work together to help untangle complexity. Through a series of collaborative activities, participants will explore options for integrating mixed methods into their own research. Please note that no prior experience with mixed-methods research, or sound as a medium, is required.</p>",
 		"speakers": [
 			{
 				"name": "Emmy Tither",
 				"tagline": "PhD Student, University of Illinois Urbana-Champaign; Complexity Global School 2 Alum",
 				"image_path": "img/team/emmy_tither.jpeg",
-				"website_url": "https:\/\/scholar.google.com\/citations?user=jZae7IsAAAAJ&hl=en"
+				"website_url": "https://scholar.google.com/citations?user=jZae7IsAAAAJ&hl=en"
 			}
 		],
 		"links": {
@@ -69,16 +69,16 @@
 		"id": "evt-001",
 		"title": "Realizing the Potential of Community-led, Science-driven Participatory Complex Systems Modeling",
 		"event_time": 1761744600,
-		"location": "Virtual \/ Zoom",
-		"image_path": "img\/events\/speaker-series\/moira-zellner-1.png",
+		"location": "Virtual / Zoom",
+		"image_path": "img/events/speaker-series/evt-001.png",
 		"tag": "Guest Talk",
-		"description_html": "<p>Participatory modeling (PM) is particularly well-suited to address complex socio-environmental problems like climate hazards and their implications for sustainable resource management and landscape planning. Despite its potential to inform planning and policy, particularly in conflictive contexts, PM has yet to become a mainstream practice for decision-making. While most PM research and development has focused on modeling tools and engagement techniques, multiple other dimensions must be recognized and articulated for impactful planning support. I present a PM platform, Fora.ai, that supports the iterative steps in PM: problem definition and goal setting, preference elicitation, collaborative scenario-building, simulation, tradeoff deliberation, and solution-building. I demonstrate the platform's effectiveness when embedded in a stakeholder-led process that integrates diverse knowledge, data sources, and values in pursuit of impactful green infrastructure (GI) planning to address flooding. I show how the combination of specific facilitation practices and platform features leverages the power of data, computational modeling, and social complexity to contribute to collaborative learning, creative and convergent solution-building for urban sustainability and climate resilience.<\/p>",
+		"description_html": "<p>Participatory modeling (PM) is particularly well-suited to address complex socio-environmental problems like climate hazards and their implications for sustainable resource management and landscape planning. Despite its potential to inform planning and policy, particularly in conflictive contexts, PM has yet to become a mainstream practice for decision-making. While most PM research and development has focused on modeling tools and engagement techniques, multiple other dimensions must be recognized and articulated for impactful planning support. I present a PM platform, Fora.ai, that supports the iterative steps in PM: problem definition and goal setting, preference elicitation, collaborative scenario-building, simulation, tradeoff deliberation, and solution-building. I demonstrate the platform's effectiveness when embedded in a stakeholder-led process that integrates diverse knowledge, data sources, and values in pursuit of impactful green infrastructure (GI) planning to address flooding. I show how the combination of specific facilitation practices and platform features leverages the power of data, computational modeling, and social complexity to contribute to collaborative learning, creative and convergent solution-building for urban sustainability and climate resilience.</p>",
 		"speakers": [
 			{
 				"name": "Dr. Moira Zellner",
 				"tagline": "Professor of Public Policy and Urban Affairs at Northeastern University",
-				"image_path": "",
-				"website_url": "https:\/\/cssh.northeastern.edu\/faculty\/moira-zellner\/"
+				"image_path": "img/people/moira_zellner.jpg",
+				"website_url": "https://cssh.northeastern.edu/faculty/moira-zellner/"
 			}
 		],
 		"links": {}
@@ -87,10 +87,10 @@
 		"id": "evt-000",
 		"title": "Nascent Research Ideas: Edition 1",
 		"event_time": 1760536800,
-		"location": "Virtual \/ Zoom",
-		"image_path": "img\/events\/nascent-research\/nascent-research-1.png",
+		"location": "Virtual / Zoom",
+		"image_path": "img/events/nascent-research/nascent-research-1.png",
 		"tag": "Nascent Research",
-		"description_html": "<p>Anelise Assumpção will discuss her doctoral research, and the complexity of dealing with data in text format that requires a high degree of interpretation. How the inherent complexity of textual data arises from its dependence on interpretation, context, and linguistic nuance, which makes its processing particularly challenging in academic research.<\/p><p>Emilio Munoz will present his work on Order-Aware State Representations for Path-Dependent Reinforcement Learning, exploring how we might design compact state representations that preserve chronological order while still being computationally feasible.<\/p><p>Phileas Dazeley-Gaist will discuss their ongoing work with the 2025 CGS Sympoietic Art Organism group. The talk will showcase a citation network grown by a small artist community in intentional collaboration working from a shared commons. Over a series of co-creative cycles, artists iteratively remix and take inspiration from works already in the commons, contributing new pieces while tracking citation relationships.<\/p>",
+		"description_html": "<p>Anelise Assumpção will discuss her doctoral research, and the complexity of dealing with data in text format that requires a high degree of interpretation. How the inherent complexity of textual data arises from its dependence on interpretation, context, and linguistic nuance, which makes its processing particularly challenging in academic research.</p><p>Emilio Munoz will present his work on Order-Aware State Representations for Path-Dependent Reinforcement Learning, exploring how we might design compact state representations that preserve chronological order while still being computationally feasible.</p><p>Phileas Dazeley-Gaist will discuss their ongoing work with the 2025 CGS Sympoietic Art Organism group. The talk will showcase a citation network grown by a small artist community in intentional collaboration working from a shared commons. Over a series of co-creative cycles, artists iteratively remix and take inspiration from works already in the commons, contributing new pieces while tracking citation relationships.</p>",
 		"speakers": [
 			{
 				"name": "Anelise Assumpção",
