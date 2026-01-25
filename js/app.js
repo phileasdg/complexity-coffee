@@ -753,7 +753,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Define page mapping
         // Hashes that map to 'home' but scroll to specific sections
-        if (hash === '#about' || hash === '#upcoming' || hash === '#events') {
+        if (hash === '#about' || hash === '#upcoming' || hash === '#events' || hash === '#get-involved') {
             showPage('home', hash);
         }
         // Direct page hashes
