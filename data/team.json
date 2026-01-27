@@ -61,6 +61,11 @@
 				"type": "linkedin",
 				"url": "https://www.linkedin.com/in/ariel-salgado-3a7629200/",
 				"text": "LinkedIn"
+			},
+			{
+				"type": "email",
+				"url": "mailto:arielolafsalgado@gmail.com",
+				"text": "Email"
 			}
 		]
 	},
