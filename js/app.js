@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (event.speakers.length === 1) {
             speakerDisplay = event.speakers[0].name;
         } else {
-            speakerDisplay = "Various Speakers";
+            speakerDisplay = "Multiple speakers";
         }
 
         const { gradient_class, tag_color_class } = getEventStyling(event);
@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (event.speakers.length === 1) {
             speakerDisplay = event.speakers[0].name;
         } else {
-            speakerDisplay = "Various Speakers";
+            speakerDisplay = "Multiple speakers";
         }
 
         const { gradient_class, tag_color_class } = getEventStyling(event);

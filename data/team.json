@@ -49,9 +49,20 @@
 		"id": "team-003",
 		"name": "Ariel Salgado",
 		"role": "",
-		"image_path": "",
-		"bio_html": "",
-		"links": []
+		"image_path": "img/team/ariel_salgado.jpeg",
+		"bio_html": "<p>Ariel Salgado is a young researcher whose main interest lie on Complexity, Urban Systems, Quantitative Geography and Social Dynamics. Currently based at the Calculus Institute at the University of Buenos Aires, he is an Associate Professor at the Computer Science Department at the University of Buenos Aires and at the Digital Systems Department at the Technological Institute of Buenos Aires, in Argentina. He has a PhD in Physics from the University of Buenos Aires, and a Master's degree in Technological Physics from the Balseiro Institute. He participated in the Complexity Global School 2024 as a student, and in the next iteration as a Peer-Mentor.</p>",
+		"links": [
+			{
+				"type": "website",
+				"url": "https://ic.fcen.uba.ar/institucional/integrantes/asalgado",
+				"text": "Institutional Website"
+			},
+			{
+				"type": "linkedin",
+				"url": "https://www.linkedin.com/in/ariel-salgado-3a7629200/",
+				"text": "LinkedIn"
+			}
+		]
 	},
 	{
 		"id": "team-004",
