@@ -18,12 +18,12 @@
 	},
 	{
 		"id": "evt-003",
-		"title": "Featured Speaker: Dr. Sam Bowles",
+		"title": "The Origin and Future of Economic Inequality",
 		"event_time": 1769180400,
 		"location": "Virtual / Zoom",
 		"image_path": "img/events/speaker-series/evt-003.png",
 		"tag": "Guest Talk",
-		"description_html": "<p>We are pleased to announce our next speaker in the Complexity Coffee Speaker Series, Dr. Sam Bowles. Among many honors, Sam is a Resident Faculty Member at the Santa Fe Institute and co-founder of the CORE (Curriculum Open-access Resources for Economics) project. He's also been described as one of the most important contemporary figures in offering comprehensive explanations of why humans are prosocial, and how cooperation can emerge in societies.</p><p>Dr. Bowles is an interdisciplinary scientist whose research spans behavioral economics, evolutionary theory, and institutional design. His work explores cooperation, inequality, and the evolution of social institutions, combining insights from economics, anthropology, and evolutionary biology to understand how human societies organize and function.</p>",
+		"description_html": "<p>Dr. Bowles surveys archaeological evidence from Neolithic western Eurasia suggesting that while wealth inequality occurred, it was rare and ephemeral compared to the later enduring inequalities that persist to this day. He argues that a culture of \"aggressive egalitarianism\" may have thwarted enduring inequality until new farming technologies and elite power concentration in the Late Neolithic provided conditions for it to persist.</p><p>Dr. Sam Bowles is a Resident Faculty Member at the Santa Fe Institute and co-founder of the CORE project. An interdisciplinary scientist spanning behavioral economics and evolutionary theory, he is best known for his work on the evolution of human cooperation and the origins of inequality.</p>",
 		"speakers": [
 			{
 				"name": "Dr. Sam Bowles",
@@ -88,7 +88,7 @@
 		"title": "Nascent Research Ideas: Edition 1",
 		"event_time": 1760536800,
 		"location": "Virtual / Zoom",
-		"image_path": "img/events/nascent-research/nascent-research-1.png",
+		"image_path": "img/events/nascent-research/evt-000.png",
 		"tag": "Nascent Research",
 		"description_html": "<p>Anelise Assumpção will discuss her doctoral research, and the complexity of dealing with data in text format that requires a high degree of interpretation. How the inherent complexity of textual data arises from its dependence on interpretation, context, and linguistic nuance, which makes its processing particularly challenging in academic research.</p><p>Emilio Munoz will present his work on Order-Aware State Representations for Path-Dependent Reinforcement Learning, exploring how we might design compact state representations that preserve chronological order while still being computationally feasible.</p><p>Phileas Dazeley-Gaist will discuss their ongoing work with the 2025 CGS Sympoietic Art Organism group. The talk will showcase a citation network grown by a small artist community in intentional collaboration working from a shared commons. Over a series of co-creative cycles, artists iteratively remix and take inspiration from works already in the commons, contributing new pieces while tracking citation relationships.</p>",
 		"speakers": [
