@@ -109,5 +109,13 @@
 				"text": "Personal Website"
 			}
 		]
+	},
+	{
+		"id": "team-007",
+		"name": "Eider L. Pérez-Ordoyo Bellido",
+		"role": "",
+		"image_path": "img/team/eider_perez-ordoyo_bellido.jpeg",
+		"bio_html": "<p>Coming from Physics and Neuroscience, she has found her comfiest place in the Complexity Science community. Their current work is in Computational Neuroscience, but she envisions herself working in projects regarding History and Philosophy of Science, Science of Science, Linguistics, Epistemology and other. They have too many interests to fit in a small bio, that's why Complexity Coffee is a great match for her curiosity.</p>",
+		"links": []
 	}
 ]
