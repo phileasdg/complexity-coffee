@@ -265,20 +265,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
- * Helper function to create the HTML for a single event card (Standard Grid View).
- * Style: Clean Light Boxed
- */
-    function createEventCardHTML(event) {
-        // Determine the speaker text
-        let speakerDisplay;
+     * Helper function to create the speaker display HTML for event cards.
+     */
+    function getSpeakerPreviewHTML(event, extraClasses = "mt-1.5") {
         if (!event.speakers || event.speakers.length === 0 || event.speakers[0].name.toLowerCase() === 'to be announced') {
-            speakerDisplay = "Speaker TBA";
+            return `<p class="text-sm text-gray-600 ${extraClasses}">Speaker TBA</p>`;
         } else if (event.speakers.length === 1) {
-            speakerDisplay = event.speakers[0].name;
+            const speaker = event.speakers[0];
+            const speakerImg = speaker.image_path ? `<img src="${speaker.image_path}" alt="${speaker.name}" class="w-6 h-6 rounded-full object-cover mr-2 border border-gray-100 bg-gray-50 flex-shrink-0" onerror="this.style.display='none';">` : '';
+            return `
+                <div class="flex items-center ${extraClasses}">
+                    ${speakerImg}
+                    <p class="text-sm text-gray-800 font-medium truncate">${speaker.name}</p>
+                </div>
+            `;
         } else {
-            speakerDisplay = "Multiple speakers";
+            let imagesHTML = '';
+            event.speakers.slice(0, 3).forEach((speaker, index) => {
+                if (speaker.image_path) {
+                    imagesHTML += `<img src="${speaker.image_path}" alt="${speaker.name}" class="w-6 h-6 rounded-full object-cover bg-gray-50 flex-shrink-0 border-2 border-white ${index > 0 ? '-ml-2 relative' : 'relative'}" style="z-index: ${10 - index}" onerror="this.style.display='none';">`;
+                }
+            });
+            return `
+                <div class="flex items-center ${extraClasses}">
+                    ${imagesHTML ? `<div class="flex mr-2">${imagesHTML}</div>` : ''}
+                    <p class="text-sm text-gray-800 font-medium truncate">Multiple speakers</p>
+                </div>
+            `;
         }
+    }
 
+    /**
+     * Helper function to create the HTML for a single event card (Standard Grid View).
+     * Style: Clean Light Boxed
+     */
+    function createEventCardHTML(event) {
+        const speakerDisplayHTML = getSpeakerPreviewHTML(event, "mt-2");
         const { gradient_class, tag_color_class } = getEventStyling(event);
         const imagePath = event.image_path || 'img/general/marble4.png';
         const altText = event.title.replace(/"/g, "'");
@@ -311,9 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide">
                                 ${dateDisplay}
                             </p>
-                            <p class="text-sm text-gray-600">
-                                ${speakerDisplay}
-                            </p>
+                            ${speakerDisplayHTML}
                         </div>
                     </div>
                 </button>
@@ -326,15 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * Style: Horizontal Row
      */
     function createCompactEventCardHTML(event) {
-        let speakerDisplay;
-        if (!event.speakers || event.speakers.length === 0 || event.speakers[0].name.toLowerCase() === 'to be announced') {
-            speakerDisplay = "Speaker TBA";
-        } else if (event.speakers.length === 1) {
-            speakerDisplay = event.speakers[0].name;
-        } else {
-            speakerDisplay = "Multiple speakers";
-        }
-
+        const speakerDisplayHTML = getSpeakerPreviewHTML(event, "mt-1");
         const { gradient_class, tag_color_class } = getEventStyling(event);
         const imagePath = event.image_path || './img/general/marble4.png';
         const altText = event.title.replace(/"/g, "'");
@@ -361,9 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h3 class="text-lg font-bold font-serif-display leading-tight text-gray-900 group-hover:text-sfi-sea transition-colors truncate">
                             ${event.title}
                         </h3>
-                        <p class="text-sm text-gray-600 truncate mt-0.5">
-                            ${speakerDisplay}
-                        </p>
+                        ${speakerDisplayHTML}
                     </div>
                     
                     <!-- Arrow -->
