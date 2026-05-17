@@ -1,5 +1,29 @@
 [
 	{
+		"id": "w-2-6",
+		"title": "Workshop Series: Understanding Urban Complexity with GIS",
+		"event_time": 1775059200,
+		"location": "Virtual / Zoom",
+		"image_path": "img/events/workshops/w-2-6.jpeg",
+		"tag": "Workshop",
+		"description_html": "<p>In this second edition of Complexity Coffee: Workshop Series, Sara Arango Franco will guide us through the use of GIS (Geographic Information Systems) to understand urban complexity. Using examples from cities across Latin America and Sub-Saharan Africa, she will show how block and street morphology can be used to characterize access to urban services and connectivity within the city.</p><p>The workshop will include a presentation of the topic and results from her ongoing study of urban irregularity in 1,238 cities worldwide, conducted with the World Resources Institute. It will conclude with a hands-on activity as an application for participants. Basic knowledge of python is recommended for the final activity, and guidance will be provided based on participants’ prior experience. Come and experience the magic of urban spatial analysis!</p>",
+		"speakers": [
+			{
+				"name": "Sara Arango Franco",
+				"tagline": "Researcher, Data Analyst, and Interdisciplinary Creator",
+				"image_path": "img/people/sara_arango_franco.JPG",
+				"website_url": ""
+			}
+		],
+		"links": {
+			"Join Event": "https://us02web.zoom.us/j/89276720162?pwd=WmHkkFiJ1pROsuIKULTUKIKUfdOxjL.1"
+		},
+		"cta": {
+			"text": "Join Event",
+			"url": "https://us02web.zoom.us/j/89276720162?pwd=WmHkkFiJ1pROsuIKULTUKIKUfdOxjL.1"
+		}
+	},
+	{
 		"id": "ct-1-5",
 		"title": "Community Talks: Edition 1",
 		"event_time": 1771515000,
