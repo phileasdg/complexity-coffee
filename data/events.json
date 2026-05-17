@@ -70,11 +70,12 @@
 			}
 		],
 		"links": {
-			"Join Event": "https://us02web.zoom.us/j/84453749335?pwd=bCICi1iJOFfM3YbaiEWUFuTafaatEM.1"
+			"Join Event": "https://us02web.zoom.us/j/84453749335?pwd=bCICi1iJOFfM3YbaiEWUFuTafaatEM.1",
+			"recording": "https://www.youtube.com/watch?v=rLEfT7q9ecA"
 		},
 		"cta": {
-			"text": "Join Event",
-			"url": "https://us02web.zoom.us/j/84453749335?pwd=bCICi1iJOFfM3YbaiEWUFuTafaatEM.1"
+			"text": "Watch Recording",
+			"url": "https://www.youtube.com/watch?v=rLEfT7q9ecA"
 		}
 	},
 	{
@@ -118,7 +119,13 @@
 				"website_url": "https://cssh.northeastern.edu/faculty/moira-zellner/"
 			}
 		],
-		"links": {}
+		"links": {
+			"recording": "https://www.youtube.com/watch?v=C-Q2K0bLuSk"
+		},
+		"cta": {
+			"text": "Watch Recording",
+			"url": "https://www.youtube.com/watch?v=C-Q2K0bLuSk"
+		}
 	},
 	{
 		"id": "nr-1-1",
