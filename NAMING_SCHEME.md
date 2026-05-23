@@ -13,15 +13,15 @@ Each event receives a unique ID structured as `[type]-[series]-[number]`.
 - `nr` : Nascent Research
 
 ### Examples:
-- `w-2-6` : The 6th event overall, which is the 2nd Workshop.
-- `gt-2-4` : The 4th event overall, which is the 2nd Guest Talk.
+- `w-2-7` : The 7th event overall, which is the 2nd Workshop.
+- `gt-3-5` : The 5th event overall, which is the 3rd Guest Talk.
 
 ## Images
 
 ### Event Images
 Event thumbnail images should be placed in `img/events/[type]/` and must exactly match the event ID they correspond to, preserving the original extension (e.g., `.jpeg`, `.png`, `.jpg`).
 
-- **Correct:** `img/events/workshops/w-2-6.jpeg`
+- **Correct:** `img/events/workshops/w-2-7.jpeg`
 - **Incorrect:** `img/events/workshops/ms4.jpeg`
 
 ### People Images

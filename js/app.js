@@ -483,6 +483,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         currentSpeakers = speakers || []; // Store for the "See More" modal
 
+        // Update speaker heading dynamically based on speaker count
+        const modalSpeakerHeading = document.getElementById('modal-speaker-heading');
+        if (modalSpeakerHeading) {
+            modalSpeakerHeading.textContent = currentSpeakers.length > 1 ? 'Speakers' : 'Speaker';
+        }
+
         // Populate the modal
         modalTitle.textContent = title;
         modalTag.textContent = tag;
@@ -943,6 +949,30 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             if (navUpcoming) navUpcoming.style.display = 'none';
             if (mobileNavUpcoming) mobileNavUpcoming.style.display = 'none';
+        }
+
+        // NEW: Toggle hero CTA button target and text based on upcoming events availability
+        const heroCtaButton = document.getElementById('hero-cta-button');
+        if (heroCtaButton) {
+            if (upcomingEvents.length > 0) {
+                heroCtaButton.setAttribute('href', '#upcoming');
+                heroCtaButton.innerHTML = `
+                    View Upcoming Events
+                    <svg class="arrow-circle-icon" width="24" height="14" viewBox="-395 256 24 14">
+                        <path fill="none" d="M-377 263h-17.6m15.4-2.2l2.2 2.2-2.2 2.2" />
+                        <circle fill="none" cx="-378.1" cy="263" r="6.8" />
+                    </svg>
+                `;
+            } else {
+                heroCtaButton.setAttribute('href', '#archive');
+                heroCtaButton.innerHTML = `
+                    View All Events
+                    <svg class="arrow-circle-icon" width="24" height="14" viewBox="-395 256 24 14">
+                        <path fill="none" d="M-377 263h-17.6m15.4-2.2l2.2 2.2-2.2 2.2" />
+                        <circle fill="none" cx="-378.1" cy="263" r="6.8" />
+                    </svg>
+                `;
+            }
         }
 
         if (homeUpcomingGrid) {
