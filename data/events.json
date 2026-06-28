@@ -1,5 +1,47 @@
 [
 	{
+		"id": "nr-1-3",
+		"title": "Operationalizing Systemic Change Capacity | Modeling Oncolytic Virotherapy | Complexity in International Environmental Law",
+		"event_time": 1781614800,
+		"location": "Virtual",
+		"image_path": "",
+		"tag": "Nascent Research",
+		"description_html": "<p><strong>Ángela María Báez-Silva Arias & Juan Manuel López</strong> on <em>Operationalizing systemic change capacity to catalyze phase transitions in socio-technical systems from linear-reactive behaviors to complexity-aware, sense-making paradigms</em>. This research bridges research and pragmatic organizational development to operationalize and assess Systemic Change Capacity (SCC) within socio-technical ecosystems. The study seeks to identify and validate the key dynamic indicators required to evaluate an organization's, initiative's, or community's potential to contribute to complexity-aware, systemic change. By developing a robust, mixed-methods evaluation framework, this research provides not only a metric for current systemic maturity but also an actionable, data-driven pathway to catalyze and guide structural and cognitive transformations in complex environments.</p><p><strong>Joseph Malinzi</strong> on <em>ABM and network science informed modeling of oncolytic virotherapy and combination cancer treatments</em>. This research aims to develop mathematical models combining agent-based modeling and network theory to study combination oncolytic virus therapy in cancer. The goal is to investigate the synergistic effects of these combinations and to determine the best timing and ways to deliver these viruses by modeling cancer cells and viruses individually and their connections in a network. The presentation includes a brief overview of what oncolytic virotherapy is and the progress made so far in collaboration with other researchers.</p><p><strong>Martynas Briedis</strong> on <em>Complexity in the economic analysis of international environmental law</em>. Responsibility for providing information about trans-boundary non-point source pollution and responsibility for paying it has a lack of studies. Studies assume that there will be a solution given there is a regulator and given no international regulator - one will appear. However, with the multi-polarization of the world and no single regulator how can we clean the oceans and the air of the pollution that cannot be attributed to no one? Maybe complexity thinking can help us answer this question.</p>",
+		"speakers": [
+			{
+				"name": "Ángela María Báez-Silva Arias",
+				"tagline": "",
+				"image_path": "",
+				"website_url": ""
+			},
+			{
+				"name": "Juan Manuel López",
+				"tagline": "",
+				"image_path": "",
+				"website_url": ""
+			},
+			{
+				"name": "Joseph Malinzi",
+				"tagline": "",
+				"image_path": "",
+				"website_url": ""
+			},
+			{
+				"name": "Martynas Briedis",
+				"tagline": "",
+				"image_path": "",
+				"website_url": ""
+			}
+		],
+		"links": {
+			"Join Event": "https://wolfram.zoom.us/j/7898918982"
+		},
+		"cta": {
+			"text": "Join Event",
+			"url": "https://wolfram.zoom.us/j/7898918982"
+		}
+	},
+	{
 		"id": "w-2-7",
 		"title": "Understanding Urban Complexity with GIS",
 		"event_time": 1775059200,
