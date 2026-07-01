@@ -1,0 +1,12 @@
+{
+  "hubPasswordHash": "9fff2d310ad659f6e05c6c1bbfcfb605cd4489e1d3860160b88220636a6353f8",
+  "presentations": [
+    {
+      "id": "cgs25-network",
+      "title": "CGS25 Project Network",
+      "description": "Interactive network visualization of the Complexity Global School 2025 project groups.",
+      "enabled": true,
+      "passwordHash": "37290d74ac4d186e3a8e5785d259d2ec04fac91ae28092e7620ec8bc99e830aa"
+    }
+  ]
+}

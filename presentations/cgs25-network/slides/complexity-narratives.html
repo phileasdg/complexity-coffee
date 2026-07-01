@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complexity Narratives — Highlights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f8f9fa; /* Crisp light grey background */
+      --text-dark: #2b2d42; /* Dark navy/slate */
+      --text-muted: #718096;
+      --card-bg: #ffffff; /* Crisp white cards */
+      --border-color: #e2e8f0; /* Delicate grey border */
+      
+      --accent-navy: #264653; /* Deep Teal */
+      --accent-teal: #264653; /* Uniform Deep Teal */
+      --accent-narrative: #e86a8e; /* Soft Rose */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-bottom: 48px; /* space for navigation controls overlay */
+      animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .header-section {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-narrative);
+      align-self: center;
+    }
+
+    .main-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 2.25rem;
+      color: var(--accent-navy);
+    }
+
+    .narratives-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 48px 56px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.03), 0 4px 8px rgba(0, 0, 0, 0.02);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+
+    .event-header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .event-badge {
+      position: absolute;
+      top: 48px;
+      right: 56px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-narrative);
+      background-color: rgba(232, 106, 142, 0.12); /* Soft Rose background */
+      padding: 6px 14px;
+      border-radius: 24px;
+    }
+
+    .event-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.85rem;
+      line-height: 1.25;
+      color: var(--accent-navy);
+    }
+
+    .event-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 20px;
+      margin-bottom: 4px;
+    }
+
+    .event-speaker {
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .event-speaker::after {
+      content: "•";
+      margin-left: 16px;
+      color: var(--border-color);
+      font-weight: 400;
+    }
+
+    .event-description {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-section">
+      <span class="badge">Series highlight</span>
+      <h2 class="main-title">Complexity Narratives</h2>
+    </div>
+
+    <div class="narratives-card">
+      <span class="event-badge">Inaugural event</span>
+      <div class="event-header">
+        <h3 class="event-title" style="text-wrap: balance;">Coal, storytelling, and just transitions in the Caribbean</h3>
+      </div>
+      
+      <div class="event-meta">
+        <span class="event-speaker">Dr. Cardoso Diaz</span>
+        <span class="event-date">Wednesday, July 15 at 10:00 AM Colombia Time</span>
+      </div>
+      
+      <p class="event-description">
+        A narrative-driven exploration of coal extraction and its phaseout in the Colombian Caribbean. Grounded in reflections from the Transition Away from Fossil Fuels Conference in Santa Marta, this inaugural talk connects local territorial impacts to epistemologies of the South, just transitions, and global policy discussions.
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>

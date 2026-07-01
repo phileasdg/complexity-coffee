@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From CGS to Complexity Coffee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <script src="../d3.v7.min.js"></script>
+  <style>
+    :root {
+      --font-sans: 'Inter', sans-serif;
+      --font-serif: 'Playfair Display', serif;
+      --bg-color: #f8f9fa; /* Crisp light grey background */
+      --text-primary: #1a202c; /* Deep slate */
+      --text-secondary: #4a5568;
+      --border-color: #e2e8f0; /* Softer, elegant border */
+      --surface: rgba(255, 255, 255, 0.95);
+      --accent-cgs: #e86a8e; /* Soft Rose */
+      --accent-cc: #37b392; /* Soft Minty Teal */
+      --accent-overlap: #44b0e8; /* Soft Sky Blue */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* SVG Canvas */
+    #canvas {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    /* Node Styles */
+    .node-circle {
+      stroke: #222222;
+      stroke-width: 1.2px;
+      transition: r 0.2s ease, stroke-width 0.2s ease;
+      cursor: pointer;
+    }
+
+    .node-label {
+      font-size: 11px;
+      font-weight: 700;
+      fill: var(--text-primary);
+      pointer-events: none;
+      stroke: var(--bg-color);
+      stroke-width: 4px;
+      stroke-linejoin: round;
+      paint-order: stroke fill;
+    }
+
+    .link-line {
+      stroke: #d1cfc7;
+      stroke-opacity: 0.65;
+      stroke-width: 1.2px;
+    }
+
+    .link-line.satellite-internal {
+      stroke: #d1cfc7; /* Uniform edge color */
+      stroke-opacity: 0.65;
+      stroke-width: 1px;
+    }
+
+    .link-line.cc-expansion-link {
+      stroke: #d1cfc7; /* Uniform edge color */
+      stroke-opacity: 0.65;
+      stroke-width: 1.2px;
+    }
+
+    /* Convex Hull/Rounded Blob Boundaries */
+    .project-blob {
+      fill-opacity: 0.08;
+      stroke-width: 2px;
+      stroke-opacity: 0.35;
+      transition: fill-opacity 0.25s ease, stroke-opacity 0.25s ease;
+      pointer-events: none;
+    }
+    .project-blob.cgs {
+      fill: var(--accent-cgs);
+      stroke: var(--accent-cgs);
+    }
+    .project-blob.cc {
+      fill: var(--accent-cc);
+      stroke: var(--accent-cc);
+      fill-opacity: 0.04;
+      stroke-opacity: 0.3;
+      stroke-dasharray: 4 4;
+    }
+
+    /* Centroid (Blob) Label Style */
+    .node-label.center-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      fill: var(--text-primary);
+    }
+
+    .header-section {
+      position: absolute;
+      top: 32px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .main-title {
+      font-family: var(--font-serif);
+      font-weight: 900;
+      font-size: 1.80rem;
+      color: var(--accent-cgs);
+    }
+  </style>
+</head>
+<body>
+
+
+
+  <!-- Network Canvas -->
+  <svg id="canvas"></svg>
+
+  <script>
+    // --- Vector Math and Geometry Helpers ---
+    const Vec = {
+      add: (v1, v2) => ({ x: v1.x + v2.x, y: v1.y + v2.y }),
+      sub: (v1, v2) => ({ x: v1.x - v2.x, y: v1.y - v2.y }),
+      mult: (v, s) => ({ x: v.x * s, y: v.y * s }),
+      div: (v, s) => ({ x: v.x / s, y: v.y / s }),
+      mag: (v) => Math.sqrt(v.x * v.x + v.y * v.y),
+      dist: (v1, v2) => Math.sqrt((v1.x - v2.x) ** 2 + (v1.y - v2.y) ** 2),
+      normalize: (v) => {
+        const m = Math.sqrt(v.x * v.x + v.y * v.y);
+        return m === 0 ? { x: 0, y: 0 } : { x: v.x / m, y: v.y / m };
+      }
+    };
+
+    function convexHull(points) {
+      if (points.length <= 1) return [...points];
+      const sorted = [...points]
+        .filter((p, i, self) => self.findIndex(o => Math.abs(o.x - p.x) < 1e-5 && Math.abs(o.y - p.y) < 1e-5) === i)
+        .sort((a, b) => a.x === b.x ? a.y - b.y : a.x - b.x);
+      if (sorted.length <= 2) return sorted;
+      const cross = (o, a, b) => (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x);
+      const lower = [];
+      for (let i = 0; i < sorted.length; i++) {
+        while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], sorted[i]) <= 0) {
+          lower.pop();
+        }
+        lower.push(sorted[i]);
+      }
+      const upper = [];
+      for (let i = sorted.length - 1; i >= 0; i--) {
+        while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], sorted[i]) <= 0) {
+          upper.pop();
+        }
+        upper.push(sorted[i]);
+      }
+      lower.pop();
+      upper.pop();
+      const hull = lower.concat(upper);
+      let areaSum = 0;
+      for (let i = 0; i < hull.length; i++) {
+        const p1 = hull[i];
+        const p2 = hull[(i + 1) % hull.length];
+        areaSum += (p1.x * p2.y) - (p2.x * p1.y);
+      }
+      if (areaSum < 0) hull.reverse();
+      return hull;
+    }
+
+    function getBlobPath(points, radius) {
+      if (!points || points.length === 0) return '';
+      if (radius <= 0) radius = 10;
+      const uniquePoints = points.filter((p, i, self) => 
+        self.findIndex(o => Math.abs(o.x - p.x) < 0.1 && Math.abs(o.y - p.y) < 0.1) === i
+      );
+      if (uniquePoints.length === 0) return '';
+      if (uniquePoints.length === 1) {
+        const p = uniquePoints[0];
+        return `M ${p.x - radius} ${p.y} A ${radius} ${radius} 0 1 0 ${p.x + radius} ${p.y} A ${radius} ${radius} 0 1 0 ${p.x - radius} ${p.y} Z`;
+      }
+      if (uniquePoints.length === 2) {
+        const p0 = uniquePoints[0];
+        const p1 = uniquePoints[1];
+        const d = Vec.dist(p0, p1);
+        if (d < 0.1) return getBlobPath([p0], radius);
+        const t = Vec.normalize(Vec.sub(p1, p0));
+        const n = { x: t.y, y: -t.x };
+        const p0_l = Vec.add(p0, Vec.mult(n, radius));
+        const p0_r = Vec.sub(p0, Vec.mult(n, radius));
+        const p1_l = Vec.add(p1, Vec.mult(n, radius));
+        const p1_r = Vec.sub(p1, Vec.mult(n, radius));
+        return `M ${p0_l.x} ${p0_l.y} L ${p1_l.x} ${p1_l.y} A ${radius} ${radius} 0 0 1 ${p1_r.x} ${p1_r.y} L ${p0_r.x} ${p0_r.y} A ${radius} ${radius} 0 0 1 ${p0_l.x} ${p0_l.y} Z`;
+      }
+      const hull = convexHull(uniquePoints);
+      if (hull.length === 1) return getBlobPath([hull[0]], radius);
+      if (hull.length === 2) return getBlobPath([hull[0], hull[1]], radius);
+      const pathParts = [];
+      const n = hull.length;
+      for (let i = 0; i < n; i++) {
+        const pCurr = hull[i];
+        const pNext = hull[(i + 1) % n];
+        const pPrev = hull[(i - 1 + n) % n];
+        const vNext = Vec.sub(pNext, pCurr);
+        const vPrev = Vec.sub(pCurr, pPrev);
+        const tNext = Vec.normalize(vNext);
+        const tPrev = Vec.normalize(vPrev);
+        const nNext = { x: tNext.y, y: -tNext.x };
+        const nPrev = { x: tPrev.y, y: -tPrev.x };
+        const pStartOffset = Vec.add(pCurr, Vec.mult(nNext, radius));
+        if (i === 0) {
+          pathParts.push(`M ${pStartOffset.x} ${pStartOffset.y}`);
+        } else {
+          pathParts.push(`A ${radius} ${radius} 0 0 1 ${pStartOffset.x} ${pStartOffset.y}`);
+        }
+        const pNextStartOffset = Vec.add(pNext, Vec.mult(nNext, radius));
+        pathParts.push(`L ${pNextStartOffset.x} ${pNextStartOffset.y}`);
+      }
+      const firstEdgeOffset = Vec.add(hull[0], Vec.mult({ 
+        x: Vec.normalize(Vec.sub(hull[1], hull[0])).y, 
+        y: -Vec.normalize(Vec.sub(hull[1], hull[0])).x 
+      }, radius));
+      pathParts.push(`A ${radius} ${radius} 0 0 1 ${firstEdgeOffset.x} ${firstEdgeOffset.y} Z`);
+      return pathParts.join(' ');
+    }
+
+    function generateSmallWorldLinks(satIds, K = 4, beta = 0.25) {
+      const localLinks = [];
+      const n = satIds.length;
+      if (n === 0) return localLinks;
+
+      const halfK = Math.floor(K / 2);
+      for (let i = 0; i < n; i++) {
+        for (let j = 1; j <= halfK; j++) {
+          const targetIndex = (i + j) % n;
+          localLinks.push({
+            source: satIds[i],
+            target: satIds[targetIndex],
+            type: "satellite-internal"
+          });
+        }
+      }
+
+      localLinks.forEach(link => {
+        if (Math.random() < beta) {
+          let newTargetIndex;
+          do {
+            newTargetIndex = Math.floor(Math.random() * n);
+          } while (satIds[newTargetIndex] === link.source);
+          link.target = satIds[newTargetIndex];
+        }
+      });
+
+      return localLinks;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const svg = d3.select("#canvas");
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+
+      svg.attr("width", width).attr("height", height);
+
+      // Data definitions for CGS nested inside CC (Centered layout, no CSSS, no middle overlap)
+      const nodes = [
+        // Cluster Centers
+        { id: "CGS Center", group: "cgs", r: 16, label: "Complexity Global School" },
+        { id: "CC Center", group: "cc", r: 16, label: "Complexity Coffee" }
+      ];
+
+      // Generate CGS satellite nodes
+      const numSatellites = 22;
+      for (let i = 0; i < numSatellites; i++) {
+        nodes.push({
+          id: `cgs-sat-${i}`,
+          group: "cgs",
+          r: 5 + Math.random() * 4,
+          label: ""
+        });
+      }
+
+      // Generate CC-only expansion nodes
+      const numCcSatellites = 16;
+      for (let i = 0; i < numCcSatellites; i++) {
+        nodes.push({
+          id: `cc-sat-${i}`,
+          group: "cc",
+          r: 5 + Math.random() * 4,
+          label: ""
+        });
+      }
+
+      // Generate Links
+      const links = [];
+      
+      nodes.forEach(n => {
+        if (n.id.startsWith("cgs-sat")) {
+          links.push({ source: n.id, target: "CGS Center", type: "satellite" });
+        } else if (n.id.startsWith("cc-sat")) {
+          links.push({ source: n.id, target: "CC Center", type: "satellite" });
+          links.push({ source: n.id, target: "CGS Center", type: "satellite" });
+        }
+      });
+
+      const cgsSatIds = [];
+      for (let i = 0; i < numSatellites; i++) {
+        cgsSatIds.push(`cgs-sat-${i}`);
+      }
+      const cgsInternal = generateSmallWorldLinks(cgsSatIds, 4, 0.25);
+      links.push(...cgsInternal);
+
+      for (let i = 0; i < numCcSatellites; i++) {
+        const targetCgsSat = `cgs-sat-${i * 3 % numSatellites}`;
+        links.push({ source: `cc-sat-${i}`, target: targetCgsSat, type: "cc-expansion-link" });
+
+        if (i > 0) {
+          links.push({ source: `cc-sat-${i}`, target: `cc-sat-${i - 1}`, type: "cc-internal" });
+        }
+      }
+
+      // Simulation forces
+      const simulation = d3.forceSimulation(nodes)
+        .force("link", d3.forceLink(links).id(d => d.id).distance(d => {
+          if (d.type === "satellite-internal") return 50;
+          if (d.type === "cc-internal") return 50;
+          if (d.type === "cc-expansion-link") return 65;
+          return 65;
+        }))
+        .force("charge", d3.forceManyBody().strength(-65))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collide", d3.forceCollide().radius(d => {
+          if (d.id === "CGS Center" || d.id === "CC Center") return 25; 
+          return d.r + 7;
+        }).strength(1.0).iterations(3))
+        .force("x", d3.forceX().x(d => {
+          if (d.group === "cgs") return width * 0.59;
+          if (d.group === "cc") return width * 0.41;
+          return width * 0.5;
+        }).strength(0.12))
+        .force("y", d3.forceY().y(d => {
+          if (d.id === "CC Center") return height / 2;
+          return height / 2;
+        }).strength(0.10));
+
+      // Draw Blobs
+      const blobGroup = svg.append("g").attr("class", "blobs-group");
+
+      const blobsData = [
+        { id: "CC Center", group: "cc" },
+        { id: "CGS Center", group: "cgs" }
+      ];
+
+      const blobPaths = blobGroup.selectAll("path")
+        .data(blobsData)
+        .join("path")
+        .attr("class", d => `project-blob ${d.group}`);
+
+      // Draw Links
+      const link = svg.append("g")
+        .selectAll("line")
+        .data(links.filter(d => d.type === "satellite-internal" || d.type === "cc-expansion-link" || d.type === "cc-internal"))
+        .join("line")
+        .attr("class", d => {
+          if (d.type === "cc-expansion-link") return "link-line cc-expansion-link";
+          return "link-line satellite-internal";
+        });
+
+      // Draw Nodes
+      const node = svg.append("g")
+        .selectAll("g")
+        .data(nodes)
+        .join("g")
+        .attr("class", "node-group");
+
+      node.append("circle")
+        .attr("r", d => d.r)
+        .style("display", d => (d.id === "CGS Center" || d.id === "CC Center") ? "none" : null)
+        .attr("class", d => `node-circle ${d.group}`)
+        .attr("fill", d => {
+          if (d.group === "cgs") return "var(--accent-cgs)";
+          if (d.group === "cc") return "var(--accent-cc)";
+          return "var(--accent-overlap)";
+        });
+
+      // Draw Centroid Labels in the Foreground
+      const centroidLabelsGroup = svg.append("g")
+        .attr("class", "centroid-labels-group");
+
+      const centroidLabelContainer = centroidLabelsGroup.selectAll("g")
+        .data(nodes.filter(d => d.id === "CGS Center" || d.id === "CC Center"))
+        .join("g")
+        .attr("class", "centroid-label-container");
+
+      centroidLabelContainer.append("text")
+        .attr("class", "node-label center-label")
+        .attr("text-anchor", "middle")
+        .attr("y", d => d.id === "CGS Center" ? 0 : -140) // CGS label sits inside the blob, CC sits fully above
+        .attr("dy", "0.35em")
+        .text(d => d.label);
+
+      // Handle Resize
+      window.addEventListener("resize", () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        svg.attr("width", width).attr("height", height);
+        simulation.force("center", d3.forceCenter(width / 2, height / 2));
+        
+        simulation.force("x").x(d => {
+          if (d.group === "cgs") return width * 0.59;
+          if (d.group === "cc") return width * 0.41;
+          return width * 0.5;
+        });
+        simulation.force("y").y(height / 2);
+
+        runStaticSimulation();
+      });
+
+      function updatePositions() {
+        link
+          .attr("x1", d => d.source.x)
+          .attr("y1", d => d.source.y)
+          .attr("x2", d => d.target.x)
+          .attr("y2", d => d.target.y);
+
+        blobPaths.attr("d", d => {
+          if (d.group === "cgs") {
+            const groupNodes = nodes.filter(n => n.group === "cgs");
+            const points = groupNodes.map(n => ({ x: n.x, y: n.y }));
+            return getBlobPath(points, 32);
+          } else if (d.group === "cc") {
+            const groupNodes = nodes.filter(n => n.group === "cgs" || n.group === "cc" || n.id === "CC Center");
+            const points = groupNodes.map(n => ({ x: n.x, y: n.y }));
+            return getBlobPath(points, 42);
+          }
+        });
+
+        node
+          .attr("transform", d => `translate(${d.x},${d.y})`);
+
+        centroidLabelContainer
+          .attr("transform", d => `translate(${d.x},${d.y})`);
+      }
+
+      function runStaticSimulation() {
+        simulation.alpha(1);
+        for (let i = 0; i < 250; i++) {
+          simulation.tick();
+        }
+        simulation.stop();
+        updatePositions();
+      }
+
+      // Settle nodes synchronously immediately on load
+      runStaticSimulation();
+    });
+  </script>
+</body>
+</html>

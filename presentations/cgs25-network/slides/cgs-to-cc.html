@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CGS to CC Foundation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f8f9fa; /* Crisp light grey background */
+      --text-dark: #2b2d42; /* Deep slate */
+      --text-muted: #718096;
+      --card-bg: #ffffff; /* Crisp white cards */
+      --border-color: #e2e8f0; /* Delicate grey border */
+      
+      --accent-purple: #264653; /* Changed to Deep Teal for uniformity */
+      --accent-teal: #264653; /* Uniform Deep Teal */
+      --accent-navy: #264653; /* Deep Teal */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+    }
+
+    .container {
+      max-width: 950px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding-bottom: 48px; /* space for navigation controls overlay */
+      animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .header-section {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-teal);
+      align-self: center;
+    }
+
+    .main-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 2.25rem;
+      color: var(--accent-navy);
+    }
+
+    .cards-row {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .column-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 40px 36px;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+      position: relative;
+    }
+
+    .column-card.cgs {
+      --accent-color: var(--accent-purple);
+    }
+
+    .column-card.cc {
+      --accent-color: var(--accent-teal);
+    }
+
+    .card-header {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.6rem;
+      line-height: 1.2;
+      color: var(--accent-navy);
+    }
+
+    .list-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .list-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .item-number {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--accent-color);
+      flex-shrink: 0;
+      line-height: 1.4;
+    }
+
+    .item-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .item-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+    }
+
+    .item-desc {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="cards-row">
+      <!-- CGS Spark Card -->
+      <div class="column-card cgs">
+        <div class="card-header">
+          <h2 class="card-title">What we preserved from CGS</h2>
+        </div>
+        <div class="list-items">
+          <div class="list-item">
+            <span class="item-number">01</span>
+            <div class="item-content">
+              <h3 class="item-title">Global Interdisciplinarity</h3>
+              <p class="item-desc">Bringing together researchers from many fields and over 30 countries to collaboratively tackle complex systems challenges.</p>
+            </div>
+          </div>
+          <div class="list-item">
+            <span class="item-number">02</span>
+            <div class="item-content">
+              <h3 class="item-title">Egalitarian Collaboration</h3>
+              <p class="item-desc">Maintaining a flat, open environment where early-stage researchers, practitioners, and established faculty interact as peers.</p>
+            </div>
+          </div>
+          <div class="list-item">
+            <span class="item-number">03</span>
+            <div class="item-content">
+              <h3 class="item-title">A Culture of Exploration</h3>
+              <p class="item-desc">An atmosphere that encourages serious scientific inquiry within a safe, low-stakes, and welcoming environment for exploring new ideas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CC Space Card -->
+      <div class="column-card cc">
+        <div class="card-header">
+          <h2 class="card-title">What Complexity Coffee is building</h2>
+        </div>
+        <div class="list-items">
+          <div class="list-item">
+            <span class="item-number">04</span>
+            <div class="item-content">
+              <h3 class="item-title">Accessible Global Community</h3>
+              <p class="item-desc">Creating a free, year-round space where complexity researchers and practitioners can attend talks and engage with senior scholars.</p>
+            </div>
+          </div>
+          <div class="list-item">
+            <span class="item-number">05</span>
+            <div class="item-content">
+              <h3 class="item-title">Collaborative Skill Sharing</h3>
+              <p class="item-desc">Hosting dedicated events where community members can exchange technical skills, gather new ideas, and pool resources.</p>
+            </div>
+          </div>
+          <div class="list-item">
+            <span class="item-number">06</span>
+            <div class="item-content">
+              <h3 class="item-title">A Stage for Early Research</h3>
+              <p class="item-desc">Providing a supportive environment to present nascent research, discuss work-in-progress, and gather feedback prior to publication</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
