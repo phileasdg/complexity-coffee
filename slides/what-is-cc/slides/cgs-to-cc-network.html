@@ -427,20 +427,16 @@
         .join("g")
         .attr("class", "centroid-label-container");
 
-      // Draw pointer line with arrowhead pointing at the center node
+      // Draw pointer line with arrowhead (positions will be set dynamically in updatePositions)
       centroidLabelContainer.append("line")
-        .attr("x1", 0)
-        .attr("y1", -95)
-        .attr("x2", 0)
-        .attr("y2", -25)
+        .attr("class", "pointer-line")
         .attr("stroke", "#a0aec0")
         .attr("stroke-width", "1.2px")
         .attr("marker-end", "url(#arrow)");
 
       centroidLabelContainer.append("text")
         .attr("class", "node-label center-label")
-        .attr("text-anchor", "middle")
-        .attr("y", -105)
+        .attr("text-anchor", d => d.id === "CC Center" ? "end" : "start")
         .attr("dy", "0.35em")
         .text(d => d.label);
 
@@ -495,15 +491,51 @@
         node
           .attr("transform", d => `translate(${d.x},${d.y})`);
 
-        centroidLabelContainer
-          .attr("transform", d => {
-            const arrowCenters = ["CGS Center", "CC Center"];
-            if (arrowCenters.includes(d.id)) {
-              const center = getGroupCenter(d.group);
-              return `translate(${center.x},${center.y})`;
-            }
-            return `translate(${d.x},${d.y})`;
-          });
+        centroidLabelContainer.each(function(d) {
+          const container = d3.select(this);
+          const center = getGroupCenter(d.group);
+          
+          let labelX, labelY, textPadding, blobRadius;
+          if (d.id === "CC Center") {
+            labelX = width * 0.15;
+            labelY = height * 0.45;
+            textPadding = 15;
+            blobRadius = 110;
+          } else {
+            labelX = width * 0.85;
+            labelY = height * 0.45;
+            textPadding = 15;
+            blobRadius = 130;
+          }
+
+          // Position text
+          container.select("text")
+            .attr("x", labelX)
+            .attr("y", labelY);
+
+          // Position pointing arrow to end exactly on the border of the blob
+          const dx = center.x - labelX;
+          const dy = center.y - labelY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist > 0) {
+            const ux = dx / dist;
+            const uy = dy / dist;
+            const startX = labelX + ux * textPadding;
+            const startY = labelY + uy * textPadding;
+            const endX = center.x - ux * blobRadius;
+            const endY = center.y - uy * blobRadius;
+
+            container.select("line")
+              .attr("x1", startX)
+              .attr("y1", startY)
+              .attr("x2", endX)
+              .attr("y2", endY)
+              .style("display", null);
+          } else {
+            container.select("line").style("display", "none");
+          }
+        });
       }
 
       function runStaticSimulation() {

@@ -464,24 +464,20 @@
 
       const arrowCenters = ["CGS Center", "CC Center", "CSSS Center"];
 
-      // Draw pointer line with arrowhead only for centers
+      // Draw pointer line with arrowhead (positions will be set dynamically in updatePositions)
       centroidLabelContainer.filter(d => arrowCenters.includes(d.id))
         .append("line")
-        .attr("x1", 0)
-        .attr("y1", -95)
-        .attr("x2", 0)
-        .attr("y2", -25)
+        .attr("class", "pointer-line")
         .attr("stroke", "#a0aec0")
         .attr("stroke-width", "1.2px")
         .attr("marker-end", "url(#arrow)");
 
       centroidLabelContainer.append("text")
         .attr("class", "node-label center-label")
-        .attr("text-anchor", "middle")
-        .attr("y", d => {
-          if (arrowCenters.includes(d.id)) return -105;
-          if (d.group === "overlap") return 24; // Place label just below the bubble
-          return 0;
+        .attr("text-anchor", d => {
+          if (d.id === "CC Center") return "end";
+          if (d.id === "CSSS Center") return "start";
+          return "middle";
         })
         .attr("dy", "0.35em")
         .text(d => d.label);
@@ -569,15 +565,65 @@
         node
           .attr("transform", d => `translate(${d.x},${d.y})`);
 
-        centroidLabelContainer
-          .attr("transform", d => {
-            const arrowCenters = ["CGS Center", "CC Center", "CSSS Center"];
-            if (arrowCenters.includes(d.id)) {
-              const center = getGroupCenter(d.group);
-              return `translate(${center.x},${center.y})`;
+        centroidLabelContainer.each(function(d) {
+          const container = d3.select(this);
+          const arrowCenters = ["CGS Center", "CC Center", "CSSS Center"];
+          
+          if (arrowCenters.includes(d.id)) {
+            const center = getGroupCenter(d.group);
+            let labelX, labelY, textPadding, blobRadius;
+            if (d.id === "CC Center") {
+              labelX = width * 0.08;
+              labelY = height * 0.45;
+              textPadding = 15;
+              blobRadius = 90;
+            } else if (d.id === "CSSS Center") {
+              labelX = width * 0.92;
+              labelY = height * 0.45;
+              textPadding = 15;
+              blobRadius = 100;
+            } else { // CGS Center
+              labelX = width * 0.32;
+              labelY = height * 0.20;
+              textPadding = 15;
+              blobRadius = 100;
             }
-            return `translate(${d.x},${d.y})`;
-          });
+
+            container.select("text")
+              .attr("x", labelX)
+              .attr("y", labelY)
+              .attr("transform", null);
+
+            const dx = center.x - labelX;
+            const dy = center.y - labelY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist > 0) {
+              const ux = dx / dist;
+              const uy = dy / dist;
+              const startX = labelX + ux * textPadding;
+              const startY = labelY + uy * textPadding;
+              const endX = center.x - ux * blobRadius;
+              const endY = center.y - uy * blobRadius;
+
+              container.select("line")
+                .attr("x1", startX)
+                .attr("y1", startY)
+                .attr("x2", endX)
+                .attr("y2", endY)
+                .style("display", null);
+            } else {
+              container.select("line").style("display", "none");
+            }
+          } else {
+            // Overlap nodes are translated to their exact coordinates
+            container.select("text")
+              .attr("x", 0)
+              .attr("y", d.group === "overlap" ? 24 : 0)
+              .attr("transform", `translate(${d.x},${d.y})`);
+            container.select("line").style("display", "none");
+          }
+        });
       }
 
       function runStaticSimulation() {

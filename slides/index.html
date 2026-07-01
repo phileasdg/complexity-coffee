@@ -151,6 +151,7 @@
         async function showPortal() {
             authSection.classList.add('hidden');
             portalContent.classList.remove('hidden');
+            sessionStorage.setItem('cc_from_hub', 'true');
             renderPresentationsList();
         }
 
@@ -169,7 +170,7 @@
                         <p class="text-gray-600 text-sm leading-relaxed">${p.description || ''}</p>
                     </div>
                     <div class="flex items-center shrink-0">
-                        <a href="${p.id}/" class="w-full md:w-auto text-center px-5 py-2.5 bg-sfi-ming hover:bg-sfi-sea text-white font-bold rounded-lg text-sm shadow-sm transition-colors duration-200">
+                        <a href="${p.id}/?showclosebtn=true" class="w-full md:w-auto text-center px-5 py-2.5 bg-sfi-ming hover:bg-sfi-sea text-white font-bold rounded-lg text-sm shadow-sm transition-colors duration-200">
                             Open Slides
                         </a>
                     </div>

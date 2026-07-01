@@ -446,14 +446,17 @@ body {
   align-items: center;
   justify-content: center;
   color: #4a5568;
-  opacity: 0.25;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  opacity: 0.4;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: opacity 0.2s ease, background 0.2s ease, transform 0.2s ease;
   cursor: pointer;
   text-decoration: none;
 }
 
 .hub-close-btn:hover {
-  opacity: 0.9;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.05);
   transform: scale(1.1);
 }
 

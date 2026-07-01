@@ -54,13 +54,15 @@
   </a>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const fromHub = sessionStorage.getItem('cc_from_hub') === 'true' || new URLSearchParams(window.location.search).has('from');
-      if (fromHub) {
-        const btn = document.getElementById('hub-close-btn');
-        if (btn) btn.classList.remove('hidden');
-      }
-    });
+    // Self-healing check: if they came with the parameter, remember it in session storage
+    if (new URLSearchParams(window.location.search).has('showclosebtn')) {
+      sessionStorage.setItem('cc_from_hub', 'true');
+    }
+    const fromHub = sessionStorage.getItem('cc_from_hub') === 'true';
+    if (fromHub) {
+      const btn = document.getElementById('hub-close-btn');
+      if (btn) btn.classList.remove('hidden');
+    }
   </script>
 
   <!-- JavaScript Entry Point -->
