@@ -355,8 +355,8 @@
           return d.r + 7;
         }).strength(1.0).iterations(3))
         .force("x", d3.forceX().x(d => {
-          if (d.group === "cgs") return width * 0.59;
-          if (d.group === "cc") return width * 0.41;
+          if (d.group === "cgs") return Math.min(width - 260, width * 0.59);
+          if (d.group === "cc") return Math.max(260, width * 0.41);
           return width * 0.5;
         }).strength(0.12))
         .force("y", d3.forceY().y(d => {
@@ -460,8 +460,8 @@
         simulation.force("center", d3.forceCenter(width / 2, height / 2));
         
         simulation.force("x").x(d => {
-          if (d.group === "cgs") return width * 0.59;
-          if (d.group === "cc") return width * 0.41;
+          if (d.group === "cgs") return Math.min(width - 260, width * 0.59);
+          if (d.group === "cc") return Math.max(260, width * 0.41);
           return width * 0.5;
         });
         simulation.force("y").y(height / 2);
@@ -497,15 +497,15 @@
           
           let labelX, labelY, textPadding, blobRadius;
           if (d.id === "CC Center") {
-            labelX = width * 0.15;
+            labelX = Math.max(130, width * 0.20);
             labelY = height * 0.45;
             textPadding = 15;
             blobRadius = 110;
           } else {
-            labelX = width * 0.85;
+            labelX = Math.min(width - 180, width * 0.80);
             labelY = height * 0.45;
             textPadding = 15;
-            blobRadius = 130;
+            blobRadius = 110;
           }
 
           // Position text

@@ -382,9 +382,9 @@
           return d.r + 7;
         }).strength(1.0).iterations(3))
         .force("x", d3.forceX().x(d => {
-          if (d.group === "cgs") return width * 0.35;
-          if (d.group === "csss") return width * 0.80;
-          if (d.group === "cc") return width * 0.20;
+          if (d.group === "cgs") return width * 0.40;
+          if (d.group === "csss") return Math.min(width - 240, width * 0.73);
+          if (d.group === "cc") return Math.max(200, width * 0.23);
           return width * 0.5;
         }).strength(0.12))
         .force("y", d3.forceY().y(d => {
@@ -502,9 +502,9 @@
         simulation.force("center", d3.forceCenter(width / 2, height / 2));
         
         simulation.force("x").x(d => {
-          if (d.group === "cgs") return width * 0.35;
-          if (d.group === "csss") return width * 0.80;
-          if (d.group === "cc") return width * 0.20;
+          if (d.group === "cgs") return width * 0.40;
+          if (d.group === "csss") return Math.min(width - 240, width * 0.73);
+          if (d.group === "cc") return Math.max(200, width * 0.23);
           return width * 0.5;
         });
         simulation.force("y").y(d => {
@@ -573,20 +573,20 @@
             const center = getGroupCenter(d.group);
             let labelX, labelY, textPadding, blobRadius;
             if (d.id === "CC Center") {
-              labelX = width * 0.08;
+              labelX = Math.max(130, width * 0.14);
               labelY = height * 0.45;
               textPadding = 15;
-              blobRadius = 90;
+              blobRadius = 50;
             } else if (d.id === "CSSS Center") {
-              labelX = width * 0.92;
+              labelX = Math.min(width - 200, width * 0.86);
               labelY = height * 0.45;
               textPadding = 15;
-              blobRadius = 100;
+              blobRadius = 50;
             } else { // CGS Center
               labelX = width * 0.32;
               labelY = height * 0.20;
               textPadding = 15;
-              blobRadius = 100;
+              blobRadius = 85;
             }
 
             container.select("text")
