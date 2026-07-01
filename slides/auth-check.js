@@ -14,17 +14,29 @@
   }
 
   document.addEventListener('DOMContentLoaded', async () => {
-    // Determine the presentation folder ID from pathname
+    // Determine the presentation folder ID and config path from pathname
     const pathParts = window.location.pathname.split('/').filter(Boolean);
     const presentationsIndex = pathParts.indexOf('slides');
-    const presentationId = presentationsIndex !== -1 ? pathParts[presentationsIndex + 1] : pathParts[pathParts.length - 2];
+
+    let configPath = '../data/presentations.json'; // Fallback
+    let presentationId = pathParts[pathParts.length - 2];
+
+    if (presentationsIndex !== -1) {
+      presentationId = pathParts[presentationsIndex + 1];
+      const subParts = pathParts.slice(presentationsIndex + 1);
+      const lastPart = subParts[subParts.length - 1] || '';
+      const isFile = lastPart.includes('.');
+      const dirDepthBelowSlides = isFile ? subParts.length - 1 : subParts.length;
+      const levelsToRoot = dirDepthBelowSlides + 1;
+      configPath = '../'.repeat(levelsToRoot) + 'data/presentations.json';
+    }
 
     let hubHash = "9fff2d310ad659f6e05c6c1bbfcfb605cd4489e1d3860160b88220636a6353f8"; // Fallback 'complexity'
     let presentationHash = null; // Specific presentation password (optional)
     let pTitle = "Protected Presentation";
 
     try {
-      const response = await fetch('../data/presentations.json');
+      const response = await fetch(configPath);
       if (response.ok) {
         const data = await response.json();
         hubHash = data.hubPasswordHash || hubHash;
