@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Complexity Coffee</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sfi: {
+                            ming: '#003d5b',
+                            sea: '#00a9b7',
+                            turmeric: '#f5a623',
+                            warm: '#ecebe6',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ecebe6;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 md:p-8 bg-[#ecebe6]">
+    <div class="w-full max-w-lg glass-panel rounded-2xl shadow-xl p-8 md:p-12 text-center transition-all duration-300">
+        
+        <!-- Icon / Graphic -->
+        <div class="mb-6">
+            <span class="text-7xl md:text-8xl font-black font-serif text-sfi-sea">404</span>
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-2xl md:text-3xl font-black font-serif text-sfi-ming mb-4">
+            Page Not Found
+        </h1>
+        
+        <!-- Description -->
+        <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-8">
+            The page you are looking for doesn't exist or has been moved.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex justify-center">
+            <a href="/" 
+               class="inline-flex items-center justify-center px-6 py-3 bg-sfi-ming hover:bg-sfi-sea text-white font-bold rounded-lg shadow transition-colors duration-200 text-sm md:text-base">
+                Return Home
+            </a>
+        </div>
+        
+        <!-- Logo Footer -->
+        <div class="mt-12 text-xs text-gray-400 uppercase tracking-widest">
+            Complexity Coffee
+        </div>
+
+    </div>
+</body>
+</html>

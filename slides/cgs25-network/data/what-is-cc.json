@@ -1,0 +1,22 @@
+{
+  "bullets": [
+    {
+      "id": "activities",
+      "title": "What we do",
+      "content": "We are a vibrant, active community that organizes scientific talks, workshops, and discussion events on complexity and network science. We maintain an active community on WhatsApp to stay connected year-round.",
+      "enabled": true
+    },
+    {
+      "id": "who-we-are",
+      "title": "Who we are",
+      "content": "We are a group of volunteers from Complexity Global Schools who came together to build on and extend the communities we found at CGS. We are an international community spanning over 30 countries.",
+      "enabled": true
+    },
+    {
+      "id": "acknowledgements",
+      "title": "Acknowledgements",
+      "content": "We are deeply grateful to the members of SFI who have provided (and continue to provide) guidance and assistance to Complexity Coffee in its early and current iterations.",
+      "enabled": true
+    }
+  ]
+}

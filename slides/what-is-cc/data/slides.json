@@ -1,0 +1,50 @@
+[
+  {
+    "type": "embed",
+    "title": "Welcome",
+    "subtitle": "Cultivating a grassroots complexity science community across borders",
+    "iframeUrl": "slides/title-slide.html"
+  },
+  {
+    "type": "embed",
+    "title": "What is Complexity Coffee?",
+    "subtitle": "A grassroots, alum-led platform for permanent collaboration",
+    "iframeUrl": "slides/what-is-cc.html"
+  },
+  {
+    "type": "embed",
+    "title": "Complexity Coffee Formats",
+    "subtitle": "Community-driven event formats for scientific dialogue",
+    "iframeUrl": "slides/complexity-coffee-formats.html"
+  },
+  {
+    "type": "embed",
+    "title": "Sustaining the Dialogue",
+    "subtitle": "Complexity Coffee past events & series highlights",
+    "iframeUrl": "slides/event-highlights.html"
+  },
+  {
+    "type": "embed",
+    "title": "Complexity Narratives",
+    "subtitle": "A new series exploring systemic evolution and emergence",
+    "iframeUrl": "slides/complexity-narratives.html"
+  },
+  {
+    "type": "embed",
+    "title": "Building Upon CGS",
+    "subtitle": "From a brief summer program to a continuous grassroots network",
+    "iframeUrl": "slides/cgs-to-cc.html"
+  },
+  {
+    "type": "embed",
+    "title": "From CGS to Complexity Coffee",
+    "subtitle": "An autonomous community expanding the CGS network",
+    "iframeUrl": "slides/cgs-to-cc-network.html"
+  },
+  {
+    "type": "embed",
+    "title": "Join Complexity Coffee",
+    "subtitle": "An independent, grassroots, and open complexity network",
+    "iframeUrl": "slides/complexity-coffee-join.html"
+  }
+]

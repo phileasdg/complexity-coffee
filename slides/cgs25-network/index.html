@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Client-side Password Protection -->
+  <script src="../auth-check.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An interactive light-themed network visualization of the Complexity Global School 2025 project groups, participants, and mentors.">
+  <title>CGS25 Project Network</title>
+  
+  <!-- Modern Fonts: Inter & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- D3.js Local Copy -->
+  <script src="d3.v7.min.js"></script>
+</head>
+<body>
+  <!-- Glassmorphic Slide Controls -->
+  <div id="slide-controls">
+    <button class="slide-btn" id="prev-slide-btn" aria-label="Previous Slide">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <span id="slide-indicator">1 / 2</span>
+    <button class="slide-btn" id="next-slide-btn" aria-label="Next Slide">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Main Canvas Container for Graph -->
+  <div id="graph-3d"></div>
+  <div id="graph-overlay"></div>
+
+  <!-- Dynamic Slides Container (Populated via data/slides.json) -->
+  <div id="dynamic-slides-container"></div>
+
+  <!-- Custom Tooltip -->
+  <div id="tooltip" class="tooltip hidden"></div>
+
+  <!-- JavaScript Entry Point -->
+  <script src="app.js"></script>
+</body>
+</html>

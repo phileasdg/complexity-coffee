@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What is Complexity Coffee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f8f9fa; /* Crisp light grey background */
+      --text-dark: #2b2d42; /* Dark navy/slate */
+      --text-muted: #718096;
+      --card-bg: #ffffff; /* Crisp white cards */
+      --border-color: #e2e8f0; /* Delicate grey border */
+      --accent-navy: #264653; /* Deep Teal */
+      --accent-teal: #264653; /* Uniform Deep Teal */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-bottom: 64px;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .header-section {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .main-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 2.25rem;
+      color: var(--accent-navy);
+    }
+
+    .bullets-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 40px 48px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      width: 100%;
+    }
+
+    .bullets-list {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .bullets-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--text-dark);
+    }
+
+    .bullet-icon {
+      color: var(--accent-teal);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    .bullet-content {
+      flex-grow: 1;
+    }
+
+    .bullet-content strong {
+      color: var(--accent-navy);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .acknowledgements-section {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px dashed var(--border-color);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .acknowledgements-section strong {
+      font-weight: 700;
+      color: var(--accent-navy);
+      font-style: normal;
+    }
+
+    .acknowledgements-section.hidden {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="header-section">
+      <h2 class="main-title">What is Complexity Coffee?</h2>
+    </div>
+
+    <div class="bullets-card">
+      <ul class="bullets-list" id="bullets-container">
+        <!-- Dynamic core content loaded from JSON -->
+      </ul>
+      
+      <div id="acknowledgements-container" class="acknowledgements-section hidden">
+        <!-- Separate acknowledgements paragraph -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("../data/what-is-cc.json")
+        .then(response => response.json())
+        .then(data => {
+          const container = document.getElementById("bullets-container");
+          const ackContainer = document.getElementById("acknowledgements-container");
+          container.innerHTML = "";
+          
+          data.bullets.forEach(bullet => {
+            if (bullet.enabled) {
+              if (bullet.id === "acknowledgements") {
+                ackContainer.classList.remove("hidden");
+                ackContainer.innerHTML = `
+                  ${bullet.content}
+                `;
+              } else {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                  <span class="bullet-icon">•</span>
+                  <div class="bullet-content">
+                    <strong>${bullet.title}:</strong> ${bullet.content}
+                  </div>
+                `;
+                container.appendChild(li);
+              }
+            }
+          });
+        })
+        .catch(err => {
+          console.error("Error loading what-is-cc.json:", err);
+        });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,198 @@
+{
+	"projectMembers": {
+		"A Fragile Future? The Shrinking Backbone and Rising Rigidity of the U.S. Labor Market": [
+			"Student 1",
+			"Student 2",
+			"Student 3",
+			"Student 4",
+			"Student 5"
+		],
+		"The Political Strategy of Care Networks in Response to State Violence in Rio de Janeiro, Brazil from 2006 to 2024": [
+			"Student 6",
+			"Student 7",
+			"Student 8"
+		],
+		"Architectures of Agreement": [
+			"Student 9",
+			"Student 10",
+			"Student 11",
+			"Student 12"
+		],
+		"Queering Complexity": [
+			"Student 13",
+			"Student 14",
+			"Student 15"
+		],
+		"Cultural Evolution Through Immigration, Media and Identity: A Language Evolutionary Agent-Based Model": [
+			"Student 16",
+			"Student 17",
+			"Student 18",
+			"Student 19",
+			"Student 20",
+			"Student 9"
+		],
+		"A Network Analysis of Factors Influencing Academic and Socioemotional Learning in Peruvian Primary Schools": [
+			"Student 21",
+			"Student 22",
+			"Student 23",
+			"Student 20"
+		],
+		"Growing a Sympoietic Art Organism": [
+			"Student 24",
+			"Student 25",
+			"Student 5",
+			"Student 26",
+			"Phileas Dazeley-Gaist",
+			"Student 27",
+			"Student 28",
+			"Student 29",
+			"Student 30",
+			"Student 23"
+		],
+		"Modeling the Social Dynamics of Brazil\u2019s Soy Moratorium: Understanding the effects of agricultural policy on the co-evolution of human and natural systems": [
+			"Student 31",
+			"Student 32",
+			"Student 33",
+			"Student 34"
+		],
+		"Judicial Decisions in Brazil: a chain of custody analysis using machine learning (2017-2025)": [
+			"Student 35",
+			"Student 22",
+			"Student 36"
+		],
+		"The Policy Effectiveness of Complexity Science: Measuring Divergent Impact Across Sustainable Development Goals": [
+			"Student 37",
+			"Student 38",
+			"Student 39",
+			"Student 40",
+			"Student 41",
+			"Student 42"
+		],
+		"How Planned Power Outages Influence the Spatial and Temporal Dynamics of Criminal Activities": [
+			"Student 43",
+			"Student 44",
+			"Student 45",
+			"Student 46",
+			"Student 47"
+		],
+		"Retaliating Dependent Development: A Network Centrality Experiment from Center to Periphery on the BRICS+ countries": [
+			"Student 24",
+			"Student 48",
+			"Student 26",
+			"Phileas Dazeley-Gaist",
+			"Student 14",
+			"Student 49",
+			"Student 50",
+			"Student 30"
+		],
+		"Structure Over Content: Local Simplification, Global Consolidation in Online Ideological Discourse": [
+			"Student 51"
+		],
+		"Shadow Routes: Mapping the Nexus of Crime and Migration in Mexico (2015-2025)": [
+			"Student 52",
+			"Student 53"
+		],
+		"Thick Complexity: A Throughline on Meta-Recognition and the Behaviour of Knowledge": [
+			"Student 54",
+			"Student 55"
+		]
+	},
+	"facultyMentors": {
+		"A Fragile Future? The Shrinking Backbone and Rising Rigidity of the U.S. Labor Market": [
+			"Faculty Mentor 1",
+			"Faculty Mentor 2"
+		],
+		"The Political Strategy of Care Networks in Response to State Violence in Rio de Janeiro, Brazil from 2006 to 2024": [
+			"Faculty Mentor 3"
+		],
+		"Architectures of Agreement": [
+			"Faculty Mentor 4",
+			"Faculty Mentor 5"
+		],
+		"Queering Complexity": [
+			"Faculty Mentor 3"
+		],
+		"Cultural Evolution Through Immigration, Media and Identity: A Language Evolutionary Agent-Based Model": [
+			"Faculty Mentor 6"
+		],
+		"A Network Analysis of Factors Influencing Academic and Socioemotional Learning in Peruvian Primary Schools": [
+			"Faculty Mentor 7"
+		],
+		"Growing a Sympoietic Art Organism": [
+			"Faculty Mentor 8"
+		],
+		"Modeling the Social Dynamics of Brazil\u2019s Soy Moratorium: Understanding the effects of agricultural policy on the co-evolution of human and natural systems": [
+			"Faculty Mentor 9"
+		],
+		"Judicial Decisions in Brazil: a chain of custody analysis using machine learning (2017-2025)": [
+			"Faculty Mentor 10"
+		],
+		"The Policy Effectiveness of Complexity Science: Measuring Divergent Impact Across Sustainable Development Goals": [
+			"Faculty Mentor 8",
+			"Faculty Mentor 5"
+		],
+		"How Planned Power Outages Influence the Spatial and Temporal Dynamics of Criminal Activities": [
+			"Faculty Mentor 3"
+		],
+		"Retaliating Dependent Development: A Network Centrality Experiment from Center to Periphery on the BRICS+ countries": [
+			"Faculty Mentor 6"
+		],
+		"Structure Over Content: Local Simplification, Global Consolidation in Online Ideological Discourse": [
+			"Faculty Mentor 8"
+		],
+		"Shadow Routes: Mapping the Nexus of Crime and Migration in Mexico (2015-2025)": [
+			"Faculty Mentor 3",
+			"Faculty Mentor 2"
+		],
+		"Thick Complexity: A Throughline on Meta-Recognition and the Behaviour of Knowledge": [
+			"Faculty Mentor 9"
+		]
+	},
+	"peerMentors": {
+		"A Fragile Future? The Shrinking Backbone and Rising Rigidity of the U.S. Labor Market": [
+			"Peer Mentor 1"
+		],
+		"The Political Strategy of Care Networks in Response to State Violence in Rio de Janeiro, Brazil from 2006 to 2024": [
+			"Peer Mentor 2"
+		],
+		"Architectures of Agreement": [
+			"Peer Mentor 3"
+		],
+		"Queering Complexity": [
+			"Peer Mentor 2"
+		],
+		"Cultural Evolution Through Immigration, Media and Identity: A Language Evolutionary Agent-Based Model": [
+			"Peer Mentor 2"
+		],
+		"A Network Analysis of Factors Influencing Academic and Socioemotional Learning in Peruvian Primary Schools": [
+			"Peer Mentor 3"
+		],
+		"Growing a Sympoietic Art Organism": [
+			"Peer Mentor 1"
+		],
+		"Modeling the Social Dynamics of Brazil\u2019s Soy Moratorium: Understanding the effects of agricultural policy on the co-evolution of human and natural systems": [
+			"Peer Mentor 1"
+		],
+		"Judicial Decisions in Brazil: a chain of custody analysis using machine learning (2017-2025)": [
+			"Peer Mentor 4"
+		],
+		"The Policy Effectiveness of Complexity Science: Measuring Divergent Impact Across Sustainable Development Goals": [
+			"Peer Mentor 3"
+		],
+		"How Planned Power Outages Influence the Spatial and Temporal Dynamics of Criminal Activities": [
+			"Peer Mentor 3"
+		],
+		"Retaliating Dependent Development: A Network Centrality Experiment from Center to Periphery on the BRICS+ countries": [
+			"Peer Mentor 4"
+		],
+		"Structure Over Content: Local Simplification, Global Consolidation in Online Ideological Discourse": [
+			"Peer Mentor 5"
+		],
+		"Shadow Routes: Mapping the Nexus of Crime and Migration in Mexico (2015-2025)": [
+			"Peer Mentor 1"
+		],
+		"Thick Complexity: A Throughline on Meta-Recognition and the Behaviour of Knowledge": [
+			"Peer Mentor 4"
+		]
+	}
+}

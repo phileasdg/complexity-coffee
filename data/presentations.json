@@ -7,6 +7,13 @@
       "description": "Interactive network visualization of the Complexity Global School 2025 project groups.",
       "enabled": true,
       "passwordHash": "37290d74ac4d186e3a8e5785d259d2ec04fac91ae28092e7620ec8bc99e830aa"
+    },
+    {
+      "id": "what-is-cc",
+      "title": "What is CC?",
+      "description": "General presentation about Complexity Coffee, excluding Complex Systems Summer School (CSSS) details.",
+      "enabled": true,
+      "passwordHash": "37290d74ac4d186e3a8e5785d259d2ec04fac91ae28092e7620ec8bc99e830aa"
     }
   ]
 }

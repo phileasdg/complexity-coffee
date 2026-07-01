@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complexity Coffee Formats</title>
+  <!-- Load fonts matching Complexity Coffee -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --text-dark: #2b2d42;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      
+      /* Highly Distinct Event Series Palette */
+      --cc-slate: #64748b; /* Core: Soft Slate Blue */
+      --cc-ocean: #44b0e8; /* Open: Soft Sky Blue */
+      --cc-sage: #37b392;  /* Reading: Soft Minty Teal */
+      --cc-olive: #f5b027; /* Lightning: Soft Gold */
+      --cc-clay: #e86a8e;  /* Narratives: Soft Rose */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Robust flex layout that wraps and centers items automatically */
+    .formats-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Card styling */
+    .format-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      width: calc(33.333% - 16px);
+      min-width: 280px;
+    }
+
+    .format-card.slate .card-title::after { background-color: var(--cc-slate); }
+    .format-card.ocean .card-title::after { background-color: var(--cc-ocean); }
+    .format-card.olive .card-title::after { background-color: var(--cc-olive); }
+    .format-card.sage .card-title::after { background-color: var(--cc-sage); }
+    .format-card.clay .card-title::after { background-color: var(--cc-clay); }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      color: var(--text-dark);
+      position: relative;
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+    }
+
+    .card-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      border-radius: 2px;
+    }
+
+    .card-description {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #222222; /* Darker gray for high contrast */
+    }
+
+    /* Hover States - Focus on hovered card, slightly dim others */
+    .formats-grid:not(.featured-mode):hover .format-card {
+      opacity: 0.5;
+      transform: scale(0.96);
+    }
+
+    .formats-grid:not(.featured-mode) .format-card:hover {
+      opacity: 1;
+      transform: scale(1.04) translateY(-6px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.06), 0 10px 10px -5px rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.04);
+    }
+
+    /* Featured Mode CSS Styles */
+    .control-header {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      display: flex;
+      gap: 12px;
+      z-index: 100;
+    }
+
+    .toggle-btn {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 8px 16px;
+      border: 1px solid #777777;
+      border-radius: 6px;
+      background-color: var(--card-bg);
+      color: var(--cc-slate);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-btn:hover {
+      background-color: #f4f4f4;
+      border-color: var(--cc-slate);
+    }
+
+    .toggle-btn.active {
+      background-color: var(--cc-slate);
+      color: #ffffff;
+      border-color: var(--cc-slate);
+      box-shadow: 0 4px 12px rgba(47, 62, 70, 0.15);
+    }
+
+    /* Featured transitions */
+    .formats-grid.featured-mode .format-card:not(.clay) {
+      display: none !important;
+    }
+
+    .formats-grid.featured-mode .format-card.clay {
+      opacity: 1 !important;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      border-color: var(--cc-clay);
+      width: 100%;
+      max-width: 900px;
+      flex-direction: row;
+      gap: 32px;
+      padding: 32px;
+      align-items: stretch;
+      cursor: default;
+      transform: none !important;
+    }
+
+    /* Column wrappers inside card in featured mode */
+    .card-left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .card-right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1.1;
+      border-left: 1px solid var(--border-color);
+      padding-left: 32px;
+      justify-content: space-between;
+    }
+
+    /* Toggle visibility of featured content */
+    .featured-only {
+      display: none !important;
+    }
+
+    .formats-grid.featured-mode .featured-only {
+      display: flex !important;
+      animation: fadeIn 0.4s ease;
+    }
+
+    /* Make sure quote block displays properly as block */
+    .formats-grid.featured-mode div.narrative-quote.featured-only {
+      display: block !important;
+      margin-top: 16px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .narrative-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.4;
+      color: var(--cc-slate);
+      border-left: 3px solid var(--cc-clay);
+      padding-left: 14px;
+      margin-bottom: 8px;
+    }
+
+    .narrative-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .section-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--cc-clay);
+    }
+
+    .narrative-list {
+      list-style-type: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .narrative-list li {
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: #222222;
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .narrative-list li::before {
+      content: "•";
+      color: var(--cc-clay);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .banner-highlight {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--cc-clay);
+    }
+
+    .banner-highlight .badge {
+      background-color: var(--cc-clay);
+      color: #ffffff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-size: 0.65rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="formats-grid">
+      <!-- Card 1: Guest Talks (Slate) -->
+      <div class="format-card slate">
+        <h3 class="card-title">Guest talks</h3>
+        <p class="card-description">In-depth lectures from leading researchers on foundational and cutting-edge topics in complexity science, followed by interactive Q&A.</p>
+      </div>
+
+      <!-- Card 2: Nascent Research (Ocean) -->
+      <div class="format-card ocean">
+        <h3 class="card-title">Nascent research</h3>
+        <p class="card-description">Rapid-fire 10-minute presentations of early-stage investigations, followed by 10 minutes of Q&A. Ideal for gathering feedback and sparking collaborative projects.</p>
+      </div>
+
+      <!-- Card 3: Workshops (Olive) -->
+      <div class="format-card olive">
+        <h3 class="card-title">Workshops</h3>
+        <p class="card-description">Hands-on, collaborative sessions focusing on methods, tools, and practical skills in complexity science.</p>
+      </div>
+
+      <!-- Card 4: Community Talks (Sage) -->
+      <div class="format-card sage">
+        <h3 class="card-title">Community talks</h3>
+        <p class="card-description">Seminar-style talks by community members highlighting ongoing projects, sharing theoretical approaches, and stimulating peer feedback.</p>
+      </div>
+
+      <!-- Card 5: Complexity Narratives (Clay) -->
+      <div class="format-card clay">
+        <h3 class="card-title">Complexity Narratives</h3>
+        <p class="card-description">An epistemological exploration historically recontextualizing how global systems developed and how we address their emergent challenges.</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

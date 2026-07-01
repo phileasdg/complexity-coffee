@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complexity Coffee Event Highlights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --text-dark: #2b2d42;
+      --text-muted: #718096;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      
+      /* Highly Distinct Event Series Palette */
+      --cc-slate: #64748b; /* Core: Soft Slate Blue */
+      --cc-slate-dark: #475569;
+      --cc-ocean: #44b0e8; /* Soft Sky Blue */
+      --cc-ocean-dark: #1ea3f0;
+      --cc-sage: #37b392;  /* Soft Minty Teal */
+      --cc-olive: #f5b027; /* Soft Gold */
+      --cc-clay: #e86a8e;  /* Soft Rose */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-bottom: 48px; /* Space for presentation navigation controls */
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .header-section {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cc-ocean);
+      align-self: center;
+    }
+
+    .main-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.65rem;
+      color: var(--cc-slate);
+    }
+
+    .split-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .row-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .row-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dark);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 6px;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      width: 100%;
+    }
+
+    /* Event Cards - Split image/text card layout for perfect readability */
+    .event-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+
+    .event-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .card-image-wrapper {
+      height: 105px; /* Uniform image height across all cards */
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      background-color: #f0ede5;
+    }
+
+    .card-image-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: var(--card-bg-image);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 0;
+    }
+
+    .event-card:hover .card-image-wrapper::before {
+      transform: scale(1.08);
+    }
+
+    .card-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      z-index: 2;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 6px;
+      border-radius: 4px;
+      color: #fff;
+      display: inline-block;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    /* Tag Gradients */
+    .cc-gradient-slate {
+      background-image: linear-gradient(-45deg, rgba(47, 62, 70, 0.95), rgba(26, 35, 39, 0.98));
+    }
+    .cc-gradient-ocean {
+      background-image: linear-gradient(-45deg, rgba(31, 122, 140, 0.95), rgba(18, 72, 83, 0.98));
+    }
+    .cc-gradient-olive {
+      background-image: linear-gradient(-45deg, rgba(107, 112, 92, 0.95), rgba(67, 70, 58, 0.98));
+    }
+    .cc-gradient-sage {
+      background-image: linear-gradient(-45deg, rgba(82, 121, 111, 0.95), rgba(53, 78, 72, 0.98));
+    }
+    .cc-gradient-clay {
+      background-image: linear-gradient(-45deg, rgba(226, 135, 67, 0.95), rgba(196, 104, 36, 0.98));
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1; /* Stretch content block to match card heights uniformly */
+      padding: 12px 14px;
+      background-color: #ffffff;
+      z-index: 1;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 0.95rem; /* Slightly larger title for better hierarchy without description */
+      color: var(--text-dark);
+      line-height: 1.35;
+      margin-bottom: 8px;
+      transition: color 0.2s ease;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .event-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .card-footer {
+      margin-top: auto; /* Forces speaker info to align at bottom of card content */
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      padding-top: 10px;
+    }
+
+    .speaker-preview-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      overflow: hidden;
+    }
+
+    .speaker-avatars {
+      display: flex;
+      position: relative;
+    }
+
+    .speaker-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ffffff;
+      background-color: #f3f4f6;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+    }
+
+    .speaker-avatar:not(:first-child) {
+      margin-left: -10px;
+    }
+
+    .speaker-info {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .speaker-names {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #111111;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .speaker-tagline {
+      font-size: 0.65rem;
+      color: #444444;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="split-layout">
+      <!-- Row 1: Faculty Guest Lectures -->
+      <div class="row-section">
+        <h3 class="row-title">Faculty Guest Lectures</h3>
+        <div class="events-grid" id="faculty-grid"></div>
+      </div>
+
+      <!-- Row 2: Latest Series Highlights -->
+      <div class="row-section">
+        <h3 class="row-title">Latest Series Highlights</h3>
+        <div class="events-grid" id="highlights-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      function getEventStyling(tag) {
+        const lower = tag.toLowerCase();
+        if (lower === "guest talk" || lower === "guest talks") {
+          return "cc-gradient-slate";
+        } else if (lower === "community talks" || lower === "community talk") {
+          return "cc-gradient-sage";
+        } else if (lower === "nascent research") {
+          return "cc-gradient-ocean";
+        } else if (lower === "workshop" || lower === "workshops") {
+          return "cc-gradient-olive";
+        } else if (lower === "complexity narrative" || lower === "complexity narratives") {
+          return "cc-gradient-clay";
+        }
+        return "cc-gradient-ocean";
+      }
+
+      function getSpeakerPreviewHTML(speakers) {
+        if (!speakers || speakers.length === 0 || speakers[0].name.toLowerCase() === 'to be announced') {
+          return `
+            <div class="speaker-preview-container">
+              <div class="speaker-info">
+                <span class="speaker-names">Speaker TBA</span>
+              </div>
+            </div>
+          `;
+        }
+        
+        if (speakers.length === 1) {
+          const speaker = speakers[0];
+          const speakerImg = speaker.image_path 
+            ? `<img src="../${speaker.image_path}" alt="${speaker.name}" class="speaker-avatar" onerror="this.style.display='none';">` 
+            : '';
+          return `
+            <div class="speaker-preview-container">
+              ${speakerImg}
+              <div class="speaker-info">
+                <span class="speaker-names">${speaker.name}</span>
+                ${speaker.tagline ? `<span class="speaker-tagline">${speaker.tagline}</span>` : ''}
+              </div>
+            </div>
+          `;
+        }
+        
+        let avatarsHTML = '';
+        speakers.slice(0, 3).forEach((speaker, index) => {
+          if (speaker.image_path) {
+            avatarsHTML += `<img src="../${speaker.image_path}" alt="${speaker.name}" class="speaker-avatar" style="z-index: ${10 - index}" onerror="this.style.display='none';">`;
+          }
+        });
+        
+        return `
+          <div class="speaker-preview-container">
+            ${avatarsHTML ? `<div class="speaker-avatars">${avatarsHTML}</div>` : ''}
+            <div class="speaker-info">
+              <span class="speaker-names">Multiple speakers</span>
+              <span class="speaker-tagline">${speakers.map(s => s.name).join(", ")}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      function createEventCard(e) {
+        const tagClass = getEventStyling(e.tag);
+        const speakerDisplay = getSpeakerPreviewHTML(e.speakers);
+        const imgPath = e.image_path ? `../${e.image_path}` : '../img/general/marble4.png';
+        
+        const card = document.createElement("div");
+        card.className = "event-card";
+        card.style.setProperty("--card-bg-image", `url('${imgPath}')`);
+        card.innerHTML = `
+          <div class="card-image-wrapper">
+            <span class="card-tag ${tagClass}">${e.tag}</span>
+          </div>
+          <div class="card-content">
+            <h4 class="card-title" title="${e.title}">${e.title}</h4>
+            <div class="card-footer">
+              ${speakerDisplay}
+            </div>
+          </div>
+        `;
+        return card;
+      }
+
+      fetch("../data/events.json")
+        .then(response => response.json())
+        .then(events => {
+          // 1. Process Faculty Guest Lectures (Sam Bowles, Moira Zellner, Brandon Ogbunu)
+          const guestTalks = events
+            .filter(e => e.tag === "Guest Talk")
+            .sort((a, b) => b.event_time - a.event_time);
+
+          // 2. Process Latest from other series
+          const otherTags = ["Workshop", "Community Talks", "Nascent Research"];
+          const latestOther = otherTags.map(tag => {
+            return events
+              .filter(e => e.tag === tag)
+              .sort((a, b) => b.event_time - a.event_time)[0];
+          }).filter(Boolean);
+
+          // Sort other series events by time descending so latest appears first
+          latestOther.sort((a, b) => b.event_time - a.event_time);
+
+          // 3. Render Faculty Guest Lectures (Top Row)
+          const facultyGrid = document.getElementById("faculty-grid");
+          facultyGrid.innerHTML = '';
+          guestTalks.forEach(e => {
+            facultyGrid.appendChild(createEventCard(e));
+          });
+
+          // 4. Render Latest Series Highlights (Bottom Row)
+          const highlightsGrid = document.getElementById("highlights-grid");
+          highlightsGrid.innerHTML = '';
+          latestOther.forEach(e => {
+            highlightsGrid.appendChild(createEventCard(e));
+          });
+        })
+        .catch(err => {
+          console.error("Error loading events.json:", err);
+        });
+    });
+  </script>
+</body>
+</html>
