@@ -80,6 +80,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Key listeners for standard presentation controls (Arrows, Space, PageUp/Down, Backspace)
     window.addEventListener("keydown", (event) => {
+      // Do not intercept keyboard events if user is typing in an input/textarea
+      const activeEl = document.activeElement;
+      if (activeEl && (activeEl.tagName === "INPUT" || activeEl.tagName === "TEXTAREA" || activeEl.isContentEditable)) {
+        return;
+      }
+
       if (event.key === "ArrowRight" || event.key === "Space" || event.key === " " || event.key === "PageDown") {
         event.preventDefault();
         setSlide(currentSlide + 1);
