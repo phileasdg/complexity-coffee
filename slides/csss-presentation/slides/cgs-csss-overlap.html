@@ -152,6 +152,15 @@
       }
     };
 
+    function seedableRandom(seed) {
+      let state = seed;
+      return function() {
+        state = (state * 1664525 + 1013904223) % 4294967296;
+        return state / 4294967296;
+      };
+    }
+    const myRandom = seedableRandom(42);
+
     function convexHull(points) {
       if (points.length <= 1) return [...points];
       const sorted = [...points]
@@ -260,10 +269,10 @@
       }
 
       localLinks.forEach(link => {
-        if (Math.random() < beta) {
+        if (myRandom() < beta) {
           let newTargetIndex;
           do {
-            newTargetIndex = Math.floor(Math.random() * n);
+            newTargetIndex = Math.floor(myRandom() * n);
           } while (satIds[newTargetIndex] === link.source);
           link.target = satIds[newTargetIndex];
         }
@@ -299,7 +308,7 @@
         nodes.push({
           id: `cgs-sat-${i}`,
           group: "cgs",
-          r: 5 + Math.random() * 4,
+          r: 5 + myRandom() * 4,
           label: ""
         });
       }
@@ -308,7 +317,7 @@
         nodes.push({
           id: `csss-sat-${i}`,
           group: "csss",
-          r: 5 + Math.random() * 4,
+          r: 5 + myRandom() * 4,
           label: ""
         });
       }
@@ -319,7 +328,7 @@
         nodes.push({
           id: `cc-sat-${i}`,
           group: "cc",
-          r: 5 + Math.random() * 4,
+          r: 5 + myRandom() * 4,
           label: ""
         });
       }
@@ -383,7 +392,7 @@
         }).strength(1.0).iterations(3))
         .force("x", d3.forceX().x(d => {
           if (d.group === "cgs") return width * 0.40;
-          if (d.group === "csss") return Math.min(width - 240, width * 0.73);
+          if (d.group === "csss") return Math.min(width - 320, width * 0.70);
           if (d.group === "cc") return Math.max(200, width * 0.23);
           return width * 0.5;
         }).strength(0.12))
@@ -482,18 +491,6 @@
         .attr("dy", "0.35em")
         .text(d => d.label);
 
-      // Helper to compute visual center of mass of a satellite group
-      function getGroupCenter(groupName) {
-        const groupNodes = nodes.filter(n => n.group === groupName && n.id !== "CGS Center" && n.id !== "CC Center" && n.id !== "CSSS Center");
-        if (groupNodes.length === 0) return { x: 0, y: 0 };
-        const sumX = d3.sum(groupNodes, n => n.x);
-        const sumY = d3.sum(groupNodes, n => n.y);
-        return {
-          x: sumX / groupNodes.length,
-          y: sumY / groupNodes.length
-        };
-      }
-
       // Handle Resize
       window.addEventListener("resize", () => {
         width = window.innerWidth;
@@ -503,7 +500,7 @@
         
         simulation.force("x").x(d => {
           if (d.group === "cgs") return width * 0.40;
-          if (d.group === "csss") return Math.min(width - 240, width * 0.73);
+          if (d.group === "csss") return Math.min(width - 320, width * 0.70);
           if (d.group === "cc") return Math.max(200, width * 0.23);
           return width * 0.5;
         });
@@ -570,68 +567,69 @@
           const arrowCenters = ["CGS Center", "CC Center", "CSSS Center"];
           
           if (arrowCenters.includes(d.id)) {
-            const center = getGroupCenter(d.group);
-            let labelX, labelY, textPadding, blobRadius;
+            let defaultLabelX, defaultLabelY;
+            let defaultStartX, defaultStartY;
+            let defaultEndX, defaultEndY;
+            
             if (d.id === "CC Center") {
-              labelX = Math.max(130, width * 0.14);
-              labelY = height * 0.45;
-              textPadding = 15;
-              blobRadius = 50;
+              defaultLabelX = width * 0.1708;
+              defaultLabelY = height * 0.4140;
+              defaultStartX = width * 0.1809;
+              defaultStartY = height * 0.4188;
+              defaultEndX = width * 0.2305;
+              defaultEndY = height * 0.4423;
             } else if (d.id === "CSSS Center") {
-              labelX = Math.min(width - 200, width * 0.86);
-              labelY = height * 0.45;
-              textPadding = 15;
-              blobRadius = 50;
+              defaultLabelX = width * 0.6197;
+              defaultLabelY = height * 0.2900;
+              defaultStartX = width * 0.7070;
+              defaultStartY = height * 0.3121;
+              defaultEndX = width * 0.7461;
+              defaultEndY = height * 0.3838;
             } else { // CGS Center
-              labelX = width * 0.32;
-              labelY = height * 0.20;
-              textPadding = 15;
-              blobRadius = 85;
+              defaultLabelX = width * 0.3962;
+              defaultLabelY = height * 0.2204;
+              defaultStartX = width * 0.3947;
+              defaultStartY = height * 0.2395;
+              defaultEndX = width * 0.3865;
+              defaultEndY = height * 0.3438;
             }
 
             container.select("text")
-              .attr("x", labelX)
-              .attr("y", labelY)
-              .attr("transform", null);
+              .attr("x", defaultLabelX)
+              .attr("y", defaultLabelY);
 
-            const dx = center.x - labelX;
-            const dy = center.y - labelY;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist > 0) {
-              const ux = dx / dist;
-              const uy = dy / dist;
-              const startX = labelX + ux * textPadding;
-              const startY = labelY + uy * textPadding;
-              const endX = center.x - ux * blobRadius;
-              const endY = center.y - uy * blobRadius;
-
-              container.select("line")
-                .attr("x1", startX)
-                .attr("y1", startY)
-                .attr("x2", endX)
-                .attr("y2", endY)
-                .style("display", null);
-            } else {
-              container.select("line").style("display", "none");
-            }
+            container.select("line")
+              .attr("x1", defaultStartX)
+              .attr("y1", defaultStartY)
+              .attr("x2", defaultEndX)
+              .attr("y2", defaultEndY);
           } else {
             // Overlap nodes are translated to their exact coordinates
             container.select("text")
               .attr("x", 0)
               .attr("y", d.group === "overlap" ? 24 : 0)
               .attr("transform", `translate(${d.x},${d.y})`);
-            container.select("line").style("display", "none");
           }
         });
       }
 
       function runStaticSimulation() {
+        // Reset positions deterministically before simulating
+        const initialRandom = seedableRandom(999);
+        nodes.forEach(n => {
+          n.x = width / 2 + (initialRandom() - 0.5) * 100;
+          n.y = height / 2 + (initialRandom() - 0.5) * 100;
+          n.vx = 0;
+          n.vy = 0;
+        });
+
         simulation.alpha(1);
         for (let i = 0; i < 250; i++) {
           simulation.tick();
         }
         simulation.stop();
+        
+        // Final position update
         updatePositions();
       }
 
