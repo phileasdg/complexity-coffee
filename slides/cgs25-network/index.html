@@ -45,6 +45,24 @@
   <!-- Custom Tooltip -->
   <div id="tooltip" class="tooltip hidden"></div>
 
+  <!-- Close Button to return to Hub -->
+  <a href="../" id="hub-close-btn" class="hub-close-btn hidden" aria-label="Close Slides and Return to Hub">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </a>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const fromHub = sessionStorage.getItem('cc_from_hub') === 'true' || new URLSearchParams(window.location.search).has('from');
+      if (fromHub) {
+        const btn = document.getElementById('hub-close-btn');
+        if (btn) btn.classList.remove('hidden');
+      }
+    });
+  </script>
+
   <!-- JavaScript Entry Point -->
   <script src="app.js"></script>
 </body>
