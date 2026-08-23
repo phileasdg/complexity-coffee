@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <article class="flex flex-col h-full hover:-translate-y-1 transition-transform duration-300">
                 <button type="button" class="group text-left w-full h-full flex flex-col bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300" data-event-id="${event.id}">
                     <!-- Image Container -->
-                    <div class="relative w-full aspect-video overflow-hidden bg-gray-100">
+                    <div class="relative w-full aspect-video overflow-hidden bg-white">
                         <img src="${imagePath}" alt="${altText}" 
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                              onerror="this.onerror=null; this.src='img/general/marble4.png';">
