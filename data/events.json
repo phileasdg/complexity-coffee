@@ -1,10 +1,58 @@
 [
 	{
-		"id": "nr-1-3",
+		"id": "gt-4-10",
+		"title": "Health and Income Inequality: A Comparative Analysis",
+		"event_time": 1786980600,
+		"location": "Virtual",
+		"image_path": "",
+		"tag": "Guest Talk",
+		"description_html": "<p>Caterina and Stefano have been doing fascinating comparative analyses on the effects income and wealth inequality have on health outcomes in Brazil, Italy and the USA. Their paper presenting the comparison between <a href=\"https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2024.1421509/full\" target=\"_blank\" rel=\"noopener\">Italy and the US</a> is already in print, while the one comparing Brazil and the US is presently under review. They will be presenting both these projects in their talk, but more excitingly, this talk is also an invitation to join their comparative study.</p><p>Caterina and Stefano hope to include countries with diverse healthcare policies in this analysis and are looking for collaborators to work on equivalent studies for their countries. At the end of the talk, they will share a short list of data requirements to help shortlist datasets that might be used from participating countries. They will then hold follow-up tutorials to help transform and analyze the data to understand how inequality affects healthcare outcomes across nations.</p><p>Dr. Caterina La Porta is Professor of General Pathology and Dr. Stefano Zapperi is Professor of Theoretical Condensed Matter Physics; together they coordinate the <a href=\"https://complexitybiosystems.it/en/home\" target=\"_blank\" rel=\"noopener\">Center for Complexity and Biosystems</a> at the University of Milan.</p>",
+		"speakers": [
+			{
+				"name": "Dr. Caterina La Porta",
+				"tagline": "Professor of General Pathology, University of Milan",
+				"image_path": "",
+				"website_url": "https://www.oncolab.unimi.it/about-caterina/"
+			},
+			{
+				"name": "Dr. Stefano Zapperi",
+				"tagline": "Professor of Theoretical Condensed Matter Physics, University of Milan",
+				"image_path": "",
+				"website_url": "https://www.smmlab.it/chi-sono/"
+			}
+		],
+		"links": {
+			"Join Event": "https://us02web.zoom.us/j/86974846682?pwd=bw4niW1dVG2bo2INctUbM69W4dlsZf.1"
+		},
+		"cta": {
+			"text": "Join Event",
+			"url": "https://us02web.zoom.us/j/86974846682?pwd=bw4niW1dVG2bo2INctUbM69W4dlsZf.1"
+		}
+	},
+	{
+		"id": "cn-1-9",
+		"title": "Lessons from the First International Conference on Transitioning Away from Fossil Fuels: Telling the Story of Coal Phaseout in Colombia and the Santa Marta Process",
+		"event_time": 1784127600,
+		"location": "Virtual",
+		"image_path": "",
+		"tag": "Complexity Narratives",
+		"description_html": "<p>In this Complexity Narratives session, Dr. Andrea Carolina Cardoso Diaz shares insights on the storytelling of coal and coal phaseout in the Colombian Caribbean region, highlighting the significance of the recent International Conference on Transitioning Away from Fossil Fuels in Santa Marta for territories impacted by decades of coal extraction.</p><p>Dr. Cardoso Diaz presents reflections on epistemologies of the South, just and inclusive energy transitions, and connections between ecology, climate, and community-led policy. The discussion explores practical outcomes from the Santa Marta process, indigenous movements, and global policy next steps for framing sustainable development within planetary limits and social justice constraints.</p><p>Dr. Andrea Carolina Cardoso Diaz is a Professor and Researcher at Universidad del Magdalena, specializing in energy transitions and socio-environmental dynamics in Latin America.</p>",
+		"speakers": [
+			{
+				"name": "Dr. Andrea Carolina Cardoso Diaz",
+				"tagline": "Professor and Researcher, Universidad del Magdalena",
+				"image_path": "img/people/andrea_carolina_cardoso_diaz.jpeg",
+				"website_url": "https://investigacion.unimagdalena.edu.co/persona/perfil/4017"
+			}
+		],
+		"links": {}
+	},
+	{
+		"id": "nr-1-8",
 		"title": "Operationalizing Systemic Change Capacity | Modeling Oncolytic Virotherapy | Complexity in International Environmental Law",
 		"event_time": 1781614800,
 		"location": "Virtual",
-		"image_path": "",
+		"image_path": "img/events/nascent-research/nr-1-8.png",
 		"tag": "Nascent Research",
 		"description_html": "<p><strong>Ángela María Báez-Silva Arias & Juan Manuel López</strong> on <em>Operationalizing systemic change capacity to catalyze phase transitions in socio-technical systems from linear-reactive behaviors to complexity-aware, sense-making paradigms</em>. This research bridges research and pragmatic organizational development to operationalize and assess Systemic Change Capacity (SCC) within socio-technical ecosystems. The study seeks to identify and validate the key dynamic indicators required to evaluate an organization's, initiative's, or community's potential to contribute to complexity-aware, systemic change. By developing a robust, mixed-methods evaluation framework, this research provides not only a metric for current systemic maturity but also an actionable, data-driven pathway to catalyze and guide structural and cognitive transformations in complex environments.</p><p><strong>Joseph Malinzi</strong> on <em>ABM and network science informed modeling of oncolytic virotherapy and combination cancer treatments</em>. This research aims to develop mathematical models combining agent-based modeling and network theory to study combination oncolytic virus therapy in cancer. The goal is to investigate the synergistic effects of these combinations and to determine the best timing and ways to deliver these viruses by modeling cancer cells and viruses individually and their connections in a network. The presentation includes a brief overview of what oncolytic virotherapy is and the progress made so far in collaboration with other researchers.</p><p><strong>Martynas Briedis</strong> on <em>Complexity in the economic analysis of international environmental law</em>. Responsibility for providing information about trans-boundary non-point source pollution and responsibility for paying it has a lack of studies. Studies assume that there will be a solution given there is a regulator and given no international regulator - one will appear. However, with the multi-polarization of the world and no single regulator how can we clean the oceans and the air of the pollution that cannot be attributed to no one? Maybe complexity thinking can help us answer this question.</p>",
 		"speakers": [
