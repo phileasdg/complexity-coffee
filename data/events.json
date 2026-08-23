@@ -11,13 +11,13 @@
 			{
 				"name": "Dr. Caterina La Porta",
 				"tagline": "Professor of General Pathology, University of Milan",
-				"image_path": "",
+				"image_path": "img/people/caterina-la-porta.jpg",
 				"website_url": "https://www.oncolab.unimi.it/about-caterina/"
 			},
 			{
 				"name": "Dr. Stefano Zapperi",
 				"tagline": "Professor of Theoretical Condensed Matter Physics, University of Milan",
-				"image_path": "",
+				"image_path": "img/people/stefano-zapperi.jpg",
 				"website_url": "https://www.smmlab.it/chi-sono/"
 			}
 		],

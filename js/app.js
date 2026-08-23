@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             title: "Complexity Narratives",
             description: "An epistemologically-forward attempt at historically recontextualizing the ways in which our world systems have developed.",
-            tag_matcher: "Complexity Narrative",
+            tag_matcher: "Complexity Narratives",
             image_path: "img/general/tiling3.jpeg",
             gradient_class: "sfi-gradient-turmeric",
             tag_color_class: "text-white"
@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <article class="w-full">
                 <button type="button" class="group text-left w-full flex items-center bg-white rounded-lg p-3 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-200" data-event-id="${event.id}">
                     <!-- Thumbnail -->
-                    <div class="relative w-24 h-24 flex-shrink-0 rounded-md overflow-hidden bg-gray-100 mr-4">
+                    <div class="relative w-24 h-24 flex-shrink-0 rounded-md overflow-hidden bg-white mr-4">
                         <img src="${imagePath}" alt="${altText}" 
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                              onerror="this.onerror=null; this.src='./img/general/marble4.png';">
