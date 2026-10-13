@@ -25,12 +25,6 @@
   },
   {
     "type": "embed",
-    "title": "Complexity Narratives",
-    "subtitle": "A new series exploring systemic evolution and emergence",
-    "iframeUrl": "slides/complexity-narratives.html"
-  },
-  {
-    "type": "embed",
     "title": "Building Upon CGS",
     "subtitle": "From a brief summer program to a continuous grassroots network",
     "iframeUrl": "slides/cgs-to-cc.html"
