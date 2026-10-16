@@ -1,5 +1,30 @@
 [
 	{
+		"id": "w-3-11",
+		"title": "Mapping Rural Health Networks in Remote Underserved Communities: Field Notes from the Haitian Countryside",
+		"event_time": 1792684800,
+		"location": "Virtual",
+		"image_path": "",
+		"tag": "Workshop",
+		"description_html": "<p>The actors in any health sector can be represented as a dynamic network of agents coalescing into groups and communities with stronger ties amongst themselves than with actors outside these groups. The criteria for membership can vary from one situation to the next. In some cases, group membership is dictated by belonging to the same community of practice. In other situations, geographical proximity is enough to create relatively strong ties amongst actors. In this talk, Vena will present insights gained from a mapping exercise of such networks in two rural communities in Haiti.</p><p>Haiti is a small-island developing state in the Caribbean region whose health sector has depended on foreign aid for decades. Transnational cooperation plays a crucial role in the Haitian health sector, but the incessant arrival and departure of a multitude of NGOs, global health projects, and philanthropies create a permanent state of flux in Haiti's health networks, particularly in rural and remote communities. This situation provides a rich illustration of how technoscientific assemblages of people, objects and ideas are mobilized in the real world in a fluid, impermanent, and (often) elusive way. Drawing from elements of network mapping and controversy mapping, Vena will share insights gained from attempting to characterize the transnational and multisectoral health cooperation networks of rural Haiti. An interactive workshop will follow on how transdisciplinary teams of researchers and practitioners looking to map health networks in the Global South can find stability in a world of shifting senses, practices and perspectives.</p><p>Vena Joseph is a PhD Candidate in the Department of Social and Preventive Medicine at the University of Montreal's School of Public Health. She deploys complex systems methodologies and frameworks from Science, Technology and Society to examine the processes of health systems strengthening in vulnerable populations. Her work explores the political economy of disease prevention (global health), the political ecology at the intersection between human, animal and ecosystem health (planetary health), and how complementary expertises can be mobilized to effectively improve the well-being of underserved and remote communities sustainably through participatory processes (transdisciplinary, community-based research).</p><p><strong>Save the Date:</strong> Add to <a href=\"https://calendar.app.google/QKqPWmxJPXLjhRzA6\" target=\"_blank\" rel=\"noopener\">Google Calendar</a>.<br><strong>Zoom Meeting ID:</strong> 451 562 7500 | <strong>Passcode:</strong> CoCo2026</p>",
+		"speakers": [
+			{
+				"name": "Vena Joseph",
+				"tagline": "PhD Candidate, Department of Social and Preventive Medicine, University of Montreal",
+				"image_path": "",
+				"website_url": ""
+			}
+		],
+		"links": {
+			"Join Event": "https://us06web.zoom.us/j/4515627500?pwd=X09gNO6Mlyypw67re5L67SxSdB09aX.1",
+			"Calendar": "https://calendar.app.google/QKqPWmxJPXLjhRzA6"
+		},
+		"cta": {
+			"text": "Join Event",
+			"url": "https://us06web.zoom.us/j/4515627500?pwd=X09gNO6Mlyypw67re5L67SxSdB09aX.1"
+		}
+	},
+	{
 		"id": "gt-4-10",
 		"title": "Health and Income Inequality: A Comparative Analysis",
 		"event_time": 1786980600,
